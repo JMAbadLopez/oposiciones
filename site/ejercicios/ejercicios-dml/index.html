@@ -1072,10 +1072,12 @@
 <p>Ambos exámenes incluyen, además de los ejercicios prácticos anteriores, un bloque inicial de 25 (2021) o 150 (2025) preguntas tipo test. Estas son las que tratan sintaxis o conceptos de manipulación de datos.</p>
 <h3 id="examen-2021-modelo-a-pregunta-1">Examen 2021 (Modelo A, pregunta 1)</h3>
 <p>En MySQL las actualizaciones se llevan a cabo mediante la sentencia:</p>
-<p>a) <code>UPDATE nombre_tabla SET columna_1 = expresion1, columna_2 = expresion2, columna_n = expresion WHERE condicion</code></p>
-<p>b) <code>SELECT nombre_tabla SET columna_1 = expresion1, columna_2 = expresion2, columna_n = expresion WHERE condicion</code></p>
-<p>c) <code>SHOW nombre_tabla SET columna_1 = expresion1, columna_2 = expresion2, columna_n = expresion WHERE condicion</code></p>
-<p>d) <code>INSERT nombre_tabla SET columna_1 = expresion1, columna_2 = expresion2, columna_n = expresion WHERE condicion</code></p>
+<ul>
+<li><strong>a)</strong> <code>UPDATE nombre_tabla SET columna_1 = expresion1, columna_2 = expresion2, columna_n = expresion WHERE condicion</code></li>
+<li><strong>b)</strong> <code>SELECT nombre_tabla SET columna_1 = expresion1, columna_2 = expresion2, columna_n = expresion WHERE condicion</code></li>
+<li><strong>c)</strong> <code>SHOW nombre_tabla SET columna_1 = expresion1, columna_2 = expresion2, columna_n = expresion WHERE condicion</code></li>
+<li><strong>d)</strong> <code>INSERT nombre_tabla SET columna_1 = expresion1, columna_2 = expresion2, columna_n = expresion WHERE condicion</code></li>
+</ul>
 <details class="success">
 <summary>Solución: a)</summary>
 <p>Es la sintaxis estándar de <code>UPDATE</code> vista en el tema de manipulación: <code>UPDATE tabla SET columna = valor, ... WHERE condicion</code>. Las otras tres opciones combinan la cláusula <code>SET ... WHERE</code> (propia de <code>UPDATE</code>) con el nombre de otra instrucción (<code>SELECT</code>, <code>SHOW</code>, <code>INSERT</code>), que no admite esa sintaxis.</p>
@@ -1088,46 +1090,56 @@
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>ENLACES(id_link, link_url, url_status)
 </span></code></pre></div>
 <p><strong>96.</strong> ¿Cuál es la consulta SQL correcta para listar los títulos de noticias y el contenido de los comentarios hechos por el autor con ID 5, ordenados por fecha descendente?</p>
-<p>a) <code>SELECT N.titulo, C.contenido FROM NOTICIAS N JOIN COMENTARIOS C ON C.id_autor = 5 ORDER BY N.fecha_pub DESC;</code></p>
-<p>b) <code>SELECT N.titulo, C.contenido FROM COMENTARIOS C WHERE C.id_autor = 5 ORDER BY C.fecha_comen;</code></p>
-<p>c) <code>SELECT N.titulo, C.contenido FROM COMENTARIOS C JOIN NOTICIAS N ON C.id_noticia = N.id_noticia WHERE C.id_autor = 5 ORDER BY C.fecha_comen DESC;</code></p>
-<p>d) <code>SELECT N.titulo, C.contenido FROM COMENTARIOS C JOIN NOTICIAS N ON C.id = N.id WHERE C.id_autor = 5;</code></p>
+<ul>
+<li><strong>a)</strong> <code>SELECT N.titulo, C.contenido FROM NOTICIAS N JOIN COMENTARIOS C ON C.id_autor = 5 ORDER BY N.fecha_pub DESC;</code></li>
+<li><strong>b)</strong> <code>SELECT N.titulo, C.contenido FROM COMENTARIOS C WHERE C.id_autor = 5 ORDER BY C.fecha_comen;</code></li>
+<li><strong>c)</strong> <code>SELECT N.titulo, C.contenido FROM COMENTARIOS C JOIN NOTICIAS N ON C.id_noticia = N.id_noticia WHERE C.id_autor = 5 ORDER BY C.fecha_comen DESC;</code></li>
+<li><strong>d)</strong> <code>SELECT N.titulo, C.contenido FROM COMENTARIOS C JOIN NOTICIAS N ON C.id = N.id WHERE C.id_autor = 5;</code></li>
+</ul>
 <details class="success">
 <summary>Solución: c)</summary>
 <p>La a) no tiene una condición de unión (<code>ON</code>) correcta entre <code>NOTICIAS</code> y <code>COMENTARIOS</code> (el <code>ON</code> compara <code>id_autor</code> con una constante en lugar de relacionar las dos tablas, lo que produciría un producto cartesiano filtrado incorrectamente). La b) no une ambas tablas, así que <code>N.titulo</code> no estaría definido para cada fila. La d) usa <code>C.id</code> y <code>N.id</code>, columnas que no existen en este esquema (las claves se llaman <code>id_comentario</code>, <code>id_noticia</code>, etc.). La c) une correctamente <code>COMENTARIOS</code> con <code>NOTICIAS</code> por <code>id_noticia</code>, filtra por el autor del comentario y ordena por la fecha del comentario en orden descendente, tal como pide el enunciado.</p>
 </details>
 <p><strong>97.</strong> ¿Cuál es la consulta SQL correcta para actualizar <code>url_status</code> a 'Válida' en la tabla <code>ENLACES</code> para URLs que comienzan con <code>'https://'</code>?</p>
-<p>a) <code>UPDATE ENLACES SET link_url = 'Válida' WHERE url_status LIKE 'https/%';</code></p>
-<p>b) <code>ALTER ENLACES SET url_status = 'Válida' WHERE link_url LIKE 'https://%';</code></p>
-<p>c) <code>UPDATE ENLACES SET url_status = 'Válida' WHERE link_url LIKE 'https://%';</code></p>
-<p>d) <code>UPDATE ENLACES SET url_status = 'Válida' WHERE link_url = 'https://';</code></p>
+<ul>
+<li><strong>a)</strong> <code>UPDATE ENLACES SET link_url = 'Válida' WHERE url_status LIKE 'https/%';</code></li>
+<li><strong>b)</strong> <code>ALTER ENLACES SET url_status = 'Válida' WHERE link_url LIKE 'https://%';</code></li>
+<li><strong>c)</strong> <code>UPDATE ENLACES SET url_status = 'Válida' WHERE link_url LIKE 'https://%';</code></li>
+<li><strong>d)</strong> <code>UPDATE ENLACES SET url_status = 'Válida' WHERE link_url = 'https://';</code></li>
+</ul>
 <details class="success">
 <summary>Solución: c)</summary>
 <p>La a) actualiza la columna equivocada (<code>link_url</code> en vez de <code>url_status</code>) y compara <code>url_status</code> con un patrón que no tiene sentido para esa columna. La b) usa <code>ALTER</code>, que es DDL (modifica la estructura de una tabla), no DML: para cambiar valores de filas hace falta <code>UPDATE</code>. La d) compara con el valor exacto <code>'https://'</code> (<code>=</code>) en lugar de con un patrón, por lo que no capturaría ninguna URL real que empiece por ese prefijo. La c) es la única que usa <code>UPDATE</code> con <code>SET</code> sobre la columna correcta (<code>url_status</code>) y filtra con <code>LIKE 'https://%'</code>, el patrón correcto para "empieza por https://".</p>
 </details>
 <p><strong>98.</strong> ¿Cuál es el fragmento de código SQL correcto para declarar un cursor que recorra todos los comentarios de la noticia con identificador 7?</p>
-<p>a) <code>DECLARE cur_comentarios CURSOR FOR SELECT id_comentario, contenido FROM COMENTARIOS WHERE id_autor = 7;</code></p>
-<p>b) <code>DECLARE cur_comentarios CURSOR FOR SELECT id_comentario, contenido FROM NOTICIAS WHERE noticia = 7;</code></p>
-<p>c) <code>DECLARE cur_comentarios CURSOR FOR SELECT id_comentario, contenido FROM COMENTARIOS ORDER BY noticia;</code></p>
-<p>d) <code>DECLARE cur_comentarios CURSOR FOR SELECT id_comentario, contenido FROM COMENTARIOS WHERE id_noticia = 7;</code></p>
+<ul>
+<li><strong>a)</strong> <code>DECLARE cur_comentarios CURSOR FOR SELECT id_comentario, contenido FROM COMENTARIOS WHERE id_autor = 7;</code></li>
+<li><strong>b)</strong> <code>DECLARE cur_comentarios CURSOR FOR SELECT id_comentario, contenido FROM NOTICIAS WHERE noticia = 7;</code></li>
+<li><strong>c)</strong> <code>DECLARE cur_comentarios CURSOR FOR SELECT id_comentario, contenido FROM COMENTARIOS ORDER BY noticia;</code></li>
+<li><strong>d)</strong> <code>DECLARE cur_comentarios CURSOR FOR SELECT id_comentario, contenido FROM COMENTARIOS WHERE id_noticia = 7;</code></li>
+</ul>
 <details class="success">
 <summary>Solución: d)</summary>
 <p>La a) filtra por <code>id_autor</code> en vez de por la noticia. La b) consulta la tabla <code>NOTICIAS</code> (que no tiene columna <code>contenido</code> de comentario) y usa una columna <code>noticia</code> que no existe. La c) no filtra por la noticia 7 en absoluto, y además usa una columna <code>noticia</code> inexistente. La d) selecciona de <code>COMENTARIOS</code> filtrando correctamente por <code>id_noticia = 7</code>, la columna real que relaciona un comentario con su noticia.</p>
 </details>
 <p><strong>99.</strong> ¿Cuál es el procedimiento SQL (MySQL) correcto para contar los comentarios por noticia y mostrar el título de la noticia junto con el total de comentarios?</p>
-<p>a) <code>CREATE PROCEDURE contar_comentarios_por_noticia() BEGIN SELECT N.titulo, COUNT(C.id_comentario) AS total FROM NOTICIAS N LEFT JOIN COMENTARIOS C ON N.id_noticia = C.id_noticia GROUP BY N.id_noticia, N.titulo; END;</code></p>
-<p>b) <code>CREATE PROCEDURE contar_comentarios_por_noticia() BEGIN SELECT N.id_titulo, COUNT(C.id_comentario) AS total FROM NOTICIAS N LEFT JOIN COMENTARIOS C ON N.id_noticia = C.id_noticia GROUP BY N.id_noticia, N.titulo; END;</code></p>
-<p>c) <code>CREATE PROCEDURE contar_comentarios_por_noticia() BEGIN SELECT N.titulo, SUM(C.id_comentario) AS total FROM NOTICIAS N JOIN COMENTARIOS C ON N.id_noticia = C.id_noticia; END;</code></p>
-<p>d) <code>CREATE PROCEDURE contar_comentarios_por_noticia() BEGIN SELECT N.id_titulo, COUNT(C.id_comentario) AS total FROM NOTICIAS N JOIN COMENTARIOS C ON N.id_noticia = C.id_autor GROUP BY N.id; END;</code></p>
+<ul>
+<li><strong>a)</strong> <code>CREATE PROCEDURE contar_comentarios_por_noticia() BEGIN SELECT N.titulo, COUNT(C.id_comentario) AS total FROM NOTICIAS N LEFT JOIN COMENTARIOS C ON N.id_noticia = C.id_noticia GROUP BY N.id_noticia, N.titulo; END;</code></li>
+<li><strong>b)</strong> <code>CREATE PROCEDURE contar_comentarios_por_noticia() BEGIN SELECT N.id_titulo, COUNT(C.id_comentario) AS total FROM NOTICIAS N LEFT JOIN COMENTARIOS C ON N.id_noticia = C.id_noticia GROUP BY N.id_noticia, N.titulo; END;</code></li>
+<li><strong>c)</strong> <code>CREATE PROCEDURE contar_comentarios_por_noticia() BEGIN SELECT N.titulo, SUM(C.id_comentario) AS total FROM NOTICIAS N JOIN COMENTARIOS C ON N.id_noticia = C.id_noticia; END;</code></li>
+<li><strong>d)</strong> <code>CREATE PROCEDURE contar_comentarios_por_noticia() BEGIN SELECT N.id_titulo, COUNT(C.id_comentario) AS total FROM NOTICIAS N JOIN COMENTARIOS C ON N.id_noticia = C.id_autor GROUP BY N.id; END;</code></li>
+</ul>
 <details class="success">
 <summary>Solución: a)</summary>
 <p>La b) y la d) seleccionan <code>N.id_titulo</code>, una columna que no existe (la columna se llama <code>titulo</code>). La c) usa <code>SUM(C.id_comentario)</code> en vez de <code>COUNT(C.id_comentario)</code> (sumar identificadores no tiene sentido como "total de comentarios") y, además, usa <code>JOIN</code> en vez de <code>LEFT JOIN</code>, con lo que las noticias sin comentarios desaparecerían del resultado. La d) además une mal las tablas (<code>C.id_autor</code> en vez de <code>C.id_noticia</code>). La a) es correcta: <code>LEFT JOIN</code> conserva las noticias sin comentarios (mostrando <code>0</code> gracias a <code>COUNT</code>, que no cuenta los <code>NULL</code> que deja el <code>LEFT JOIN</code>), y agrupa por noticia para obtener un total por cada una.</p>
 </details>
 <p><strong>100.</strong> ¿Cuál es el fragmento de código SQL (MySQL) correcto para gestionar el fin de un cursor en un procedimiento que recorre la tabla <code>ENLACES</code>?</p>
-<p>a) <code>DECLARE HANDLER FOR NOT FOUND SET done = FALSE;</code></p>
-<p>b) <code>DECLARE CONTINUE HANDLER FOR SQLERROR SET done = TRUE;</code></p>
-<p>c) <code>DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;</code></p>
-<p>d) <code>DECLARE EXIT HANDLER FOR SQLSTATE '02000' SET done = FALSE;</code></p>
+<ul>
+<li><strong>a)</strong> <code>DECLARE HANDLER FOR NOT FOUND SET done = FALSE;</code></li>
+<li><strong>b)</strong> <code>DECLARE CONTINUE HANDLER FOR SQLERROR SET done = TRUE;</code></li>
+<li><strong>c)</strong> <code>DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;</code></li>
+<li><strong>d)</strong> <code>DECLARE EXIT HANDLER FOR SQLSTATE '02000' SET done = FALSE;</code></li>
+</ul>
 <details class="success">
 <summary>Solución: c)</summary>
 <p>La a) está incompleta: a un <code>DECLARE HANDLER</code> le falta indicar el tipo de manejador (<code>CONTINUE</code> o <code>EXIT</code>), es sintácticamente inválida en MySQL. La b) usa la condición <code>SQLERROR</code>, que no existe en MySQL (la condición correcta para errores genéricos sería <code>SQLEXCEPTION</code>), y además pone <code>done = TRUE</code>, lo que detendría el procedimiento ante cualquier error, no solo al agotar el cursor. La d) usa <code>EXIT HANDLER</code>, que abandonaría el procedimiento entero en vez de solo salir del bucle de lectura, y pone <code>done = FALSE</code> (al revés de lo necesario). La c) es el patrón estándar visto en el ejercicio del procedimiento con cursor: <code>CONTINUE HANDLER FOR NOT FOUND</code> captura el momento en que un <code>FETCH</code> ya no encuentra más filas (el código SQLSTATE <code>02000</code>, "no data") y permite seguir ejecutando el procedimiento (en vez de abortarlo) para poder salir del bucle de forma controlada.</p>

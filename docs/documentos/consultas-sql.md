@@ -154,6 +154,59 @@ WHERE edad = NULL;
 
 Esta consulta no da ningún error, pero tampoco hace lo que parece: nunca devuelve ninguna fila (ni siquiera la de Jorge Salas), porque `= NULL` siempre es indefinido. La forma correcta es `WHERE edad IS NULL`.
 
+### Funciones de fecha en condiciones
+
+!!! tip "Idea clave"
+    Las columnas de tipo `DATE` (o `DATETIME`) se pueden comparar directamente con `<`, `>`, `=`... igual que los números, porque internamente una fecha posterior siempre es "mayor" que una anterior. Además, MySQL/MariaDB ofrece funciones específicas para trabajar con fechas: `CURDATE()` (la fecha actual), `DATEDIFF(fecha1, fecha2)` (días entre dos fechas) y la expresión `fecha ± INTERVAL n unidad` (sumar o restar un intervalo a una fecha).
+
+!!! note "Ejemplo independiente de ACADEMIA"
+    La base de datos ACADEMIA no tiene ninguna columna de tipo fecha, así que estos ejemplos usan una mini-tabla `Pedido` aparte, solo para ilustrar la sintaxis.
+
+```sql
+CREATE TABLE Pedido (
+    idpedido      INT PRIMARY KEY,
+    cliente       VARCHAR(60),
+    fecha_pedido  DATE,
+    fecha_entrega DATE NULL
+);
+
+INSERT INTO Pedido VALUES
+    (1, 'Diego Vidal',  '2026-09-01', '2026-09-10'),
+    (2, 'Roberto Diaz', '2026-09-20', NULL),
+    (3, 'Marta Ibañez', '2026-10-05', NULL);
+```
+
+**`CURDATE()`**: devuelve la fecha actual del sistema (sin hora). Se usa mucho junto con `INTERVAL` para comparar con "hace n días":
+
+```sql
+-- Pedidos sin entregar con mas de 15 dias de antiguedad
+SELECT cliente, fecha_pedido
+FROM Pedido
+WHERE fecha_entrega IS NULL
+  AND fecha_pedido < CURDATE() - INTERVAL 15 DAY;
+```
+
+**Resultado** (suponiendo que hoy es 12/10/2026): solo Roberto Díaz, cuyo pedido es del 20/09/2026 (más de 15 días atrás) y sigue sin entregar. El pedido de Marta Ibáñez, del 05/10/2026, también está sin entregar, pero todavía no han pasado 15 días.
+
+**`DATEDIFF(fecha1, fecha2)`**: calcula los días transcurridos entre `fecha1` y `fecha2` (resultado positivo si `fecha1` es posterior a `fecha2`):
+
+```sql
+SELECT cliente, DATEDIFF(fecha_entrega, fecha_pedido) AS dias_hasta_entrega
+FROM Pedido
+WHERE fecha_entrega IS NOT NULL;
+```
+
+**Resultado:** Diego Vidal, `dias_hasta_entrega = 9` (del 01/09/2026 al 10/09/2026).
+
+**`DATE_ADD` / `DATE_SUB`** (o, de forma equivalente, `fecha + INTERVAL ...` / `fecha - INTERVAL ...`): suman o restan un intervalo de tiempo a una fecha:
+
+```sql
+SELECT fecha_pedido, DATE_ADD(fecha_pedido, INTERVAL 7 DAY) AS limite_entrega
+FROM Pedido;
+```
+
+Esto calcula, para cada pedido, la fecha límite de entrega si el plazo fuera de 7 días. La unidad del `INTERVAL` puede ser `DAY`, `MONTH`, `YEAR`, `HOUR`, etc.
+
 ### Más ejemplos de comparaciones
 
 !!! tip "Idea clave"
@@ -324,7 +377,13 @@ where Alumno.nia = Nota.nia AND Nota.nota > 8;
 En esta expresión es obligatorio que la referencia a la columna *nia* de *Alumno* y *Nota* sea calificada con el nombre de la tabla, si es ambigua. En general,
 
 ```
-[tabla].columna
+[tabla | variable_recorrido].columna
+```
+
+Las variables de recorrido permiten dar un nombre alternativo a la *misma* tabla dentro de una consulta. La manera de declarar una variable de recorrido es:
+
+```
+from tabla [as] variable_recorrido
 ```
 
 ### Uso de claves ajenas en consultas de varias tablas
@@ -347,13 +406,30 @@ WHERE A.codciclo = C.codciclo AND C.tutor = 'Álvaro Pino';
 
 **Resultado:** Álvaro Pino es el tutor del ciclo SMR → **Diego Vidal** y **Jorge Salas**.
 
-**EJEMPLO:** Obtener pares nombre de alumno, código de módulo, de tal forma que el módulo que cursen supere las 150 horas.
+**EJEMPLO:** Obtener pares nombre de alumno, código de módulo, de tal forma que dicho alumno tenga la mejor nota de dicho módulo. Además el módulo debe superar las 150 horas.
 
 ```sql
 SELECT A.nombre, N.codmodulo
 FROM Alumno A, Modulo M, Nota N
-WHERE A.nia = N.nia AND M.codmodulo = N.codmodulo AND M.horas > 150;
+WHERE A.nia = N.nia AND M.codmodulo = N.codmodulo AND M.horas > 150
+AND N.nota = (SELECT MAX(N2.nota) FROM Nota N2 WHERE N2.codmodulo = N.codmodulo);
 ```
+
+!!! note "Cómo funciona la subconsulta correlacionada"
+    La condición `N.nota = (SELECT MAX(N2.nota) FROM Nota N2 WHERE N2.codmodulo = N.codmodulo)` es una **subconsulta correlacionada**: a diferencia de una subconsulta normal (que se ejecuta una sola vez, de forma independiente), esta se vuelve a evaluar **una vez por cada fila** que va comprobando la consulta externa, porque en su interior hace referencia a esa fila externa (`N.codmodulo`). De ahí el nombre: queda "correlacionada" con la fila que se está examinando en cada momento.
+
+    Paso a paso, para la fila de `N` correspondiente a Roberto Díaz en el módulo 3 (nota 9,0):
+
+    1. La subconsulta interna calcula `SELECT MAX(N2.nota) FROM Nota N2 WHERE N2.codmodulo = 3`, es decir, la nota máxima **entre todas las notas del módulo 3**: 9,0.
+    2. La condición externa compara: `N.nota = 9,0` → ¿la nota de esta fila (9,0) coincide con el máximo que se acaba de calcular (9,0)? Sí, así que la fila pasa el filtro.
+
+    Para cualquier otra fila de un alumno con nota inferior a la máxima de su módulo (por ejemplo, Antonio Ruiz con 6,5 en el módulo 3), el mismo cálculo da `MAX = 9,0`, la comparación `6,5 = 9,0` es falsa, y la fila queda descartada.
+
+    Es imprescindible usar un alias distinto para la tabla de la subconsulta (`N2`, en vez de reutilizar `N`): así SQL sabe distinguir "la fila que se está comprobando ahora" (`N`, de la consulta externa) de "todas las filas del mismo módulo" (`N2`, de la subconsulta), que es precisamente sobre lo que hay que calcular el máximo.
+
+    El resultado son solo las filas que tienen "la mejor nota" de su módulo (la fila, o las filas si hay empate), sin necesidad de que exista una columna o una vista que la guarde de antemano. Es el mismo patrón que se repite en varios ejemplos de este tema cada vez que se necesita "la mejor nota de un módulo".
+
+**Resultado:** (`Diego Vidal`, 2), (`Roberto Díaz`, 3). *(Los módulos 1, 4 y 6, con 100 horas cada uno, quedan excluidos por no superar las 150 horas. El módulo 5, con 166 horas, también queda fuera, pero por otro motivo: al no tener ninguna nota registrada, nadie puede tener "la mejor nota" de él.)*
 
 ---
 
@@ -457,6 +533,19 @@ HAVING COUNT(nia) > 3;
 
 **Resultado:** tras el `WHERE edad > 25`, el único ciclo con más de 3 alumnos es DAM (sus 4 alumnos tienen todos más de 25 años) → (**DAM**, **27,5**).
 
+**EJEMPLO:** Obtener el nombre del alumno y el número de módulos en los que tiene la mejor nota, siendo su nota media en esos módulos superior a 9.
+
+```sql
+SELECT A.nombre, COUNT(N.codmodulo)
+FROM Alumno A, Nota N
+WHERE A.nia = N.nia
+AND N.nota = (SELECT MAX(N2.nota) FROM Nota N2 WHERE N2.codmodulo = N.codmodulo)
+GROUP BY A.nia, A.nombre     /* Agrupar siempre por CP */
+HAVING AVG (N.nota) > 9;
+```
+
+**Resultado:** Diego Vidal tiene la mejor nota en 3 módulos (Programación 9,5; Entornos de Desarrollo 9,0; Lenguajes de Marcas 9,5), con nota media (9,5+9,0+9,5)/3 = 9,33, que sí supera el 9. Roberto Díaz tiene la mejor nota en 1 módulo (Bases de Datos, 9,0), que no supera estrictamente el 9. **Resultado:** (**Diego Vidal**, 3).
+
 ---
 
 ## Combinaciones de tablas
@@ -519,13 +608,15 @@ Realiza la diferencia de conjuntos: filas de la primera consulta que **no** apar
 !!! note "Disponibilidad en MySQL"
     `EXCEPT` e `INTERSECT` solo están disponibles a partir de MySQL 8.0.31 (versiones anteriores no los soportan). En MariaDB están disponibles desde la versión 10.3.
 
-**EJEMPLO:** Obtener el nombre de los alumnos de 'DAM' que no tengan nia 3 o 4.
+**EJEMPLO:** Obtener el nombre de los alumnos de 'DAM' que no tengan ninguna nota registrada.
 
 ```sql
 (SELECT nombre FROM Alumno WHERE codciclo = 'DAM')
 EXCEPT
-(SELECT nombre FROM Alumno WHERE nia IN (3,4))
+(SELECT nombre FROM Alumno WHERE nia IN (SELECT nia FROM Nota))
 ```
+
+**Resultado:** los alumnos de DAM son Antonio Ruiz, Javier Torres, Carlos Ferrer y Manuel Ortega. De ellos, Antonio Ruiz y Javier Torres sí tienen notas registradas, así que se descartan → **Carlos Ferrer** y **Manuel Ortega**.
 
 **INTERSECT**
 
@@ -535,20 +626,20 @@ expresión_tabla intersect término_tabla
 
 Realiza la intersección de conjuntos: solo las filas que aparecen en **ambas** consultas.
 
-**EJEMPLO:** Obtener el nombre de los alumnos de 'DAM' que tengan nia 1 o 2.
+**EJEMPLO:** Obtener el nombre de los alumnos de 'DAM' que sí tengan alguna nota registrada.
 
 ```sql
 (SELECT nombre FROM Alumno WHERE codciclo = 'DAM')
 INTERSECT
-(SELECT nombre FROM Alumno WHERE nia IN (1, 2))
+(SELECT nombre FROM Alumno WHERE nia IN (SELECT nia FROM Nota))
 ```
 
-**Resultado:** el resultado complementario del ejemplo anterior → **Antonio Ruiz** y **Javier Torres**, los dos únicos alumnos de DAM con nia.
+**Resultado:** el resultado complementario del ejemplo anterior → **Antonio Ruiz** y **Javier Torres**, los dos únicos alumnos de DAM con notas registradas.
 
 ### Concatenaciones de tablas
 
 !!! tip "Idea clave"
-    Son las distintas variantes del `JOIN` conocidas de bases de datos: `INNER JOIN` (solo filas que casan en ambas tablas, equivalente a lo visto con `from` + `where`), `LEFT`/`RIGHT`/`FULL OUTER JOIN` (conservan también las filas sin pareja, rellenando con `NULL`) y la concatenación unión (mucho menos usada en la práctica).
+    Son las distintas variantes del `JOIN` conocidas de otras asignaturas de bases de datos: `INNER JOIN` (solo filas que casan en ambas tablas, equivalente a lo visto con `from` + `where`), `LEFT`/`RIGHT`/`FULL OUTER JOIN` (conservan también las filas sin pareja, rellenando con `NULL`) y la concatenación unión (mucho menos usada en la práctica).
 
     En MySQL, lo habitual es trabajar con `INNER JOIN` y `LEFT JOIN`. `RIGHT JOIN` se usa menos (basta con cambiar el orden de las tablas y usar `LEFT JOIN`), y `FULL OUTER JOIN` **no existe** como tal en MySQL: hay que simularlo.
 
@@ -687,7 +778,7 @@ FROM Alumno A RIGHT JOIN Nota N ON A.nia = N.nia;
 !!! tip "Idea clave"
     Una **subconsulta** es un `select` anidado dentro de otro `select` (normalmente en el `where` o el `having`). Permite responder preguntas del tipo "compara con un valor que primero hay que calcular" (por ejemplo, "mayor que la media").
 
-    No todos los predicados admiten subconsultas: los que sí lo hacen son los de comparación, `in`, `any`/`all` y `exists`. Distinguir cuál usar en cada caso es una de las claves del tema.
+    No todos los predicados admiten subconsultas: los que sí lo hacen son los de comparación, `in`, `match`, `any`/`all` y `exists`. Distinguir cuál usar en cada caso es una de las claves del tema.
 
 Las subconsultas pueden aparecer en las condiciones de búsqueda, tanto de la cláusula `where` como `having`, como argumentos de algunos predicados.
 
@@ -695,8 +786,10 @@ Los predicados que pueden llevar como argumentos subconsultas son los siguientes
 
 - predicados de comparación (`=`, `<>`, `>`, `<`, `>=`, `<=`).
 - `in`: comprueba que un valor *pertenece* a una colección dada mediante una subconsulta.
+- `match`: comprueba si un valor es idéntico a algún valor de una colección.
 - predicados de comparación cuantificados (`any` y `all`): permiten comparar un valor con un conjunto de valores.
 - `exists`: equivalente al cuantificador existencial, comprueba si una subconsulta devuelve alguna fila.
+- `unique`: devuelve cierto si la consulta no tiene filas repetidas.
 
 ### Predicados de comparación (=, <>, >, <, >=, <=)
 
@@ -739,33 +832,6 @@ WHERE horas > (SELECT horas FROM Modulo
 ```
 
 Con nuestros datos esta consulta sí funcionaría por casualidad, porque Ana Salas solo imparte un módulo (la subconsulta devuelve una única fila). Pero es un error conceptual: en cuanto Ana Salas impartiera dos o más módulos, la subconsulta devolvería varias filas y MySQL lanzaría un error de ejecución. Por eso hay que usar siempre una función agregada (`AVG`, `MAX`...) cuando se compara con "todo un grupo" de filas.
-
-### Subconsultas relacionadas
-
-**EJEMPLO:** Obtener pares nombre de alumno, código de módulo, de tal forma que dicho alumno tenga la mejor nota de dicho módulo. Además el módulo debe superar las 150 horas.
-
-```sql
-SELECT A.nombre, N.codmodulo
-FROM Alumno A, Modulo M, Nota N
-WHERE A.nia = N.nia AND M.codmodulo = N.codmodulo AND M.horas > 150
-AND N.nota = (SELECT MAX(N2.nota) FROM Nota N2 WHERE N2.codmodulo = N.codmodulo);
-```
-
-!!! note "Cómo funciona la subconsulta correlacionada"
-    La condición `N.nota = (SELECT MAX(N2.nota) FROM Nota N2 WHERE N2.codmodulo = N.codmodulo)` es una **subconsulta correlacionada**: a diferencia de una subconsulta normal (que se ejecuta una sola vez, de forma independiente), esta se vuelve a evaluar **una vez por cada fila** que va comprobando la consulta externa, porque en su interior hace referencia a esa fila externa (`N.codmodulo`). De ahí el nombre: queda "correlacionada" con la fila que se está examinando en cada momento.
-
-    Paso a paso, para la fila de `N` correspondiente a Roberto Díaz en el módulo 3 (nota 9,0):
-
-    1. La subconsulta interna calcula `SELECT MAX(N2.nota) FROM Nota N2 WHERE N2.codmodulo = 3`, es decir, la nota máxima **entre todas las notas del módulo 3**: 9,0.
-    2. La condición externa compara: `N.nota = 9,0` → ¿la nota de esta fila (9,0) coincide con el máximo que se acaba de calcular (9,0)? Sí, así que la fila pasa el filtro.
-
-    Para cualquier otra fila de un alumno con nota inferior a la máxima de su módulo (por ejemplo, Antonio Ruiz con 6,5 en el módulo 3), el mismo cálculo da `MAX = 9,0`, la comparación `6,5 = 9,0` es falsa, y la fila queda descartada.
-
-    Es imprescindible usar un alias distinto para la tabla de la subconsulta (`N2`, en vez de reutilizar `N`): así SQL sabe distinguir "la fila que se está comprobando ahora" (`N`, de la consulta externa) de "todas las filas del mismo módulo" (`N2`, de la subconsulta), que es precisamente sobre lo que hay que calcular el máximo.
-
-    El resultado son solo las filas que tienen "la mejor nota" de su módulo (la fila, o las filas si hay empate), sin necesidad de que exista una columna o una vista que la guarde de antemano. Es el mismo patrón que se repite en varios ejemplos de este tema cada vez que se necesita "la mejor nota de un módulo".
-
-**Resultado:** (`Diego Vidal`, 2), (`Roberto Díaz`, 3). *(Los módulos 1, 4 y 6, con 100 horas cada uno, quedan excluidos por no superar las 150 horas. El módulo 5, con 166 horas, también queda fuera, pero por otro motivo: al no tener ninguna nota registrada, nadie puede tener "la mejor nota" de él.)*
 
 ### Predicado in
 
@@ -826,7 +892,7 @@ constructor_fila predicado_comparación {all | any | some} (expresión_tabla)
 
 > (\*) el predicado `in` es idéntico al predicado de comparación cuantificado `=any`.
 
-**EJEMPLO** Obtener el nombre del alumno y el módulo, para aquellas notas que sean la nota más alta de todas las registradas en la base de datos.
+**EJEMPLO 8)** Obtener el nombre del alumno y el módulo, para aquellas notas que sean la nota más alta de todas las registradas en la base de datos.
 
 ```sql
 SELECT A.nombre, N.codmodulo FROM Nota N, Alumno A
@@ -836,7 +902,7 @@ N.nota >= ALL (SELECT N1.nota FROM Nota N1 );
 
 **Resultado:** la nota máxima registrada es 9,5, y la obtiene Diego Vidal en dos módulos distintos (Programación y Lenguajes de Marcas) → (**Diego Vidal**, 2), (**Diego Vidal**, 6).
 
-**EJEMPLO** Obtener el nombre del alumno y el módulo, para aquellas notas que superen alguna de las notas del módulo 3 (Bases de Datos).
+**EJEMPLO 9)** Obtener el nombre del alumno y el módulo, para aquellas notas que superen alguna de las notas del módulo 3 (Bases de Datos).
 
 ```sql
 SELECT A.nombre, N.codmodulo FROM Nota N, Alumno A
@@ -845,6 +911,8 @@ N.nota > ANY (SELECT N1.nota FROM Nota N1 WHERE N1.codmodulo = 3 );
 ```
 
 **Resultado:** las notas del módulo 3 son 6,5 / 7,0 / 5,0 / 9,0 / 8,0, así que basta con superar la más baja de ellas (5,0) para cumplir la condición `> ANY`. Solo quedan excluidas las dos notas de valor 5,0 que hay en toda la tabla `Nota` (ambas de Luis Campos, en los módulos 3 y 6); el resto de las 20 notas registradas cumple la condición.
+
+> (\*) Cualquier `ANY` se puede convertir en un `ALL` cambiando la condición a su condición negada y añadiendo un `NOT`.
 
 ### Predicado exists
 
@@ -899,8 +967,6 @@ equivale a: WHERE 0 < (SELECT COUNT(*) FROM …)
 WHERE NOT EXISTS (SELECT * FROM …)
 equivale a: WHERE 0 = (SELECT COUNT(*) FROM …)
 ```
-
----
 
 ### Subconsultas en la cláusula FROM (tablas derivadas)
 
@@ -1034,19 +1100,6 @@ WHERE EXISTS( SELECT * FROM obtener_distincion l
 ```
 
 **Resultado:** el alumno de nia 1 (Antonio Ruiz) solo ha obtenido la Matrícula de Honor (D1), en el módulo 1. Esa distinción también la han obtenido Diego Vidal y Javier Torres, así que ellos quedan excluidos (sí la han obtenido); el resto de alumnos —**Carlos Ferrer, Manuel Ortega, Luis Campos, Sergio Molina, Roberto Díaz, Pablo Núñez y Jorge Salas**— nunca han obtenido la Matrícula de Honor, así que cumplen la condición.
-
-**9)** Obtener el nombre del alumno y el número de módulos en los que tiene la mejor nota, siendo su nota media en esos módulos superior a 9.
-
-```sql
-SELECT A.nombre, COUNT(N.codmodulo)
-FROM Alumno A, Nota N
-WHERE A.nia = N.nia
-AND N.nota = (SELECT MAX(N2.nota) FROM Nota N2 WHERE N2.codmodulo = N.codmodulo)
-GROUP BY A.nia, A.nombre     /* Agrupar siempre por CP */
-HAVING AVG (N.nota) > 9;
-```
-
-**Resultado:** Diego Vidal tiene la mejor nota en 3 módulos (Programación 9,5; Entornos de Desarrollo 9,0; Lenguajes de Marcas 9,5), con nota media (9,5+9,0+9,5)/3 = 9,33, que sí supera el 9. Roberto Díaz tiene la mejor nota en 1 módulo (Bases de Datos, 9,0), que no supera estrictamente el 9. **Resultado:** (**Diego Vidal**, 3).
 
 ---
 
@@ -1219,10 +1272,10 @@ OBTENER_DISTINCION(nia: entero, codmodulo: d_n°, codigo: d_tipo)
 erDiagram
     CICLO ||--o{ ALUMNO : matricula
     ALUMNO ||--o{ NOTA : obtiene
+    MODULO ||--o{ NOTA : "tiene notas de"
     ALUMNO ||--o{ OBTENER_DISTINCION : recibe
     MODULO ||--o{ OBTENER_DISTINCION : en
     DISTINCION ||--o{ OBTENER_DISTINCION : es
-    MODULO ||--o{ NOTA : "tiene notas de"
 
     CICLO {
         int idciclo PK
@@ -1234,6 +1287,12 @@ erDiagram
         string nombre
         int edad
         string codciclo FK
+    }
+    MODULO {
+        int codmodulo PK
+        string nombre
+        int horas
+        string profesor
     }
     NOTA {
         int nia PK
@@ -1251,12 +1310,6 @@ erDiagram
         int codmodulo PK
         string codigo PK
         int nia
-    }
-        MODULO {
-        int codmodulo PK
-        string nombre
-        int horas
-        string profesor
     }
 ```
 
