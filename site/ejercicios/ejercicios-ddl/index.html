@@ -1,0 +1,1268 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ejercicios-dml/">
+      
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Ejercicios DDL - Acadèmia Orígens. Especialidad Informática</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ejercicios-de-examen-ddl-definicion-de-bases-de-datos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Acadèmia Orígens. Especialidad Informática" class="md-header__button md-logo" aria-label="Acadèmia Orígens. Especialidad Informática" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Acadèmia Orígens. Especialidad Informática
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ejercicios DDL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../documentos/consultas-sql/" class="md-tabs__link">
+          
+  
+  
+  Práctico
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../consultas-sql/" class="md-tabs__link">
+          
+  
+  
+  Ejercicios
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Acadèmia Orígens. Especialidad Informática" class="md-nav__button md-logo" aria-label="Acadèmia Orígens. Especialidad Informática" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Acadèmia Orígens. Especialidad Informática
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Práctico
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Práctico
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentos/consultas-sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Manipulación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practico/el-lenguaje-sql-manipulacion-parte-ii/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Manipulación II
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practico/el-lenguaje-sql-definicion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Definición
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Ejercicios
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consultas-sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consultas SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ejercicios-dml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios DML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios DDL
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios DDL
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#examen-2021-modelo-b-ejercicio-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examen 2021 (Modelo B, Ejercicio 2)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examen-2025-ejercicio-2-problema-bd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examen 2025 (Ejercicio 2: Problema BD)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examen 2025 (Ejercicio 2: Problema BD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-la-base-de-datos-adaptada-a-mysqlmariadb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura de la base de datos (adaptada a MySQL/MariaDB)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apartado-8-tabla-y-disparador-de-auditoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apartado 8: tabla y disparador de auditoría
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preguntas-tipo-test-relacionadas-con-ddl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preguntas tipo test relacionadas con DDL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preguntas tipo test relacionadas con DDL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examen-2021-modelo-a-pregunta-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examen 2021 (Modelo A, pregunta 14)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examen-2021-modelo-a-pregunta-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examen 2021 (Modelo A, pregunta 25)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#examen-2021-modelo-b-ejercicio-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examen 2021 (Modelo B, Ejercicio 2)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examen-2025-ejercicio-2-problema-bd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examen 2025 (Ejercicio 2: Problema BD)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examen 2025 (Ejercicio 2: Problema BD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-la-base-de-datos-adaptada-a-mysqlmariadb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura de la base de datos (adaptada a MySQL/MariaDB)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apartado-8-tabla-y-disparador-de-auditoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apartado 8: tabla y disparador de auditoría
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preguntas-tipo-test-relacionadas-con-ddl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preguntas tipo test relacionadas con DDL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preguntas tipo test relacionadas con DDL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examen-2021-modelo-a-pregunta-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examen 2021 (Modelo A, pregunta 14)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examen-2021-modelo-a-pregunta-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examen 2021 (Modelo A, pregunta 25)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ejercicios-de-examen-ddl-definicion-de-bases-de-datos">Ejercicios de examen: DDL (definición de bases de datos)</h1>
+<div class="admonition note">
+<p class="admonition-title">Sobre estos ejercicios</p>
+<p>Los ejercicios de esta página proceden de exámenes reales de las pruebas de acceso al cuerpo de profesores de Enseñanza Secundaria, especialidad Informática, convocadas por la Generalitat Valenciana (años 2021 y 2025). Se han transcrito el enunciado y los datos de partida; las soluciones son propias, verificadas ejecutándolas sobre MySQL/MariaDB con datos de prueba, y están ocultas en un desplegable para poder usarlas como ejercicio antes de consultar la solución.</p>
+</div>
+<hr />
+<h2 id="examen-2021-modelo-b-ejercicio-2">Examen 2021 (Modelo B, Ejercicio 2)</h2>
+<p>Un autónomo se dedica, a través de una franquicia, a distribuir cápsulas de café. El cliente presenta una hoja de cálculo desnormalizada, de la que se muestra una porción representativa:</p>
+<table>
+<thead>
+<tr>
+<th>Client</th>
+<th>DNI Client</th>
+<th>Name</th>
+<th>Phone</th>
+<th>Address</th>
+<th>Flavor</th>
+<th>Unit Price</th>
+<th>Amount</th>
+<th>Short</th>
+<th>Long</th>
+<th>ExtraLarge</th>
+<th>Intensity</th>
+<th>Order</th>
+<th>Order date</th>
+<th>Sent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>11111111-H</td>
+<td>Antonio García</td>
+<td>961542145</td>
+<td>C Colón 16, Valencia</td>
+<td>ExtraForte</td>
+<td>0,5</td>
+<td>10</td>
+<td>NO</td>
+<td>SÍ</td>
+<td>SÍ</td>
+<td>12</td>
+<td>1</td>
+<td>01/08/2018</td>
+<td>SÍ</td>
+</tr>
+<tr>
+<td>1</td>
+<td>11111111-H</td>
+<td>Antonio García</td>
+<td>961542145</td>
+<td>C Colón 16, Valencia</td>
+<td>Velluto</td>
+<td>0,45</td>
+<td>5</td>
+<td>SÍ</td>
+<td>SÍ</td>
+<td>NO</td>
+<td>8</td>
+<td>1</td>
+<td>01/08/2018</td>
+<td>SÍ</td>
+</tr>
+<tr>
+<td>1</td>
+<td>11111111-H</td>
+<td>Antonio García</td>
+<td>961542145</td>
+<td>Av del Puerto 25, Valencia</td>
+<td>Velluto</td>
+<td>0,48</td>
+<td>5</td>
+<td>SÍ</td>
+<td>NO</td>
+<td>NO</td>
+<td>8</td>
+<td>2</td>
+<td>01/12/2016</td>
+<td>SÍ</td>
+</tr>
+<tr>
+<td>1</td>
+<td>11111111-H</td>
+<td>Antonio García</td>
+<td>961542145</td>
+<td>Av del Puerto 25, Valencia</td>
+<td>Velluto</td>
+<td>0,4</td>
+<td>20</td>
+<td>SÍ</td>
+<td>NO</td>
+<td>NO</td>
+<td>8</td>
+<td>3</td>
+<td>01/06/2016</td>
+<td>SÍ</td>
+</tr>
+<tr>
+<td>2</td>
+<td>22222222-J</td>
+<td>María Vicente</td>
+<td>961423544</td>
+<td>C Castellón 13, Alicante</td>
+<td>Expresso</td>
+<td>0,5</td>
+<td>50</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+<td>7</td>
+<td>4</td>
+<td>12/12/2020</td>
+<td>NO</td>
+</tr>
+</tbody>
+</table>
+<p>Los campos "Sí"/"No" no admiten otros valores. <em>Short</em>, <em>Long</em> y <em>ExtraLarge</em> indican la sugerencia de consumo de cada cápsula. <em>Sent</em> indica si se ha entregado el pedido.</p>
+<p>Tareas (basadas en sintaxis SQL estándar):</p>
+<p>a. Introducir brevemente los conceptos aplicados, contextualizando en el temario oficial y en el ámbito de la formación profesional.</p>
+<p>b. Proponer una estructura de tablas a partir de la hoja de cálculo, hasta llegar a un conjunto de relaciones en tercera forma normal.</p>
+<p>c. Generar las consultas de creación de tablas <strong>sin índices ni claves ni restricciones</strong>.</p>
+<p>d. Generar las consultas de creación de claves, así como los índices especificados, indicando el SGBD utilizado.</p>
+<p>e. Generar la consulta que obtiene un listado ordenado por apellido del cliente, con la cantidad de pedidos que ha realizado y el total facturado por ellos.</p>
+<p>f. Proponer una optimización de las columnas <em>Short</em>, <em>Long</em> y <em>ExtraLarge</em> representándolas en una sola columna mediante operadores <em>bitwise</em>, y generar la consulta que obtiene la cantidad de cápsulas vendidas válidas tanto para <em>Long</em> como para <em>ExtraLarge</em>.</p>
+<details class="success">
+<summary>Solución: normalización (apartado b)</summary>
+<p>La hoja de cálculo mezcla varias entidades distintas en las mismas columnas, con dependencias funcionales diferentes:</p>
+<ul>
+<li>El <strong>cliente</strong> (DNI, nombre, teléfono) se repite idéntico en todas las filas de un mismo <code>Client</code>: depende solo de <code>Client</code>.</li>
+<li>La <strong>dirección de entrega</strong> cambia entre pedidos de un mismo cliente (ver filas 1-2 frente a 3-4): depende del <strong>pedido</strong>, no del cliente.</li>
+<li>El <strong>sabor</strong> (<code>Flavor</code>) tiene su propio precio y, en esta propuesta, su formato (<em>short/long/extralarge</em>) e intensidad: se trata como una entidad aparte.</li>
+<li><code>Amount</code> (la cantidad de cápsulas) depende de la combinación pedido + sabor: es un atributo de la línea de pedido.</li>
+</ul>
+<p>Esquema propuesto (claves subrayadas):</p>
+<ul>
+<li><strong>Clientes</strong> (<u>id_cliente</u>, dni, nombre, apellidos, telefono)</li>
+<li><strong>Pedidos</strong> (<u>id_pedido</u>, id_cliente, direccion_entrega, fecha_pedido, enviado)</li>
+<li><strong>Sabores</strong> (<u>id_sabor</u>, nombre, precio_unitario)</li>
+<li><strong>Lineas_Pedido</strong> (<u>id_pedido, id_sabor</u>, cantidad, formato, intensidad)</li>
+</ul>
+<p>Con esta estructura ningún atributo no clave depende de una parte de una clave compuesta ni de otro atributo no clave: está en 3FN.</p>
+<div class="admonition warning">
+<p class="admonition-title">Ojo con la atomicidad: Name no es un único atributo</p>
+<p>La columna <code>Name</code> de la hoja de cálculo ("Antonio García", "María Vicente") en realidad mezcla <strong>dos</strong> datos distintos: el nombre de pila y los apellidos. Guardarlos juntos en una sola columna viola la <strong>1ª Forma Normal</strong> (que exige valores atómicos, no compuestos), y además obliga a usar trucos de manipulación de texto (como extraer la última palabra) cada vez que se necesita ordenar o filtrar solo por apellido — algo frágil en cuanto aparece un apellido compuesto o alguien con varios nombres. Por eso el esquema separa <code>nombre</code> y <code>apellidos</code> en dos columnas de <code>Clientes</code>, en vez de una sola columna <code>nombre</code> combinada. El apartado e) de este ejercicio (ordenar por apellido) es precisamente el que pone de manifiesto por qué conviene separarlos desde el diseño.</p>
+</div>
+</details>
+<details class="success">
+<summary>Solución: creación de tablas sin claves ni restricciones (apartado c)</summary>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Clientes</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">id_cliente</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">dni</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">apellidos</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">telefono</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">);</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Sabores</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="n">id_sabor</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">precio_unitario</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">);</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Pedidos</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="n">id_pedido</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="n">id_cliente</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="n">direccion_entrega</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="n">fecha_pedido</span><span class="w"> </span><span class="nb">DATE</span><span class="p">,</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="n">enviado</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="p">);</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Lineas_Pedido</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="n">id_pedido</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="n">id_sabor</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="n">cantidad</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="n">formato</span><span class="w"> </span><span class="n">TINYINT</span><span class="p">,</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="n">intensidad</span><span class="w"> </span><span class="nb">INT</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="p">);</span>
+</span></code></pre></div>
+</details>
+<details class="success">
+<summary>Solución: claves e índices (apartado d)</summary>
+<p>SGBD utilizado: <strong>MySQL / MariaDB</strong>. Las claves se añaden con <code>ALTER TABLE</code> (tal como pide el enunciado) después de haber creado las tablas:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Clientes</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">pk_clientes</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_cliente</span><span class="p">),</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">uq_clientes_dni</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">dni</span><span class="p">);</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Sabores</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">pk_sabores</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_sabor</span><span class="p">),</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">uq_sabores_nombre</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">);</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Pedidos</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">pk_pedidos</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_pedido</span><span class="p">),</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_pedidos_cliente</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_cliente</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Clientes</span><span class="p">(</span><span class="n">id_cliente</span><span class="p">),</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_enviado</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">enviado</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;SI&#39;</span><span class="p">,</span><span class="s1">&#39;NO&#39;</span><span class="p">));</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_pedidos_cliente</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Pedidos</span><span class="p">(</span><span class="n">id_cliente</span><span class="p">);</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Lineas_Pedido</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">pk_lineas_pedido</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_pedido</span><span class="p">,</span><span class="w"> </span><span class="n">id_sabor</span><span class="p">),</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_lineas_pedido</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_pedido</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Pedidos</span><span class="p">(</span><span class="n">id_pedido</span><span class="p">),</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_lineas_sabor</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_sabor</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Sabores</span><span class="p">(</span><span class="n">id_sabor</span><span class="p">),</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_formato</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">formato</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_lineas_sabor</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Lineas_Pedido</span><span class="p">(</span><span class="n">id_sabor</span><span class="p">);</span>
+</span></code></pre></div>
+<p>La clave primaria de <code>Pedidos</code> y de <code>Sabores</code> crea automáticamente un índice; se añaden además índices explícitos sobre las claves ajenas (<code>id_cliente</code> en <code>Pedidos</code>, <code>id_sabor</code> en <code>Lineas_Pedido</code>), ya que MySQL/MariaDB no los crea de forma automática al declarar una <code>FOREIGN KEY</code> salvo que ya exista uno adecuado.</p>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">Propuesta de optimización con operadores bitwise (apartado f)</p>
+<p>En lugar de tres columnas <code>Short</code>, <code>Long</code>, <code>ExtraLarge</code> (cada una "SÍ"/"NO"), se puede representar la combinación con una sola columna <code>formato TINYINT</code>, usando un bit por cada opción:</p>
+<table>
+<thead>
+<tr>
+<th>Bit</th>
+<th>Valor</th>
+<th>Significa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>Short</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>ExtraLarge</td>
+</tr>
+</tbody>
+</table>
+<p>Una cápsula válida para <em>Short</em> y <em>Long</em> a la vez tendría <code>formato = 1 + 2 = 3</code>. Para comprobar si un bit está activado se usa el operador <code>&amp;</code> (AND bit a bit): <code>(formato &amp; 2) = 2</code> es verdadero si el bit de <em>Long</em> está activo, con independencia de los demás bits.</p>
+<p>La ventaja es compactar tres columnas en una sola, consultable con operadores bitwise en vez de tres condiciones <code>AND</code> separadas; el inconveniente es que la columna deja de ser autoexplicativa y hay que documentar el significado de cada bit.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">-- Cantidad de capsulas vendidas validas tanto para Long como para ExtraLarge</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">LP</span><span class="p">.</span><span class="n">cantidad</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">capsulas_long_y_extralarge</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Lineas_Pedido</span><span class="w"> </span><span class="n">LP</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="p">(</span><span class="n">LP</span><span class="p">.</span><span class="n">formato</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="p">(</span><span class="n">LP</span><span class="p">.</span><span class="n">formato</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+</span></code></pre></div>
+</div>
+<hr />
+<h2 id="examen-2025-ejercicio-2-problema-bd">Examen 2025 (Ejercicio 2: Problema BD)</h2>
+<p>Eres docente en un centro educativo y preparas una práctica sobre una base de datos relacional de biblioteca: lectores, categorías de libros (con subcategorías), autores (con posible autor inspirador), libros y préstamos. La base de datos debe controlar la disponibilidad de libros (<code>cantidad_disponible</code>), permitir consultas sobre libros/autores/categorías/préstamos, garantizar que no se presten libros sin copias disponibles y generar informes (libros más prestados, usuarios con préstamos vencidos).</p>
+<p>El enunciado ofrece el DDL en Oracle, indicando que se puede adaptar a MySQL con los cambios <code>NUMBER → INT</code>, <code>VARCHAR2 → VARCHAR</code> y <code>CURRENT_TIMESTAMP</code>/<code>SYSDATE → DATETIME</code> o <code>TIMESTAMP</code>/<code>DATE DEFAULT (CURRENT_DATE)</code>.</p>
+<p>Dos de las ocho tareas del ejercicio son estrictamente de definición de datos (DDL): crear la propia estructura de tablas, y crear la tabla y el disparador de auditoría del apartado 8. (Las consultas y el procedimiento con cursor, que son DML, se recogen en el documento de ejercicios de manipulación).</p>
+<h3 id="estructura-de-la-base-de-datos-adaptada-a-mysqlmariadb">Estructura de la base de datos (adaptada a MySQL/MariaDB)</h3>
+<details class="success">
+<summary>Solución: DDL adaptado a MySQL (lectores, categorías, autores, libros, préstamos)</summary>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">lectores</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">id_lector</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">fecha_registro</span><span class="w"> </span><span class="n">DATETIME</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">);</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">categorias</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="n">id_categoria</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="n">id_categoria_padre</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_categoria_padre</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_categoria_padre</span><span class="p">)</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">        </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">categorias</span><span class="p">(</span><span class="n">id_categoria</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NULL</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="p">);</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">autores</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="n">id_autor</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">    </span><span class="n">id_autor_inspirador</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_autor_inspirador</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_autor_inspirador</span><span class="p">)</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">        </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">autores</span><span class="p">(</span><span class="n">id_autor</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NULL</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="p">);</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">libros</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">    </span><span class="n">id_libro</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">    </span><span class="n">titulo</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">    </span><span class="n">id_categoria</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">    </span><span class="n">id_autor</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">    </span><span class="n">anio_publicacion</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">    </span><span class="n">cantidad_disponible</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_libro_categoria</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_categoria</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">categorias</span><span class="p">(</span><span class="n">id_categoria</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_libro_autor</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_autor</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">autores</span><span class="p">(</span><span class="n">id_autor</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_anio_publicacion</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">anio_publicacion</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">1400</span><span class="p">),</span>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_cantidad_disponible</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">cantidad_disponible</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="p">);</span>
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">prestamos</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="w">    </span><span class="n">id_prestamo</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="w">    </span><span class="n">id_lector</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="w">    </span><span class="n">id_libro</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="w">    </span><span class="n">fecha_prestamo</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">),</span>
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="w">    </span><span class="n">fecha_devolucion</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_prestamo_lector</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_lector</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">lectores</span><span class="p">(</span><span class="n">id_lector</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_prestamo_libro</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_libro</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">libros</span><span class="p">(</span><span class="n">id_libro</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_fechas</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">fecha_devolucion</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">fecha_devolucion</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">fecha_prestamo</span><span class="p">)</span>
+</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a><span class="p">);</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Un detalle a corregir del enunciado original</p>
+<p>El DDL de <code>libros</code> declaraba <code>id_categoria NUMBER NOT NULL</code> pero su clave ajena usa <code>ON DELETE SET NULL</code>: si la columna no admite NULL, borrar una categoría con libros asociados provocaría un error de integridad en lugar de poner la columna a NULL. Para que la regla <code>ON DELETE SET NULL</code> funcione, <code>id_categoria</code> debe admitir NULL (<code>id_categoria INT NULL</code>), como se ha corregido arriba. Es un buen ejemplo para comentar en clase: una clave ajena <code>ON DELETE SET NULL</code> exige que la columna sea <em>nullable</em>.</p>
+</div>
+</details>
+<h3 id="apartado-8-tabla-y-disparador-de-auditoria">Apartado 8: tabla y disparador de auditoría</h3>
+<p>Enunciado: crear un disparador (<em>trigger</em>) que audite los libros borrados o actualizados, registrando en una tabla de auditoría la fecha de la operación, el usuario del SGBD y el tipo de operación. El disparador debe ejecutarse solo ante <code>DELETE</code> o <code>UPDATE</code>.</p>
+<details class="success">
+<summary>Solución</summary>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">auditoria_libros</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">id_auditoria</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">id_libro</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">operacion</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">usuario_sgbd</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="n">fecha_operacion</span><span class="w"> </span><span class="n">DATETIME</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">);</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="o">//</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="n">trg_libros_delete</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="k">AFTER</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">libros</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="k">FOR</span><span class="w"> </span><span class="k">EACH</span><span class="w"> </span><span class="k">ROW</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="k">BEGIN</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">auditoria_libros</span><span class="w"> </span><span class="p">(</span><span class="n">id_libro</span><span class="p">,</span><span class="w"> </span><span class="n">operacion</span><span class="p">,</span><span class="w"> </span><span class="n">usuario_sgbd</span><span class="p">)</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">    </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="k">OLD</span><span class="p">.</span><span class="n">id_libro</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;DELETE&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">CURRENT_USER</span><span class="p">());</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="k">END</span><span class="w"> </span><span class="o">//</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="n">trg_libros_update</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="k">AFTER</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">libros</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="k">FOR</span><span class="w"> </span><span class="k">EACH</span><span class="w"> </span><span class="k">ROW</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="k">BEGIN</span>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">auditoria_libros</span><span class="w"> </span><span class="p">(</span><span class="n">id_libro</span><span class="p">,</span><span class="w"> </span><span class="n">operacion</span><span class="p">,</span><span class="w"> </span><span class="n">usuario_sgbd</span><span class="p">)</span>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">    </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="k">OLD</span><span class="p">.</span><span class="n">id_libro</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;UPDATE&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">CURRENT_USER</span><span class="p">());</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="k">END</span><span class="w"> </span><span class="o">//</span>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="p">;</span>
+</span></code></pre></div>
+<p>En MySQL/MariaDB no existe un único disparador que capture a la vez <code>DELETE</code> y <code>UPDATE</code>: cada disparador se asocia a un evento y un momento concretos (<code>BEFORE</code>/<code>AFTER</code> + <code>INSERT</code>/<code>UPDATE</code>/<code>DELETE</code>), así que hacen falta dos disparadores independientes, uno por evento. Se usa <code>OLD.id_libro</code> porque en un <code>DELETE</code> solo existe la fila anterior a la operación (<code>OLD</code>); en un <code>UPDATE</code> también está disponible <code>NEW</code> con los valores nuevos, pero para esta auditoría basta con identificar qué libro se vio afectado.</p>
+<p>Comprobación (actualizando y borrando un libro de prueba):</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">libros</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">cantidad_disponible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_libro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">libros</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_libro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">auditoria_libros</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Resultado real:</p>
+<table>
+<thead>
+<tr>
+<th>id_auditoria</th>
+<th>id_libro</th>
+<th>operacion</th>
+<th>usuario_sgbd</th>
+<th>fecha_operacion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>3</td>
+<td>UPDATE</td>
+<td>root@localhost</td>
+<td>(fecha/hora actual)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>DELETE</td>
+<td>root@localhost</td>
+<td>(fecha/hora actual)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<hr />
+<h2 id="preguntas-tipo-test-relacionadas-con-ddl">Preguntas tipo test relacionadas con DDL</h2>
+<p>Ambos exámenes incluyen, además de los ejercicios prácticos anteriores, un bloque inicial de 25 (2021) o 150 (2025) preguntas tipo test. Estas son las que tratan temas de definición de bases de datos.</p>
+<h3 id="examen-2021-modelo-a-pregunta-14">Examen 2021 (Modelo A, pregunta 14)</h3>
+<p>¿Cuál de los siguientes comandos se utiliza para eliminar toda la base de datos MySQL?</p>
+<p>a) <code>mysql_drop_database</code></p>
+<p>b) <code>mysql_drop_entiredb</code></p>
+<p>c) <code>mysql_delete_database</code></p>
+<p>d) <code>mysql_delete_tables</code></p>
+<details class="success">
+<summary>Solución: d)... en realidad, ninguna</summary>
+<p>Es una pregunta trampa: <strong>ninguna</strong> de las cuatro opciones es un comando real de MySQL. La sentencia correcta para eliminar una base de datos completa es <code>DROP DATABASE nombre_bd;</code> (DDL estándar), no una función con el prefijo <code>mysql_...</code> (ese prefijo recuerda a las antiguas funciones de PHP <code>mysql_*</code>, ya eliminadas del lenguaje, no a comandos SQL). Al tratarse de un examen real con una única respuesta correcta entre cuatro, probablemente la "menos incorrecta" buscada por el tribunal sea la d) por asociar "delete_tables" con un vaciado completo, pero conviene remarcar a los alumnos que la sintaxis correcta de SQL es <code>DROP DATABASE</code>.</p>
+</details>
+<h3 id="examen-2021-modelo-a-pregunta-25">Examen 2021 (Modelo A, pregunta 25)</h3>
+<p>¿Cuál es la diferencia entre clave primaria y clave única?</p>
+<p>a) La clave única permite múltiples valores nulos y la clave primaria no.</p>
+<p>b) La clave primaria permite un valor nulo mientras que la clave única no permite valor nulo.</p>
+<p>c) La clave primaria no permite valor nulo mientras que la clave única permite un valor nulo.</p>
+<p>d) Ninguna de las anteriores.</p>
+<details class="success">
+<summary>Solución: a)</summary>
+<p>Una clave primaria (<code>PRIMARY KEY</code>) no admite valores <code>NULL</code> en ninguna de sus columnas y solo puede haber una por tabla. Una clave única (<code>UNIQUE</code>) sí admite <code>NULL</code> (y, en MySQL/MariaDB, puede admitir varios <code>NULL</code>, ya que dos <code>NULL</code> nunca se consideran iguales entre sí a efectos de la restricción de unicidad); una tabla puede tener varias claves únicas. Es un contenido típico del tema de DDL: toda clave primaria es, de hecho, un caso particular de clave única con la restricción adicional de <code>NOT NULL</code>.</p>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../ejercicios-dml/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Ejercicios DML">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Ejercicios DML
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>
