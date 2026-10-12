@@ -1,0 +1,58 @@
+site_name: "Acadèmia Orígens. Especialidad Informática"
+
+theme:
+  name: material
+  language: es
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Modo oscuro
+      primary: green
+      accent: green
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Modo claro
+      primary: green
+      accent: green
+
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - attr_list
+
+nav:
+  - Inicio: index.md
+  - Práctico:
+    - "El lenguaje SQL: Manipulación": documentos/consultas-sql.md
+    - "El lenguaje SQL: Manipulación II": practico/el-lenguaje-sql-manipulacion-parte-ii.md
+    - "El lenguaje SQL: Definición": practico/el-lenguaje-sql-definicion.md
+  - Ejercicios:
+    - Consultas SQL: ejercicios/consultas-sql.md
+    - Ejercicios DML: ejercicios/ejercicios-dml.md
+    - Ejercicios DDL: ejercicios/ejercicios-ddl.md
