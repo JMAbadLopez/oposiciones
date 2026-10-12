@@ -10,7 +10,7 @@
 Un autónomo se dedica, a través de una franquicia, a distribuir cápsulas de café. El cliente presenta una hoja de cálculo desnormalizada, de la que se muestra una porción representativa:
 
 | Client | DNI Client | Name | Phone | Address | Flavor | Unit Price | Amount | Short | Long | ExtraLarge | Intensity | Order | Order date | Sent |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | 11111111-H | Antonio García | 961542145 | C Colón 16, Valencia | ExtraForte | 0,5 | 10 | NO | SÍ | SÍ | 12 | 1 | 01/08/2018 | SÍ |
 | 1 | 11111111-H | Antonio García | 961542145 | C Colón 16, Valencia | Velluto | 0,45 | 5 | SÍ | SÍ | NO | 8 | 1 | 01/08/2018 | SÍ |
 | 1 | 11111111-H | Antonio García | 961542145 | Av del Puerto 25, Valencia | Velluto | 0,48 | 5 | SÍ | NO | NO | 8 | 2 | 01/12/2016 | SÍ |
@@ -258,21 +258,6 @@ Enunciado: crear un disparador (*trigger*) que audite los libros borrados o actu
 ## Preguntas tipo test relacionadas con DDL
 
 Ambos exámenes incluyen, además de los ejercicios prácticos anteriores, un bloque inicial de 25 (2021) o 150 (2025) preguntas tipo test. Estas son las que tratan temas de definición de bases de datos.
-
-### Examen 2021 (Modelo A, pregunta 14)
-
-¿Cuál de los siguientes comandos se utiliza para eliminar toda la base de datos MySQL?
-
-a) `mysql_drop_database`
-
-b) `mysql_drop_entiredb`
-
-c) `mysql_delete_database`
-
-d) `mysql_delete_tables`
-
-??? success "Solución: d)... en realidad, ninguna"
-    Es una pregunta trampa: **ninguna** de las cuatro opciones es un comando real de MySQL. La sentencia correcta para eliminar una base de datos completa es `DROP DATABASE nombre_bd;` (DDL estándar), no una función con el prefijo `mysql_...` (ese prefijo recuerda a las antiguas funciones de PHP `mysql_*`, ya eliminadas del lenguaje, no a comandos SQL). Al tratarse de un examen real con una única respuesta correcta entre cuatro, probablemente la "menos incorrecta" buscada por el tribunal sea la d) por asociar "delete_tables" con un vaciado completo, pero conviene remarcar a los alumnos que la sintaxis correcta de SQL es `DROP DATABASE`.
 
 ### Examen 2021 (Modelo A, pregunta 25)
 
