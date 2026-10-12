@@ -1,0 +1,1907 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../el-lenguaje-sql-manipulacion-parte-ii/">
+      
+      
+        <link rel="next" href="../../ejercicios/consultas-sql/">
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>El lenguaje SQL: Definición - Acadèmia Orígens. Especialidad Informática</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#el-lenguaje-sql-definicion" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Acadèmia Orígens. Especialidad Informática" class="md-header__button md-logo" aria-label="Acadèmia Orígens. Especialidad Informática" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Acadèmia Orígens. Especialidad Informática
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              El lenguaje SQL: Definición
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../documentos/consultas-sql/" class="md-tabs__link">
+          
+  
+  
+  Práctico
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ejercicios/consultas-sql/" class="md-tabs__link">
+          
+  
+  
+  Ejercicios
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Acadèmia Orígens. Especialidad Informática" class="md-nav__button md-logo" aria-label="Acadèmia Orígens. Especialidad Informática" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Acadèmia Orígens. Especialidad Informática
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Práctico
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Práctico
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentos/consultas-sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Manipulación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../el-lenguaje-sql-manipulacion-parte-ii/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Manipulación II
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Definición
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Definición
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ddl-frente-a-dml" class="md-nav__link">
+    <span class="md-ellipsis">
+      DDL frente a DML
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creacion-de-bases-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creación de bases de datos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#normalizacion-de-tablas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normalización de tablas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Normalización de tablas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primera-forma-normal-1fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primera forma normal (1FN)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#segunda-forma-normal-2fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Segunda forma normal (2FN)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tercera-forma-normal-3fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tercera forma normal (3FN)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-como-detectar-que-forma-normal-falla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen: cómo detectar qué forma normal falla
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creacion-de-tablas-create-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creación de tablas: CREATE TABLE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creación de tablas: CREATE TABLE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-datos-mas-habituales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tipos de datos más habituales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restricciones-de-columna" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restricciones de columna
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restricciones-de-tabla-y-claves-ajenas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restricciones de tabla y claves ajenas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-delete-on-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      ON DELETE / ON UPDATE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modificacion-de-tablas-alter-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modificación de tablas: ALTER TABLE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modificación de tablas: ALTER TABLE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anadir-columnas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Añadir columnas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modificar-columnas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modificar columnas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anadir-y-eliminar-restricciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Añadir y eliminar restricciones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eliminar-columnas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eliminar columnas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renombrar-una-tabla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renombrar una tabla
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eliminacion-de-estructuras-drop-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eliminación de estructuras: DROP TABLE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#truncate-table-frente-a-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      TRUNCATE TABLE frente a DELETE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#otros-objetos-ddl-indices-y-vistas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Otros objetos DDL: índices y vistas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Otros objetos DDL: índices y vistas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-index-drop-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      CREATE INDEX / DROP INDEX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-view-drop-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      CREATE VIEW / DROP VIEW
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-verbos-ddl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen: verbos DDL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base-de-datos-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base de datos de referencia
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Ejercicios
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejercicios/consultas-sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consultas SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejercicios/ejercicios-dml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios DML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejercicios/ejercicios-ddl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios DDL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ddl-frente-a-dml" class="md-nav__link">
+    <span class="md-ellipsis">
+      DDL frente a DML
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creacion-de-bases-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creación de bases de datos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#normalizacion-de-tablas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normalización de tablas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Normalización de tablas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primera-forma-normal-1fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primera forma normal (1FN)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#segunda-forma-normal-2fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Segunda forma normal (2FN)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tercera-forma-normal-3fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tercera forma normal (3FN)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-como-detectar-que-forma-normal-falla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen: cómo detectar qué forma normal falla
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creacion-de-tablas-create-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creación de tablas: CREATE TABLE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creación de tablas: CREATE TABLE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-datos-mas-habituales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tipos de datos más habituales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restricciones-de-columna" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restricciones de columna
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restricciones-de-tabla-y-claves-ajenas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restricciones de tabla y claves ajenas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-delete-on-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      ON DELETE / ON UPDATE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modificacion-de-tablas-alter-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modificación de tablas: ALTER TABLE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modificación de tablas: ALTER TABLE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anadir-columnas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Añadir columnas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modificar-columnas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modificar columnas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anadir-y-eliminar-restricciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Añadir y eliminar restricciones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eliminar-columnas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eliminar columnas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renombrar-una-tabla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renombrar una tabla
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eliminacion-de-estructuras-drop-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eliminación de estructuras: DROP TABLE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#truncate-table-frente-a-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      TRUNCATE TABLE frente a DELETE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#otros-objetos-ddl-indices-y-vistas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Otros objetos DDL: índices y vistas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Otros objetos DDL: índices y vistas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-index-drop-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      CREATE INDEX / DROP INDEX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-view-drop-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      CREATE VIEW / DROP VIEW
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-verbos-ddl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen: verbos DDL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base-de-datos-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base de datos de referencia
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="el-lenguaje-sql-definicion">El lenguaje SQL: Definición</h1>
+<h2 id="objetivos">Objetivos</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Objetivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Presentar la sintaxis del lenguaje SQL correspondiente al Lenguaje de Definición de Datos (DDL).</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Distinguir el DDL del DML (tema anterior) y situar cada instrucción SQL en su categoría.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Comprender la normalización de tablas (1FN, 2FN, 3FN) como paso previo al diseño de una base de datos.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Ver ejemplos prácticos de creación, modificación y eliminación de estructuras (bases de datos, tablas, restricciones, índices y vistas).</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Reutilizar la base de datos ACADEMIA como esquema de referencia, para dar continuidad al tema de manipulación de datos.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Sobre los datos de este documento</p>
+<p>Los ejemplos de este tema parten de la misma base de datos ACADEMIA usada en "El lenguaje SQL: Manipulación" (ver <code>crear_bd_academia.sql</code>). Las instrucciones DDL de este documento están recogidas en el script <code>ddl_academia.sql</code>, pensado para ejecutarse <strong>después</strong> de <code>crear_bd_academia.sql</code>.</p>
+<p>Algunos ejemplos modifican la estructura de ACADEMIA con fines didácticos (añaden y eliminan columnas, restricciones, índices...). Si después se quiere volver a usar <code>consultas_teoria.sql</code>, hay que volver a ejecutar <code>crear_bd_academia.sql</code> para dejar la base de datos en su estado original.</p>
+</div>
+<hr />
+<h2 id="ddl-frente-a-dml">DDL frente a DML</h2>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>El lenguaje SQL se divide en dos grandes bloques según lo que manipulan:</p>
+<ul>
+<li><strong>DDL</strong> (<em>Data Definition Language</em>): define y modifica la <strong>estructura</strong> de la base de datos (bases de datos, tablas, columnas, restricciones, índices, vistas). Instrucciones típicas: <code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>, <code>TRUNCATE</code>.</li>
+<li><strong>DML</strong> (<em>Data Manipulation Language</em>): manipula los <strong>datos</strong> que hay dentro de esas estructuras. Instrucciones típicas: <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code> (ya vistas en el tema anterior).</li>
+</ul>
+</div>
+<table>
+<thead>
+<tr>
+<th>Instrucción</th>
+<th>Categoría</th>
+<th>Qué hace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CREATE DATABASE</code> / <code>CREATE TABLE</code></td>
+<td>DDL</td>
+<td>Crea una base de datos o una tabla nueva</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE</code></td>
+<td>DDL</td>
+<td>Modifica la estructura de una tabla ya existente</td>
+</tr>
+<tr>
+<td><code>DROP DATABASE</code> / <code>DROP TABLE</code></td>
+<td>DDL</td>
+<td>Elimina una base de datos o una tabla completa (estructura y datos)</td>
+</tr>
+<tr>
+<td><code>TRUNCATE TABLE</code></td>
+<td>DDL</td>
+<td>Vacía una tabla de todas sus filas, conservando su estructura</td>
+</tr>
+<tr>
+<td><code>CREATE INDEX</code> / <code>DROP INDEX</code></td>
+<td>DDL</td>
+<td>Crea o elimina un índice sobre una o varias columnas</td>
+</tr>
+<tr>
+<td><code>CREATE VIEW</code> / <code>DROP VIEW</code></td>
+<td>DDL</td>
+<td>Crea o elimina una vista (una consulta guardada con nombre)</td>
+</tr>
+<tr>
+<td><code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></td>
+<td>DML</td>
+<td>Consultan o modifican los datos, sin tocar la estructura</td>
+</tr>
+</tbody>
+</table>
+<p>Una diferencia práctica importante: en MySQL/MariaDB, la mayoría de las instrucciones DDL hacen un <strong>commit implícito</strong>: no se pueden deshacer con <code>ROLLBACK</code> dentro de una transacción, a diferencia de las instrucciones DML.</p>
+<hr />
+<h2 id="creacion-de-bases-de-datos">Creación de bases de datos</h2>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Antes de crear tablas hace falta una base de datos donde alojarlas. <code>CREATE DATABASE</code> la crea (vacía); <code>USE</code> selecciona la base de datos activa para las siguientes instrucciones; <code>DROP DATABASE</code> la elimina por completo, con todo su contenido.</p>
+</div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">ddl_demo</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">ddl_demo</span><span class="p">;</span>
+</span></code></pre></div>
+<p><code>IF NOT EXISTS</code> evita un error si la base de datos ya existiera; es opcional, pero conviene usarlo en scripts que se puedan ejecutar más de una vez. <code>DROP DATABASE</code> no admite deshacerse: elimina físicamente todos los datos y estructuras que contenía.</p>
+<hr />
+<h2 id="normalizacion-de-tablas">Normalización de tablas</h2>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Antes de escribir el primer <code>CREATE TABLE</code> hay que decidir <strong>qué tablas hacen falta y qué columnas va en cada una</strong>. La normalización es el proceso que lleva de unos datos "en bruto" (por ejemplo, una hoja de cálculo con todo mezclado) a un conjunto de tablas bien diseñadas, sin redundancias ni información mal repartida. Se describe en <strong>formas normales</strong> (FN), cada una más exigente que la anterior.</p>
+</div>
+<p><strong>Punto de partida:</strong> una hoja de cálculo típica, con todos los datos en una sola tabla desnormalizada:</p>
+<table>
+<thead>
+<tr>
+<th>Alumno</th>
+<th>Nombre completo</th>
+<th>Ciclo</th>
+<th>Tutor del ciclo</th>
+<th>Módulo</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Diego Vidal Soler</td>
+<td>DAM</td>
+<td>Álvaro Pino</td>
+<td>Bases de Datos</td>
+<td>8.5</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Diego Vidal Soler</td>
+<td>DAM</td>
+<td>Álvaro Pino</td>
+<td>Programación</td>
+<td>7.0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Roberto Díaz Luna</td>
+<td>DAM</td>
+<td>Álvaro Pino</td>
+<td>Bases de Datos</td>
+<td>9.0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="primera-forma-normal-1fn">Primera forma normal (1FN)</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Una tabla está en 1FN cuando todas sus columnas contienen <strong>valores atómicos</strong> (no divisibles en partes con sentido propio) y no hay grupos de columnas repetidos.</p>
+</div>
+<p>La columna <code>Nombre completo</code> mezcla dos datos distintos (nombre y apellidos) en un único valor: no es atómica. Para estar en 1FN hay que separarla:</p>
+<table>
+<thead>
+<tr>
+<th>Alumno</th>
+<th>Nombre</th>
+<th>Apellidos</th>
+<th>Ciclo</th>
+<th>Tutor del ciclo</th>
+<th>Módulo</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Diego</td>
+<td>Vidal Soler</td>
+<td>DAM</td>
+<td>Álvaro Pino</td>
+<td>Bases de Datos</td>
+<td>8.5</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Un error habitual</p>
+<p>Guardar "Nombre y Apellidos" en una sola columna es, con diferencia, la violación de la 1FN más frecuente en los diseños de quien empieza. El síntoma típico es tener que recurrir a funciones de texto (buscar un espacio, cortar la cadena...) para poder ordenar o filtrar solo por apellido; si eso hace falta, es una señal de que esa columna debería estar partida desde el diseño.</p>
+</div>
+<h3 id="segunda-forma-normal-2fn">Segunda forma normal (2FN)</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Una tabla está en 2FN cuando está en 1FN y, además, <strong>todo atributo no clave depende de la clave completa</strong>, no solo de una parte de ella (esto solo es relevante cuando la clave primaria está formada por varias columnas).</p>
+</div>
+<p>En la tabla anterior, si la clave fuera <code>(Alumno, Módulo)</code>, el <code>Nombre</code> y los <code>Apellidos</code> dependerían solo de <code>Alumno</code> (se repiten igual en todas las filas de ese alumno, tenga las notas que tenga), no de la clave completa. Eso es una dependencia parcial, y obliga a separar <code>Alumno</code> en su propia tabla:</p>
+<ul>
+<li><strong>Alumnos</strong> (<u>alumno</u>, nombre, apellidos, ciclo, tutor_del_ciclo)</li>
+<li><strong>Notas</strong> (<u>alumno, módulo</u>, nota)</li>
+</ul>
+<h3 id="tercera-forma-normal-3fn">Tercera forma normal (3FN)</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Una tabla está en 3FN cuando está en 2FN y, además, <strong>ningún atributo no clave depende de otro atributo no clave</strong> (solo de la clave). A esto se le llama <strong>dependencia transitiva</strong>.</p>
+</div>
+<p>En <code>Alumnos</code>, <code>tutor_del_ciclo</code> no depende del alumno, sino del <code>ciclo</code> (todos los alumnos del mismo ciclo comparten el mismo tutor): es una dependencia transitiva (<code>alumno → ciclo → tutor_del_ciclo</code>). La solución es sacar <code>Ciclo</code> a su propia tabla:</p>
+<ul>
+<li><strong>Ciclos</strong> (<u>ciclo</u>, tutor)</li>
+<li><strong>Alumnos</strong> (<u>alumno</u>, nombre, apellidos, ciclo)</li>
+<li><strong>Notas</strong> (<u>alumno, módulo</u>, nota)</li>
+</ul>
+<p>Esta es, precisamente, la estructura de <code>Ciclo</code> y <code>Alumno</code> que usa la base de datos ACADEMIA de este tema: no es casualidad, sino el resultado de aplicar este mismo razonamiento de normalización.</p>
+<div class="admonition note">
+<p class="admonition-title">¿Y las formas normales superiores?</p>
+<p>Existen formas normales más exigentes (FNBC, 4FN, 5FN), pero en la práctica profesional y en el diseño de bases de datos de gestión, llegar a 3FN resuelve la gran mayoría de problemas de redundancia e inconsistencia. Es el nivel que se suele pedir en los enunciados de examen ("normaliza hasta 3FN").</p>
+</div>
+<h3 id="resumen-como-detectar-que-forma-normal-falla">Resumen: cómo detectar qué forma normal falla</h3>
+<table>
+<thead>
+<tr>
+<th>Si ves esto...</th>
+<th>Falla la...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Una columna mezcla varios datos (nombre + apellidos, dirección completa sin separar)</td>
+<td>1FN</td>
+</tr>
+<tr>
+<td>Una columna con listas o varios valores repetidos en la misma celda</td>
+<td>1FN</td>
+</tr>
+<tr>
+<td>Con clave compuesta, un atributo que solo depende de una parte de la clave</td>
+<td>2FN</td>
+</tr>
+<tr>
+<td>Un atributo no clave que depende de otro atributo no clave, no de la clave</td>
+<td>3FN</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="creacion-de-tablas-create-table">Creación de tablas: CREATE TABLE</h2>
+<h3 id="tipos-de-datos-mas-habituales">Tipos de datos más habituales</h3>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Uso típico</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INT</code></td>
+<td>Números enteros (identificadores, contadores)</td>
+<td><code>edad INT</code></td>
+</tr>
+<tr>
+<td><code>DECIMAL(p,d)</code></td>
+<td>Números con decimales exactos (dinero, notas)</td>
+<td><code>importe DECIMAL(6,2)</code></td>
+</tr>
+<tr>
+<td><code>VARCHAR(n)</code></td>
+<td>Texto de longitud variable, hasta <code>n</code> caracteres</td>
+<td><code>nombre VARCHAR(60)</code></td>
+</tr>
+<tr>
+<td><code>CHAR(n)</code></td>
+<td>Texto de longitud fija (poco usado salvo códigos cortos)</td>
+<td><code>sexo CHAR(1)</code></td>
+</tr>
+<tr>
+<td><code>DATE</code></td>
+<td>Fechas sin hora (<code>AAAA-MM-DD</code>)</td>
+<td><code>fecha_nacimiento DATE</code></td>
+</tr>
+<tr>
+<td><code>DATETIME</code> / <code>TIMESTAMP</code></td>
+<td>Fecha y hora</td>
+<td><code>fecha_alta DATETIME</code></td>
+</tr>
+<tr>
+<td><code>BOOLEAN</code> (alias de <code>TINYINT(1)</code>)</td>
+<td>Valores lógicos (0/1)</td>
+<td><code>activo BOOLEAN</code></td>
+</tr>
+<tr>
+<td><code>TEXT</code></td>
+<td>Texto largo, sin límite práctico de longitud</td>
+<td><code>observaciones TEXT</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">DECIMAL frente a FLOAT/DOUBLE</p>
+<p>Para dinero o notas académicas se usa <code>DECIMAL(p,d)</code> en lugar de <code>FLOAT</code>/<code>DOUBLE</code>: <code>DECIMAL</code> almacena exactamente el número de decimales indicado, sin errores de redondeo binario. Es el tipo usado en ACADEMIA para <code>Nota.nota</code> (<code>DECIMAL(4,2)</code>) y <code>Distincion.importe</code> (<code>DECIMAL(6,2)</code>).</p>
+</div>
+<h3 id="restricciones-de-columna">Restricciones de columna</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Las restricciones (<em>constraints</em>) se pueden declarar junto a la columna (restricción <strong>de columna</strong>) o al final de la tabla (restricción <strong>de tabla</strong>, necesaria cuando afecta a varias columnas a la vez, como una clave primaria compuesta).</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Restricción</th>
+<th>Efecto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NOT NULL</code></td>
+<td>La columna no admite valores <code>NULL</code></td>
+</tr>
+<tr>
+<td><code>DEFAULT valor</code></td>
+<td>Si no se indica un valor al insertar, se usa este por defecto</td>
+</tr>
+<tr>
+<td><code>UNIQUE</code></td>
+<td>No puede haber dos filas con el mismo valor en esa columna</td>
+</tr>
+<tr>
+<td><code>CHECK (condición)</code></td>
+<td>Solo se admiten filas que cumplan la condición</td>
+</tr>
+<tr>
+<td><code>AUTO_INCREMENT</code></td>
+<td>El valor se genera automáticamente, incrementando en cada fila nueva</td>
+</tr>
+<tr>
+<td><code>PRIMARY KEY</code></td>
+<td>Identifica de forma única cada fila (implica <code>NOT NULL</code> + <code>UNIQUE</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>EJEMPLO:</strong> creación de la tabla <code>Ciclo</code>, con clave primaria numérica autogenerada y una columna de texto que debe seguir siendo única.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Ciclo</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">idciclo</span><span class="w">    </span><span class="nb">INT</span><span class="w">          </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">codciclo</span><span class="w">   </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w">  </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">tutor</span><span class="w">      </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span><span class="w">  </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">idciclo</span><span class="p">),</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">uq_ciclo_codciclo</span><span class="w"> </span><span class="p">(</span><span class="n">codciclo</span><span class="p">)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span><span class="w"> </span><span class="k">COLLATE</span><span class="o">=</span><span class="n">utf8mb4_spanish_ci</span><span class="p">;</span>
+</span></code></pre></div>
+<p><code>idciclo</code> es la clave primaria (un identificador técnico, numérico y autogenerado); <code>codciclo</code> es una clave candidata (<code>UNIQUE</code>) que se sigue usando como referencia legible ("DAM", "DAW"...) desde otras tablas.</p>
+<h3 id="restricciones-de-tabla-y-claves-ajenas">Restricciones de tabla y claves ajenas</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Una <strong>clave ajena</strong> (<code>FOREIGN KEY</code>) obliga a que el valor de una columna exista como clave (primaria o única) en otra tabla. Es la forma de implementar en SQL las relaciones del modelo entidad-relación, y garantiza la <strong>integridad referencial</strong>.</p>
+</div>
+<p><strong>EJEMPLO:</strong> creación de <code>Alumno</code>, con clave ajena hacia <code>Ciclo</code>.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">nia</span><span class="w">        </span><span class="nb">INT</span><span class="w">          </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">nombre</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span><span class="w">  </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">edad</span><span class="w">       </span><span class="nb">INT</span><span class="w">          </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="n">codciclo</span><span class="w">   </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w">  </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">nia</span><span class="p">),</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_alumno_ciclo</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">codciclo</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Ciclo</span><span class="w"> </span><span class="p">(</span><span class="n">codciclo</span><span class="p">)</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span><span class="w"> </span><span class="k">COLLATE</span><span class="o">=</span><span class="n">utf8mb4_spanish_ci</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Darle <strong>nombre explícito</strong> a la restricción (<code>CONSTRAINT fk_alumno_ciclo ...</code>) no es obligatorio, pero es muy recomendable: sin nombre, el motor le asigna uno automático, y luego resulta más difícil de identificar si hay que modificarla o eliminarla con <code>ALTER TABLE</code>.</p>
+<p><strong>EJEMPLO:</strong> una clave primaria <strong>compuesta</strong> (varias columnas a la vez), en la tabla <code>Nota</code>, junto con un <code>CHECK</code> que acota el rango de valores válidos.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">nia</span><span class="w">        </span><span class="nb">INT</span><span class="w">           </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">codmodulo</span><span class="w">  </span><span class="nb">INT</span><span class="w">           </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">nota</span><span class="w">       </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w">  </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">nia</span><span class="p">,</span><span class="w"> </span><span class="n">codmodulo</span><span class="p">),</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_nota_alumno</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">nia</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nia</span><span class="p">),</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_nota_modulo</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">codmodulo</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Modulo</span><span class="w"> </span><span class="p">(</span><span class="n">codmodulo</span><span class="p">),</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">ck_nota_rango</span><span class="w">  </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">nota</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span><span class="w"> </span><span class="k">COLLATE</span><span class="o">=</span><span class="n">utf8mb4_spanish_ci</span><span class="p">;</span>
+</span></code></pre></div>
+<p><code>PRIMARY KEY (nia, codmodulo)</code> significa que la combinación de ambos valores debe ser única: un mismo alumno puede tener notas en varios módulos, y un módulo puede tener notas de varios alumnos, pero no puede haber dos filas con el mismo par <code>(nia, codmodulo)</code>.</p>
+<h3 id="on-delete-on-update">ON DELETE / ON UPDATE</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Cuando se borra o modifica una fila referenciada por una clave ajena, hay que decidir qué pasa con las filas que la referencian. Por defecto (<code>RESTRICT</code>), el motor <strong>impide</strong> el borrado si existen referencias; con <code>ON DELETE CASCADE</code> las filas dependientes se borran automáticamente; con <code>ON DELETE SET NULL</code> la columna de la clave ajena pasa a <code>NULL</code> (solo si admite nulos).</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Opción</th>
+<th>Efecto al borrar la fila referenciada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RESTRICT</code> / <code>NO ACTION</code> (por defecto)</td>
+<td>Impide el borrado mientras existan filas dependientes</td>
+</tr>
+<tr>
+<td><code>CASCADE</code></td>
+<td>Borra también las filas dependientes</td>
+</tr>
+<tr>
+<td><code>SET NULL</code></td>
+<td>Pone a <code>NULL</code> la clave ajena de las filas dependientes (la columna debe admitir <code>NULL</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>EJEMPLO:</strong> si se define <code>Obtener_Distincion.nia</code> con <code>ON DELETE CASCADE</code> hacia <code>Alumno</code>, al borrar un alumno se borran automáticamente sus distinciones obtenidas:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Obtener_Distincion</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_obtdist_alumno</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">nia</span><span class="p">)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nia</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Con esta restricción activa, borrar a Sergio Molina (nia 6, que no tiene notas registradas pero sí una distinción obtenida) elimina en cascada su fila de <code>Obtener_Distincion</code>:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Comprobado:</strong> antes del borrado había 1 fila en <code>Obtener_Distincion</code> con <code>nia = 6</code>; después del <code>DELETE</code>, 0 filas, y el alumno también ha desaparecido de <code>Alumno</code>. Sin <code>ON DELETE CASCADE</code>, este mismo <code>DELETE</code> habría fallado con un error de restricción de clave ajena (como le ocurre, con la configuración original de ACADEMIA, a cualquier alumno con notas registradas: <code>Nota.nia</code> no tiene <code>CASCADE</code>, así que primero habría que borrar sus notas).</p>
+<hr />
+<h2 id="modificacion-de-tablas-alter-table">Modificación de tablas: ALTER TABLE</h2>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>ALTER TABLE</code> permite modificar una tabla ya creada, sin tener que borrarla y volver a crearla (lo que además borraría sus datos). Se pueden añadir, modificar o eliminar columnas y restricciones, y renombrar la tabla.</p>
+</div>
+<h3 id="anadir-columnas">Añadir columnas</h3>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</span></code></pre></div>
+<p>La tabla queda así (comprobado con <code>DESCRIBE Alumno</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Null</th>
+<th>Key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nia</td>
+<td>int(11)</td>
+<td>NO</td>
+<td>PRI</td>
+</tr>
+<tr>
+<td>nombre</td>
+<td>varchar(60)</td>
+<td>NO</td>
+<td></td>
+</tr>
+<tr>
+<td>edad</td>
+<td>int(11)</td>
+<td>YES</td>
+<td></td>
+</tr>
+<tr>
+<td>codciclo</td>
+<td>varchar(10)</td>
+<td>NO</td>
+<td>MUL</td>
+</tr>
+<tr>
+<td><strong>email</strong></td>
+<td><strong>varchar(100)</strong></td>
+<td><strong>YES</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>También se puede añadir una restricción en el mismo <code>ALTER</code>:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Modulo</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">codigo_interno</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">;</span>
+</span></code></pre></div>
+<h3 id="modificar-columnas">Modificar columnas</h3>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</span></code></pre></div>
+<p><code>MODIFY COLUMN</code> cambia el tipo o las restricciones de una columna, sin cambiar su nombre. Para cambiar también el nombre, MySQL/MariaDB ofrece <code>CHANGE COLUMN</code>:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Modulo</span><span class="w"> </span><span class="n">CHANGE</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">profesor</span><span class="w"> </span><span class="n">docente</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Comprobado</strong> con <code>SHOW CREATE TABLE Modulo</code>: la columna <code>profesor</code> pasa a llamarse <code>docente</code>, conservando el resto de su definición. Con <code>CHANGE COLUMN</code> hay que repetir el tipo de dato completo, aunque no cambie.</p>
+<h3 id="anadir-y-eliminar-restricciones">Añadir y eliminar restricciones</h3>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">ck_alumno_edad</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">edad</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">70</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Comprobado:</strong> con esta restricción activa, <code>INSERT INTO Alumno (nia, nombre, edad, codciclo) VALUES (99, 'Prueba Edad', 5, 'DAM');</code> falla con el error <code>CONSTRAINT 'ck_alumno_edad' failed</code>, porque 5 años queda fuera del rango permitido.</p>
+<p>Para eliminarla:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">ck_alumno_edad</span><span class="p">;</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">DROP CHECK / DROP CONSTRAINT</p>
+<p>MySQL 8 admite tanto <code>DROP CHECK nombre</code> como <code>DROP CONSTRAINT nombre</code> para quitar un <code>CHECK</code>. <code>DROP CONSTRAINT</code> es la forma más portable, porque también funciona igual en MariaDB.</p>
+</div>
+<p>Para eliminar una clave ajena hace falta nombrarla explícitamente (por eso conviene ponerles nombre al crearlas):</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Obtener_Distincion</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">fk_obtdist_alumno</span><span class="p">;</span>
+</span></code></pre></div>
+<h3 id="eliminar-columnas">Eliminar columnas</h3>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Modulo</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">codigo_interno</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Elimina la columna y, con ella, cualquier dato que contuviera: es una operación irreversible salvo que se restaure desde una copia de seguridad.</p>
+<h3 id="renombrar-una-tabla">Renombrar una tabla</h3>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Modulo</span><span class="w"> </span><span class="k">RENAME</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">Asignatura</span><span class="p">;</span>
+</span></code></pre></div>
+<hr />
+<h2 id="eliminacion-de-estructuras-drop-table">Eliminación de estructuras: DROP TABLE</h2>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>DROP TABLE</code> elimina la tabla por completo: su estructura <strong>y</strong> todos sus datos. A diferencia de <code>DELETE</code> (DML), no admite condición <code>WHERE</code>: se borra la tabla entera o nada.</p>
+</div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Tabla_Prueba</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="n">id</span><span class="w">   </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="n">dato</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="p">);</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">Tabla_Prueba</span><span class="p">;</span>
+</span></code></pre></div>
+<p><code>IF EXISTS</code> evita un error si la tabla no existiera; es especialmente útil en scripts que se ejecutan varias veces.</p>
+<div class="admonition warning">
+<p class="admonition-title">Orden de borrado con claves ajenas</p>
+<p>Si una tabla es referenciada por una clave ajena de otra, no se puede eliminar mientras la segunda exista (o mientras tenga filas que la referencien): hay que borrar primero las tablas "hijas". En ACADEMIA, por ejemplo, no se podría eliminar <code>Alumno</code> sin haber eliminado antes <code>Nota</code> y <code>Obtener_Distincion</code>, que dependen de ella.</p>
+</div>
+<hr />
+<h2 id="truncate-table-frente-a-delete">TRUNCATE TABLE frente a DELETE</h2>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>TRUNCATE TABLE</code> vacía una tabla de todas sus filas de golpe, manteniendo su estructura (columnas, restricciones, índices). A diferencia de <code>DELETE FROM tabla</code> (DML), no admite <code>WHERE</code> (borra siempre todas las filas), suele ser más rápido, y <strong>reinicia el contador <code>AUTO_INCREMENT</code></strong>.</p>
+</div>
+<p><strong>EJEMPLO:</strong> se usa una tabla copia para no perder los datos reales de <code>Nota</code>.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Nota_Historico</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="n">Nota</span><span class="p">;</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Nota_Historico</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="p">;</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="k">TRUNCATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Nota_Historico</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Comprobado:</strong> antes del <code>TRUNCATE</code>, <code>Nota_Historico</code> tenía 20 filas (una copia exacta de <code>Nota</code>); después, 0 filas. <code>CREATE TABLE ... LIKE</code> copia la estructura completa de otra tabla (columnas, tipos, claves) sin copiar sus datos; el <code>INSERT ... SELECT</code> posterior es el que copia los datos.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>DELETE FROM tabla</code></th>
+<th><code>TRUNCATE TABLE tabla</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Categoría</td>
+<td>DML</td>
+<td>DDL</td>
+</tr>
+<tr>
+<td>Admite <code>WHERE</code></td>
+<td>Sí (puede borrar solo algunas filas)</td>
+<td>No (borra todas las filas)</td>
+</tr>
+<tr>
+<td>Reinicia <code>AUTO_INCREMENT</code></td>
+<td>No</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Se puede deshacer con <code>ROLLBACK</code></td>
+<td>Sí (dentro de una transacción)</td>
+<td>No (commit implícito)</td>
+</tr>
+<tr>
+<td>Velocidad</td>
+<td>Más lento en tablas grandes</td>
+<td>Más rápido</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="otros-objetos-ddl-indices-y-vistas">Otros objetos DDL: índices y vistas</h2>
+<h3 id="create-index-drop-index">CREATE INDEX / DROP INDEX</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Un índice acelera las búsquedas por una columna (a costa de ocupar espacio extra y ralentizar ligeramente las inserciones). Las claves primarias y <code>UNIQUE</code> ya crean un índice automáticamente; <code>CREATE INDEX</code> permite añadir índices sobre otras columnas que se consultan con frecuencia.</p>
+</div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">ix_alumno_nombre</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">);</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">DROP</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">ix_alumno_nombre</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Alumno</span><span class="p">;</span>
+</span></code></pre></div>
+<h3 id="create-view-drop-view">CREATE VIEW / DROP VIEW</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Una vista es una consulta <code>SELECT</code> guardada con nombre, que se puede usar como si fuera una tabla. No almacena datos propios: cada vez que se consulta, se vuelve a ejecutar la consulta que la define.</p>
+</div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">Vista_ModulosHoras</span><span class="w"> </span><span class="k">AS</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">codmodulo</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">horas</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">Modulo</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">horas</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">150</span><span class="p">;</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="k">DROP</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">Vista_ModulosHoras</span><span class="p">;</span>
+</span></code></pre></div>
+<p><code>SELECT * FROM Vista_ModulosHoras;</code> se comporta como una consulta normal sobre una tabla, aunque por debajo se está ejecutando el <code>SELECT</code> de su definición.</p>
+<hr />
+<h2 id="resumen-verbos-ddl">Resumen: verbos DDL</h2>
+<table>
+<thead>
+<tr>
+<th>Verbo</th>
+<th>Para qué se usa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CREATE DATABASE</code> / <code>DROP DATABASE</code></td>
+<td>Crear / eliminar una base de datos completa</td>
+</tr>
+<tr>
+<td><code>CREATE TABLE</code></td>
+<td>Crear una tabla nueva (columnas, tipos, restricciones)</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE ... ADD COLUMN</code></td>
+<td>Añadir una columna a una tabla existente</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE ... MODIFY COLUMN</code></td>
+<td>Cambiar el tipo o las restricciones de una columna</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE ... CHANGE COLUMN</code></td>
+<td>Cambiar el nombre (y la definición) de una columna</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE ... DROP COLUMN</code></td>
+<td>Eliminar una columna</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE ... ADD CONSTRAINT</code></td>
+<td>Añadir una restricción (<code>CHECK</code>, <code>UNIQUE</code>, <code>FOREIGN KEY</code>...)</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE ... DROP CONSTRAINT</code> / <code>DROP FOREIGN KEY</code></td>
+<td>Eliminar una restricción</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE ... RENAME TO</code></td>
+<td>Renombrar una tabla</td>
+</tr>
+<tr>
+<td><code>DROP TABLE</code></td>
+<td>Eliminar una tabla completa (estructura y datos)</td>
+</tr>
+<tr>
+<td><code>TRUNCATE TABLE</code></td>
+<td>Vaciar una tabla de todas sus filas</td>
+</tr>
+<tr>
+<td><code>CREATE INDEX</code> / <code>DROP INDEX</code></td>
+<td>Crear / eliminar un índice</td>
+</tr>
+<tr>
+<td><code>CREATE VIEW</code> / <code>DROP VIEW</code></td>
+<td>Crear / eliminar una vista</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="base-de-datos-de-referencia">Base de datos de referencia</h2>
+<p>Este tema reutiliza el esquema y los datos de la base de datos <strong>ACADEMIA</strong>, descrita en detalle en "El lenguaje SQL: Manipulación" (sección "Base de datos de referencia: ACADEMIA"). El script <code>crear_bd_academia.sql</code> crea la base de datos con <code>CREATE TABLE</code>; el script <code>ddl_academia.sql</code> de este tema contiene, en el mismo orden que este documento, todas las instrucciones DDL de ejemplo (<code>ALTER TABLE</code>, <code>DROP TABLE</code>, <code>TRUNCATE TABLE</code>, <code>CREATE INDEX</code>, <code>CREATE VIEW</code>...), listas para ejecutarse a continuación.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../el-lenguaje-sql-manipulacion-parte-ii/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: El lenguaje SQL: Manipulación II">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                El lenguaje SQL: Manipulación II
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../ejercicios/consultas-sql/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Consultas SQL">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Consultas SQL
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

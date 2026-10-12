@@ -1,0 +1,2897 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../../practico/el-lenguaje-sql-manipulacion-parte-ii/">
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>El lenguaje SQL: Manipulación - Acadèmia Orígens. Especialidad Informática</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#el-lenguaje-sql-manipulacion" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Acadèmia Orígens. Especialidad Informática" class="md-header__button md-logo" aria-label="Acadèmia Orígens. Especialidad Informática" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Acadèmia Orígens. Especialidad Informática
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              El lenguaje SQL: Manipulación
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Práctico
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ejercicios/consultas-sql/" class="md-tabs__link">
+          
+  
+  
+  Ejercicios
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Acadèmia Orígens. Especialidad Informática" class="md-nav__button md-logo" aria-label="Acadèmia Orígens. Especialidad Informática" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Acadèmia Orígens. Especialidad Informática
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Práctico
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Práctico
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Manipulación
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Manipulación
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consultas-instruccion-select" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consultas: instrucción SELECT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consultas: instrucción SELECT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#condiciones-en-consultas-simples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Condiciones en consultas simples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparacion-de-valores-nulos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparación de valores nulos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mas-ejemplos-de-comparaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Más ejemplos de comparaciones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordenacion-y-limitacion-de-resultados-order-by-limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordenación y limitación de resultados (ORDER BY / LIMIT)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consultas-de-valores-agregados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consultas de valores agregados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consultas de valores agregados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#funciones-agregadas-en-consultas-no-agrupadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funciones agregadas en consultas no agrupadas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consultas-simples-sobre-varias-tablas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consultas simples sobre varias tablas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consultas simples sobre varias tablas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uso-de-claves-ajenas-en-consultas-de-varias-tablas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uso de claves ajenas en consultas de varias tablas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consultas-complejas-agrupacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consultas complejas: agrupación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consultas complejas: agrupación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relacion-seleccion-agrupamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relación selección-agrupamiento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-y-where" class="md-nav__link">
+    <span class="md-ellipsis">
+      GROUP y WHERE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-where-y-having" class="md-nav__link">
+    <span class="md-ellipsis">
+      GROUP, WHERE y HAVING
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combinaciones-de-tablas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combinaciones de tablas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Combinaciones de tablas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#combinaciones-conjuntistas-de-tablas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combinaciones conjuntistas de tablas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concatenaciones-de-tablas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concatenaciones de tablas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Concatenaciones de tablas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inner-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      INNER JOIN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#left-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      LEFT JOIN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#right-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      RIGHT JOIN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-outer-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      FULL (OUTER) JOIN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#predicados-que-aceptan-subconsultas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Predicados que aceptan subconsultas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Predicados que aceptan subconsultas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#predicados-de-comparacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Predicados de comparación (=, &lt;&gt;, &gt;, &lt;, &gt;=, &lt;=)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subconsultas-relacionadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subconsultas relacionadas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predicado-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      Predicado in
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subconsultas-encadenadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subconsultas encadenadas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predicados-de-comparacion-cuantificados-any-y-all" class="md-nav__link">
+    <span class="md-ellipsis">
+      Predicados de comparación cuantificados (any y all)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predicado-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      Predicado exists
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subconsultas-en-la-clausula-from-tablas-derivadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subconsultas en la cláusula FROM (tablas derivadas)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mas-ejemplos-del-esquema-academia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Más ejemplos del esquema 'ACADEMIA'
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base-de-datos-de-referencia-academia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base de datos de referencia: ACADEMIA
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Base de datos de referencia: ACADEMIA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#descripcion-informal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descripción informal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esquema-relacional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Esquema relacional
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datos-de-ejemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Datos de ejemplo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-entidad-relacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama entidad-relación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practico/el-lenguaje-sql-manipulacion-parte-ii/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Manipulación II
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practico/el-lenguaje-sql-definicion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Definición
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Ejercicios
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejercicios/consultas-sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consultas SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejercicios/ejercicios-dml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios DML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejercicios/ejercicios-ddl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios DDL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consultas-instruccion-select" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consultas: instrucción SELECT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consultas: instrucción SELECT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#condiciones-en-consultas-simples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Condiciones en consultas simples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparacion-de-valores-nulos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparación de valores nulos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mas-ejemplos-de-comparaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Más ejemplos de comparaciones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordenacion-y-limitacion-de-resultados-order-by-limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordenación y limitación de resultados (ORDER BY / LIMIT)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consultas-de-valores-agregados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consultas de valores agregados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consultas de valores agregados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#funciones-agregadas-en-consultas-no-agrupadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funciones agregadas en consultas no agrupadas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consultas-simples-sobre-varias-tablas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consultas simples sobre varias tablas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consultas simples sobre varias tablas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uso-de-claves-ajenas-en-consultas-de-varias-tablas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uso de claves ajenas en consultas de varias tablas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consultas-complejas-agrupacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consultas complejas: agrupación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consultas complejas: agrupación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relacion-seleccion-agrupamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relación selección-agrupamiento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-y-where" class="md-nav__link">
+    <span class="md-ellipsis">
+      GROUP y WHERE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-where-y-having" class="md-nav__link">
+    <span class="md-ellipsis">
+      GROUP, WHERE y HAVING
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combinaciones-de-tablas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combinaciones de tablas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Combinaciones de tablas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#combinaciones-conjuntistas-de-tablas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combinaciones conjuntistas de tablas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concatenaciones-de-tablas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concatenaciones de tablas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Concatenaciones de tablas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inner-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      INNER JOIN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#left-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      LEFT JOIN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#right-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      RIGHT JOIN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-outer-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      FULL (OUTER) JOIN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#predicados-que-aceptan-subconsultas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Predicados que aceptan subconsultas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Predicados que aceptan subconsultas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#predicados-de-comparacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Predicados de comparación (=, &lt;&gt;, &gt;, &lt;, &gt;=, &lt;=)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subconsultas-relacionadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subconsultas relacionadas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predicado-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      Predicado in
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subconsultas-encadenadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subconsultas encadenadas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predicados-de-comparacion-cuantificados-any-y-all" class="md-nav__link">
+    <span class="md-ellipsis">
+      Predicados de comparación cuantificados (any y all)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predicado-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      Predicado exists
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subconsultas-en-la-clausula-from-tablas-derivadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subconsultas en la cláusula FROM (tablas derivadas)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mas-ejemplos-del-esquema-academia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Más ejemplos del esquema 'ACADEMIA'
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base-de-datos-de-referencia-academia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base de datos de referencia: ACADEMIA
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Base de datos de referencia: ACADEMIA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#descripcion-informal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descripción informal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esquema-relacional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Esquema relacional
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datos-de-ejemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Datos de ejemplo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-entidad-relacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama entidad-relación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="el-lenguaje-sql-manipulacion">El lenguaje SQL: Manipulación</h1>
+<h2 id="objetivos">Objetivos</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Objetivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Presentar la sintaxis del lenguaje SQL (solo del Lenguaje de Manipulación).</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Ver algunos ejemplos sencillos para clarificar la semántica del SQL.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Presentar la base de datos ACADEMIA, con un conjunto de datos de ejemplo ya poblado.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Realizar de menor a mayor complejidad consultas SQL sobre dicha base de datos, mostrando en cada caso el resultado real que producen.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Sobre los datos de este documento</p>
+<p>Todos los ejemplos de este tema se ejecutan sobre la misma base de datos ACADEMIA, que modela un centro de FP de la familia de Informática (ciclos, alumnado, módulos, notas y distinciones académicas), poblada con un pequeño conjunto de datos fijo (ver la sección "Base de datos de referencia: ACADEMIA" al final del documento).</p>
+<p>Esto permite comprobar a mano el resultado de cada consulta, en lugar de limitarse a leer el enunciado y la sintaxis. Se recomienda, antes de mirar el resultado dado, intentar calcularlo mentalmente sobre las tablas de datos.</p>
+</div>
+<hr />
+<h2 id="consultas-instruccion-select">Consultas: instrucción SELECT</h2>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>SELECT</code> es la única instrucción de consulta del Lenguaje de Manipulación de Datos (DML) en SQL. Sirve para <strong>recuperar información</strong> de una o varias tablas.</p>
+<p>Su estructura sigue siempre el mismo orden lógico de cláusulas (aunque no todas sean obligatorias): qué columnas quiero (<code>select</code>), de qué tabla(s) (<code>from</code>), con qué condición (<code>where</code>), cómo agrupar (<code>group by</code>), con qué condición sobre los grupos (<code>having</code>) y en qué orden mostrar el resultado (<code>order by</code>).</p>
+<p>Para el examen conviene memorizar este orden de escritura y también el orden real de evaluación (<code>from</code> → <code>where</code> → <code>group by</code> → <code>having</code> → <code>select</code> → <code>order by</code>).</p>
+</div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">select</span><span class="w"> </span><span class="p">[</span><span class="k">all</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">distinct</span><span class="p">]</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">lista_item_seleccionado</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">*</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">from</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">lista_referencia_tabla</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">[</span><span class="k">where</span><span class="w"> </span><span class="n">expresión_condicional</span><span class="p">]</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">[</span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">lista_referencia_col</span><span class="p">]</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">[</span><span class="k">having</span><span class="w"> </span><span class="n">expresión_condicional</span><span class="p">]</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">[</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">lista_referencia_col</span><span class="p">]</span>
+</span></code></pre></div>
+<ul>
+<li><strong>, lista_item_seleccionado</strong>: información a obtener de la base de datos.</li>
+<li><strong>from , lista_referencia_tabla</strong>: especifica de qué tablas se obtiene la información buscada.</li>
+<li><strong>where expresión_condicional</strong>: expresa una condición que deben cumplir las filas de la consulta resultante.</li>
+<li><strong>group by , lista_referencia_col</strong>: permite formar consultas agrupadas para extraer información global sobre los grupos formados.</li>
+<li><strong>having expresión_condicional</strong>: condición sobre los grupos formados.</li>
+<li><strong>order by , lista_referencia_col</strong>: ordena por una o varias columnas.</li>
+</ul>
+<h3 id="condiciones-en-consultas-simples">Condiciones en consultas simples</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Esta es la forma más básica de consulta, sin agrupación.</p>
+<p>Lo importante aquí son los <strong>predicados</strong> que se pueden usar en la cláusula <code>where</code>: comparación clásica, <code>like</code> (patrones de texto), <code>between</code> (rangos), <code>in</code> (pertenencia a un conjunto) e <code>is null</code> (comprobación de nulos, que <strong>no</strong> se puede hacer con <code>= null</code>). Son la base de casi todas las consultas del tema.</p>
+</div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">select</span><span class="w"> </span><span class="p">[</span><span class="k">all</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">distinct</span><span class="p">]</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">lista_ítem_seleccionado</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">*</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">from</span><span class="w"> </span><span class="n">tabla</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">[</span><span class="k">where</span><span class="w"> </span><span class="n">expresión_condicional</span><span class="p">]</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">[</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">lista_referencia_col</span><span class="p">]</span>
+</span></code></pre></div>
+<ul>
+<li><strong>all</strong>: Permite la aparición de filas idénticas (valor por defecto).</li>
+<li><strong>distinct</strong>: No permite la aparición de filas idénticas.</li>
+<li>La <em>expresión_condicional</em> está formada por un conjunto de predicados combinados con las conectivas lógicas <code>and</code>, <code>or</code> y <code>not</code>. Los predicados utilizados permiten comparar columnas:</li>
+<li>predicados de comparación: <code>=</code>, <code>&lt;&gt;</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>.</li>
+<li>predicado <code>like</code>: permite comparar una tira de caracteres con un patrón.</li>
+<li>predicado <code>between</code>: permite comprobar si un escalar está en un rango.</li>
+<li>predicado <code>in</code>: permite comprobar si el valor está dentro de un conjunto.</li>
+<li>predicado <code>is null</code>: permite comprobar si el valor es nulo.</li>
+</ul>
+<p><strong>EJEMPLO:</strong> Obtener el nombre y la edad de todos los alumnos.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> las 10 filas de la tabla ALUMNO (columnas <code>nombre</code>, <code>edad</code>), incluyendo <code>Jorge Salas</code> con edad <code>NULL</code>.</p>
+<p><strong>EJEMPLO:</strong> Obtener el nombre y las horas de todos los módulos de 100 horas.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">horas</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Modulo</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">horas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong></p>
+<table>
+<thead>
+<tr>
+<th>nombre</th>
+<th>horas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Itinerario Personal para la Empleabilidad I</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Entornos de Desarrollo</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Lenguajes de Marcas y Sistemas de Gestión de la Información</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<p><strong>EJEMPLO:</strong> Obtener el nombre de los alumnos cuya edad está entre 20 y 30 años.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">30</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> Antonio Ruiz, Javier Torres, Carlos Ferrer, Manuel Ortega, Luis Campos, Sergio Molina, Roberto Díaz, Pablo Núñez — es decir, todo el alumnado de los ciclos de grado superior (DAM, DAW y ASIR). <em>(Diego Vidal queda fuera por tener 17 años, propios de un ciclo de grado medio como SMR; Jorge Salas queda fuera porque su edad es <code>NULL</code> y ninguna comparación con <code>NULL</code> da cierto.)</em></p>
+<blockquote>
+<p>(*) El predicado <code>between</code> es equivalente a una condición con comparaciones de la siguiente forma:
+<code>exp between exp1 and exp2 ≡ (exp &gt;= exp1) and (exp &lt;= exp2)</code></p>
+</blockquote>
+<p><strong>EJEMPLO:</strong> Obtener el código de los módulos cuyo nombre tenga por segunda letra una "T", o cuyo profesor incluya dos o más letras "A".</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">codmodulo</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Modulo</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;_T%&#39;</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">profesor</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%A%A%&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> <code>1</code> (nombre <code>Itinerario Personal para la Empleabilidad I</code>, 2ª letra "t"), <code>3</code> (profesor <code>Ana Salas</code>), <code>5</code> (profesor <code>Javier Aranda</code>) y <code>6</code> (profesor <code>Ana Barranco</code>). Es decir: <strong>1, 3, 5, 6</strong>.</p>
+<p><strong>EJEMPLO:</strong> Obtener el nombre de los módulos cuyas horas sean 100, 166 o 266.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Modulo</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">horas</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">166</span><span class="p">,</span><span class="w"> </span><span class="mi">266</span><span class="w"> </span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> en nuestros datos, esos son precisamente los tres valores de <code>horas</code> que existen, así que el resultado son los seis módulos completos.</p>
+<blockquote>
+<p>(*) También el predicado <code>in</code> es derivado y la expresión equivalente es:
+<code>exp in (exp1, exp2, …, expn) ≡ (exp=exp1) or (exp=exp2) or…or (exp=expn)</code></p>
+</blockquote>
+<p><strong>EJEMPLO:</strong> Obtener todos los datos de aquellos alumnos de los que se desconocía su edad.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> la fila completa de <code>Jorge Salas</code> (nia 10, SMR, edad <code>NULL</code>).</p>
+<h3 id="comparacion-de-valores-nulos">Comparación de valores nulos</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Es uno de los puntos donde más se falla en los exámenes. <code>NULL</code> no es un valor, sino la <strong>ausencia</strong> de valor, por lo que ninguna comparación (<code>=</code>, <code>&lt;</code>, <code>&gt;</code>...) con <code>NULL</code> da verdadero ni falso: da <strong>indefinido</strong>, y las filas con resultado indefinido se descartan de la selección.</p>
+<p>La única forma correcta de comprobar nulos es con <code>IS NULL</code> / <code>IS NOT NULL</code>; usar <code>= null</code> es un error de sintaxis.</p>
+</div>
+<p>Las comparaciones entre cualquier valor y <code>NULL</code> resultan en <em>indefinido</em>. Por ejemplo, en nuestros datos:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Esta consulta <strong>no</strong> incluye a Jorge Salas, aunque no sepamos si su edad real es mayor o menor de 25: la comparación <code>NULL &gt; 25</code> es indefinida, así que su fila se descarta.</p>
+<p><strong>Ejemplo de consulta incorrecta (error de sintaxis):</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Esta consulta no da ningún error, pero tampoco hace lo que parece: nunca devuelve ninguna fila (ni siquiera la de Jorge Salas), porque <code>= NULL</code> siempre es indefinido. La forma correcta es <code>WHERE edad IS NULL</code>.</p>
+<h3 id="mas-ejemplos-de-comparaciones">Más ejemplos de comparaciones</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Las columnas numéricas admiten operaciones aritméticas directamente en el <code>select</code> o en el <code>where</code> (por ejemplo, para hacer conversiones de unidades).</p>
+<p>El predicado <code>LIKE</code> compara cadenas con un patrón usando comodines: <code>_</code> sustituye un único carácter y <code>%</code> sustituye cualquier secuencia (incluida la vacía). Si el texto buscado contiene literalmente un <code>%</code> o un <code>_</code>, hay que "escaparlo" con la cláusula <code>ESCAPE</code>.</p>
+</div>
+<p>Uso de operadores aritméticos: <code>+</code> (suma), <code>-</code> (diferencia), <code>*</code> (producto), <code>/</code> (división), etc.</p>
+<p><strong>EJEMPLO:</strong> Obtener el tipo y el importe (en euros) revalorizado un 10%, de aquellas distinciones cuyo importe actual supere los 100 euros.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">tipo</span><span class="p">,</span><span class="w"> </span><span class="n">importe</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Distincion</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">importe</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> de las cuatro distinciones, solo la Matrícula de Honor (150 €) y el Premio al Esfuerzo (120 €) superan los 100 €; la Mención Especial (90 €) y la Beca de Excelencia (60 €) quedan excluidas.</p>
+<table>
+<thead>
+<tr>
+<th>tipo</th>
+<th>importe * 1.1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Matrícula de Honor</td>
+<td>165</td>
+</tr>
+<tr>
+<td>Premio al Esfuerzo</td>
+<td>132</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Uso de LIKE / ESCAPE</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Ejemplo puramente sintáctico</p>
+<p>Ninguno de los valores de nuestra base de datos ACADEMIA contiene literalmente el carácter <code>%</code>, así que este ejemplo concreto no se corresponde con los datos anteriores: su único objetivo es mostrar la sintaxis de <code>ESCAPE</code> sobre una tabla genérica.</p>
+</div>
+<p><strong>EJEMPLO:</strong> Obtener el nombre de los empleados cuyo puesto contenga literalmente la cadena "100%" (por ejemplo, un puesto llamado "Comercial 100%").</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Empleado</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">puesto</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%100\%%&#39;</span><span class="w"> </span><span class="k">ESCAPE</span><span class="w"> </span><span class="s1">&#39;\&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Aquí <code>\</code> se declara como carácter de escape, de modo que <code>\%</code> deja de interpretarse como comodín y pasa a buscarse como el carácter <code>%</code> literal.</p>
+<h3 id="ordenacion-y-limitacion-de-resultados-order-by-limit">Ordenación y limitación de resultados (ORDER BY / LIMIT)</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>ORDER BY</code> ordena el resultado por una o varias columnas: <code>ASC</code> (ascendente, por defecto) o <code>DESC</code> (descendente). Se puede ordenar por varias columnas a la vez, separadas por comas; la segunda columna solo desempata a la primera.</p>
+<p><code>LIMIT n</code> restringe el resultado a las primeras <code>n</code> filas (tras aplicar el <code>ORDER BY</code>, si lo hay). <code>LIMIT n OFFSET m</code> descarta las <code>m</code> primeras filas y devuelve como máximo <code>n</code> a partir de ahí.</p>
+<p>En MySQL/MariaDB, los valores <code>NULL</code> se consideran "los más pequeños": aparecen primero en <code>ASC</code> y últimos en <code>DESC</code>.</p>
+</div>
+<p><strong>EJEMPLO ORDER BY:</strong> Obtener el nombre y la edad de los alumnos, de menor a mayor edad.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="k">ASC</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> 10 filas. Jorge Salas (edad <code>NULL</code>) aparece el primero, seguido del resto de menor a mayor edad: Diego Vidal (17), Roberto Díaz (22), Luis Campos (24), Carlos Ferrer (26), Javier Torres (27), Pablo Núñez y Antonio Ruiz (28), y por último Manuel Ortega y Sergio Molina (29).</p>
+<p><strong>EJEMPLO ORDER BY DESC + LIMIT:</strong> Obtener el tipo y el importe de las dos distinciones de mayor importe.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">tipo</span><span class="p">,</span><span class="w"> </span><span class="n">importe</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Distincion</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">importe</span><span class="w"> </span><span class="k">DESC</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong></p>
+<table>
+<thead>
+<tr>
+<th>tipo</th>
+<th>importe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Matrícula de Honor</td>
+<td>150.00</td>
+</tr>
+<tr>
+<td>Premio al Esfuerzo</td>
+<td>120.00</td>
+</tr>
+</tbody>
+</table>
+<p><strong>EJEMPLO ORDER BY con varias columnas + LIMIT/OFFSET:</strong> Obtener el nombre y el ciclo de los alumnos, ordenados por ciclo y, dentro de cada ciclo, por nombre; mostrar solo de la tercera a la quinta fila.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">codciclo</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">codciclo</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">OFFSET</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> ordenando por ciclo (ASIR, DAM, DAW, SMR) y luego por nombre, las dos primeras filas son de ASIR (Pablo Núñez, Roberto Díaz); saltando esas dos (<code>OFFSET 2</code>), las 3 siguientes (<code>LIMIT 3</code>) son los alumnos de DAM:</p>
+<table>
+<thead>
+<tr>
+<th>nombre</th>
+<th>codciclo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Antonio Ruiz</td>
+<td>DAM</td>
+</tr>
+<tr>
+<td>Carlos Ferrer</td>
+<td>DAM</td>
+</tr>
+<tr>
+<td>Javier Torres</td>
+<td>DAM</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="consultas-de-valores-agregados">Consultas de valores agregados</h2>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Las funciones agregadas (<code>avg</code>, <code>max</code>, <code>min</code>, <code>sum</code>, <code>count</code>) resumen un conjunto de filas en <strong>un único valor</strong> (por columna o por grupo).</p>
+<p>Puntos que suelen preguntarse: no se pueden anidar, <code>sum</code>/<code>avg</code> exigen argumentos numéricos, los valores nulos se descartan antes de calcular, y si no hay filas, <code>count</code> devuelve 0 mientras que el resto devuelven <code>NULL</code>.</p>
+</div>
+<p>La sintaxis de una referencia a una función agregada es la siguiente:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>{ avg | max | min | sum | count } ( [all | distinct] expresión_escalar ) | count(*)
+</span></code></pre></div>
+<ul>
+<li>Las funciones agregadas no se pueden anidar.</li>
+<li>Para las funciones <code>sum</code> y <code>avg</code> los argumentos deben ser numéricos.</li>
+<li><code>distinct</code> indica que los valores redundantes sean eliminados antes de que se realice el cálculo correspondiente.</li>
+<li>La función especial <code>count(*)</code>, en la que no está permitido incluir <code>distinct</code> ni <code>all</code>, da como resultado el cardinal del conjunto de filas de la selección.</li>
+<li>Los cálculos se realizan después de la selección y aplicar las condiciones.</li>
+<li>Los valores nulos son eliminados antes de realizar los cálculos (incl. <code>count</code>).</li>
+<li>Si el número de filas de la selección es 0, la función <code>count</code> devuelve el valor 0 y las otras funciones el valor nulo.</li>
+</ul>
+<h3 id="funciones-agregadas-en-consultas-no-agrupadas">Funciones agregadas en consultas no agrupadas</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Cuando una consulta <strong>no</strong> tiene <code>group by</code> pero incluye una función agregada, toda la tabla (tras aplicar el <code>where</code>) se trata como un único grupo.</p>
+<p>Por eso en el <code>select</code> solo pueden aparecer funciones agregadas o literales: mezclar una columna "suelta" (como <code>nombre</code>) con una función agregada (como <code>AVG(edad)</code>) no tiene sentido, porque la función devuelve un solo valor y la columna devolvería muchos.</p>
+</div>
+<p><strong>EJEMPLO:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;Núm. de alumnos =&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;Media Edad =&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">edad</span><span class="p">)</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">codciclo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;DAM&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> <code>Núm. de alumnos = 4</code>, <code>Media Edad = 27,5</code> <em>(DAM tiene 4 alumnos: Antonio 28, Javier 27, Carlos 26 y Manuel 29; media = (28+27+26+29)/4 = 27,5).</em></p>
+<p>En consultas no agrupadas, la selección solo podrá incluir referencias a <strong>funciones agregadas</strong> o <strong>literales</strong> ya que las funciones van a devolver un único valor.</p>
+<p><strong>EJEMPLO INCORRECTO:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">edad</span><span class="p">)</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">codciclo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;DAW&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+<hr />
+<h2 id="consultas-simples-sobre-varias-tablas">Consultas simples sobre varias tablas</h2>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Para combinar datos de varias tablas, la forma más sencilla es listarlas todas en el <code>from</code> (separadas por comas), lo que genera internamente un <strong>producto cartesiano</strong>, y luego filtrar con el <code>where</code> las combinaciones de filas que tienen sentido.</p>
+<p>Cuando una columna existe en más de una tabla (por ejemplo <code>nia</code>), hay que cualificarla con el nombre de la tabla (<code>tabla.columna</code>) para evitar ambigüedad.</p>
+</div>
+<p>Cuando la información que se desea obtener de la base de datos se encuentra almacenada en más de una tabla se hace indispensable el declarar una consulta que manipule estas tablas.</p>
+<p><strong>EJEMPLO:</strong> Obtener pares de nombre de alumno y nota, para notas superiores a 8.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">select</span><span class="w"> </span><span class="n">Alumno</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">Nota</span><span class="p">.</span><span class="n">nota</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">from</span><span class="w"> </span><span class="n">Alumno</span><span class="p">,</span><span class="w"> </span><span class="n">Nota</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="k">where</span><span class="w"> </span><span class="n">Alumno</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Nota</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Nota</span><span class="p">.</span><span class="n">nota</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Un matiz importante</p>
+<p>Aquí la columna <code>nia</code> existe en <strong>ambas</strong> tablas (<code>Alumno</code> y <code>Nota</code>), así que su referencia en el <code>where</code> es ambigua y es obligatorio cualificarla con el nombre de la tabla, tal y como se ha hecho.</p>
+</div>
+<p><strong>Resultado</strong> (4 filas):</p>
+<table>
+<thead>
+<tr>
+<th>nombre</th>
+<th>nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Diego Vidal</td>
+<td>9,5</td>
+</tr>
+<tr>
+<td>Roberto Díaz</td>
+<td>9,0</td>
+</tr>
+<tr>
+<td>Diego Vidal</td>
+<td>9,0</td>
+</tr>
+<tr>
+<td>Diego Vidal</td>
+<td>9,5</td>
+</tr>
+</tbody>
+</table>
+<p>En esta expresión es obligatorio que la referencia a la columna <em>nia</em> de <em>Alumno</em> y <em>Nota</em> sea calificada con el nombre de la tabla, si es ambigua. En general,</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>[tabla].columna
+</span></code></pre></div>
+<h3 id="uso-de-claves-ajenas-en-consultas-de-varias-tablas">Uso de claves ajenas en consultas de varias tablas</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>En la práctica, casi todas las consultas de varias tablas igualan la <strong>clave ajena</strong> de una tabla con la <strong>clave primaria</strong> de la tabla referenciada (por ejemplo <code>A.codciclo = C.codciclo</code>). Es lo que en álgebra relacional sería una reunión (join) natural.</p>
+<p>Si se olvida esta condición, el resultado es el producto cartesiano completo, con muchas más filas de las deseadas.</p>
+</div>
+<ul>
+<li>La consulta de varias tablas corresponde al producto cartesiano.</li>
+<li>Si no se eligen bien las condiciones el número de filas resultantes puede ser muy grande.</li>
+<li>Si existen claves ajenas, lo más normal es una igualdad entre la clave ajena y los atributos correspondientes de la tabla a la que se hace referencia.</li>
+</ul>
+<p><strong>EJEMPLO:</strong> Obtener los nombres de los alumnos matriculados en el ciclo cuyo tutor sea 'Álvaro Pino'.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">Ciclo</span><span class="w"> </span><span class="k">C</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">codciclo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">codciclo</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">tutor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Álvaro Pino&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> Álvaro Pino es el tutor del ciclo SMR → <strong>Diego Vidal</strong> y <strong>Jorge Salas</strong>.</p>
+<p><strong>EJEMPLO:</strong> Obtener pares nombre de alumno, código de módulo, de tal forma que el módulo que cursen supere las 150 horas.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">Modulo</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">horas</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">150</span><span class="p">;</span>
+</span></code></pre></div>
+<hr />
+<h2 id="consultas-complejas-agrupacion">Consultas complejas: agrupación</h2>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>GROUP BY</code> divide las filas de la tabla en <strong>grupos</strong> que comparten el mismo valor en la(s) columna(s) indicadas, y las funciones agregadas pasan a calcular un resultado <strong>por cada grupo</strong>, no sobre toda la tabla.</p>
+<p>Es la herramienta para responder preguntas del tipo "para cada X, calcula...".</p>
+</div>
+<p><strong>EJEMPLO:</strong> Obtener el código de <strong>cada</strong> ciclo y la edad media de los alumnos de dicho ciclo:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">codciclo</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">edad</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">codciclo</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Usando la tabla ALUMNO del principio del documento, cada fila se agrupa por <code>codciclo</code> y se calcula la media de <code>edad</code> dentro de cada grupo (los valores <code>NULL</code>, como el de Jorge Salas, se ignoran en el cálculo):</p>
+<table>
+<thead>
+<tr>
+<th>codciclo</th>
+<th>AVG(edad)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DAM</td>
+<td>27,5</td>
+</tr>
+<tr>
+<td>DAW</td>
+<td>26,5</td>
+</tr>
+<tr>
+<td>ASIR</td>
+<td>25</td>
+</tr>
+<tr>
+<td>SMR</td>
+<td>17</td>
+</tr>
+</tbody>
+</table>
+<h3 id="relacion-seleccion-agrupamiento">Relación selección-agrupamiento</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>La regla de oro de las consultas agrupadas (muy preguntada en examen): en el <code>select</code> de una consulta con <code>group by</code> <strong>solo</strong> pueden aparecer las columnas de agrupación, funciones agregadas o literales.</p>
+<p>Nunca una columna "suelta" que no esté en el <code>group by</code>, porque no tendría un valor único por grupo.</p>
+</div>
+<p>Un grupo se puede entender como un conjunto de filas con el mismo valor para el conjunto de columnas por las que se agrupa (las incluidas en la cláusula <code>group by</code>).</p>
+<p>Las funciones agregadas en las consultas agrupadas funcionan de forma diferente que en las consultas normales, devolviendo un valor por cada grupo formado.</p>
+<p>De una consulta agrupada solo se puede realizar una selección que devuelve un valor, simple o compuesto, por cada grupo formado en la consulta.</p>
+<p><strong>EJEMPLO INCORRECTO:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">codciclo</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">edad</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">codciclo</span><span class="p">;</span>
+</span></code></pre></div>
+<p><em>(No es válida: el grupo "DAM" tiene 4 nombres distintos — Antonio, Javier, Carlos y Manuel — así que <code>nombre</code> no tiene un único valor por grupo.)</em></p>
+<p>La regla sintáctica que aplican los sistemas relacionales para asegurar el buen funcionamiento de las consultas agrupadas es la siguiente:</p>
+<blockquote>
+<p>"en la selección de una consulta agrupada, solo pueden aparecer referencias a columnas por las cuales se agrupa, referencias a funciones agregadas o literales".</p>
+</blockquote>
+<h3 id="group-y-where">GROUP y WHERE</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>El <code>where</code> de una consulta agrupada se aplica <strong>antes</strong> de formar los grupos, es decir, filtra filas individuales, no grupos.</p>
+<p>Por eso en el <code>where</code> nunca puede aparecer una función agregada (todavía no se han calculado los grupos en ese momento).</p>
+</div>
+<p>Si se incluye la cláusula <code>where</code> la aplicación de esta cláusula se produce previamente a la agrupación.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">codciclo</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">edad</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">25</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">codciclo</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> primero se descartan las filas con <code>edad &lt;= 25</code> o <code>NULL</code> (Luis Campos, 24; Roberto Díaz, 22; Diego Vidal, 17; y Jorge Salas, por ser <code>NULL</code>) y después se agrupa:</p>
+<table>
+<thead>
+<tr>
+<th>codciclo</th>
+<th>AVG(edad)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DAM</td>
+<td>27,5</td>
+</tr>
+<tr>
+<td>DAW</td>
+<td>29</td>
+</tr>
+<tr>
+<td>ASIR</td>
+<td>28</td>
+</tr>
+</tbody>
+</table>
+<p>Nótese que el ciclo SMR desaparece por completo del resultado: al quedarse sin ninguna fila tras el <code>WHERE</code> (sus dos alumnos son menores de 25 años o de edad <code>NULL</code>), no llega a formar grupo.</p>
+<h3 id="group-where-y-having">GROUP, WHERE y HAVING</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>HAVING</code> es al grupo lo que <code>WHERE</code> es a la fila: filtra grupos ya formados, normalmente en base al resultado de una función agregada (por ejemplo, "ciclos con más de 3 alumnos").</p>
+<p>Es clave recordar el orden real de evaluación: primero <code>WHERE</code> (filas), después <code>GROUP BY</code> (se forman los grupos y se calculan los agregados), y por último <code>HAVING</code> (se filtran los grupos).</p>
+</div>
+<p>La cláusula <code>HAVING</code>, que solo puede ir en consultas agrupadas, es similar a <code>WHERE</code> pero el orden es el siguiente:</p>
+<ol>
+<li>Condición <code>WHERE</code> (se usa para las filas)</li>
+<li>Agrupamiento y cálculo de valores agregados</li>
+<li>Condición <code>HAVING</code> (se usa para los grupos)</li>
+</ol>
+<p>En la cláusula <code>HAVING</code>, solo podrán aparecer directamente referencias a columnas por las cuales se agrupan o a funciones agregadas.</p>
+<p><strong>EJEMPLO:</strong> Obtener el código de <strong>cada</strong> ciclo y la edad media de sus alumnos con más de 25 años, de aquellos ciclos con más de 3 alumnos mayores de 25 años.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">codciclo</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">edad</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">25</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">codciclo</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">nia</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> tras el <code>WHERE edad &gt; 25</code>, el único ciclo con más de 3 alumnos es DAM (sus 4 alumnos tienen todos más de 25 años) → (<strong>DAM</strong>, <strong>27,5</strong>).</p>
+<hr />
+<h2 id="combinaciones-de-tablas">Combinaciones de tablas</h2>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Además del <code>from</code> con varias tablas y las subconsultas ya vistas, SQL ofrece operadores específicos para combinar tablas.</p>
+<p>Las <strong>combinaciones conjuntistas</strong> se basan en teoría de conjuntos (unión, diferencia, intersección) y las <strong>concatenaciones</strong> se basan en el operador de reunión del Álgebra Relacional (producto cartesiano y los distintos tipos de <code>JOIN</code>).</p>
+</div>
+<p>Existen otras formas de combinar varias tablas en consultas y todas ellas, junto con las ya vistas, dan lugar a una "expresión de tabla".</p>
+<p>Existen, en definitiva, varias formas de combinar dos tablas en el lenguaje SQL:</p>
+<ul>
+<li>Incluir varias tablas en la cláusula <code>from</code>.</li>
+<li>Uso de subconsultas en las condiciones de las cláusulas <code>where</code> o <code>having</code>.</li>
+<li><strong>Combinaciones conjuntistas de tablas</strong>: utilizan operadores de la teoría de conjuntos para combinar las tablas.</li>
+<li><strong>Concatenaciones de tablas</strong>: combinan dos tablas utilizando diferentes variantes del operador concatenación del Álgebra Relacional.</li>
+</ul>
+<h3 id="combinaciones-conjuntistas-de-tablas">Combinaciones conjuntistas de tablas</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>UNION</code>, <code>EXCEPT</code> e <code>INTERSECT</code> combinan los resultados de dos consultas fila a fila, como si fueran conjuntos. Para poder usarlos, ambas consultas deben tener <strong>esquemas compatibles</strong> (mismo número de columnas y tipos compatibles).</p>
+<p>Por defecto eliminan duplicados; con <code>UNION ALL</code> se conservan.</p>
+</div>
+<p>Corresponden a los operadores <em>unión</em>, <em>diferencia</em> e <em>intersección</em> del Álgebra Relacional.</p>
+<ul>
+<li><code>UNION</code></li>
+<li><code>EXCEPT</code></li>
+<li><code>INTERSECT</code></li>
+</ul>
+<p>Permiten combinar tablas que tengan esquemas <strong>compatibles</strong>.</p>
+<p><strong>UNION</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>expresión_tabla union [all] término_tabla
+</span></code></pre></div>
+<p>Realiza la unión de las filas de las tablas provenientes de las dos expresiones. Se permitirán o no duplicados según se incluya o no la opción <code>all</code>.</p>
+<p><strong>EJEMPLO:</strong> Obtener el nombre de los alumnos de 'DAM' y de 'DAW'.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">codciclo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;DAM&#39;</span><span class="p">)</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="k">UNION</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">codciclo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;DAW&#39;</span><span class="p">)</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> Antonio Ruiz, Javier Torres, Carlos Ferrer, Manuel Ortega (DAM) + Luis Campos, Sergio Molina (DAW) → 6 nombres en total.</p>
+<p><strong>EXCEPT</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>expresión_tabla except término_tabla
+</span></code></pre></div>
+<p>Realiza la diferencia de conjuntos: filas de la primera consulta que <strong>no</strong> aparecen en la segunda.</p>
+<div class="admonition note">
+<p class="admonition-title">Disponibilidad en MySQL</p>
+<p><code>EXCEPT</code> e <code>INTERSECT</code> solo están disponibles a partir de MySQL 8.0.31 (versiones anteriores no los soportan). En MariaDB están disponibles desde la versión 10.3.</p>
+</div>
+<p><strong>EJEMPLO:</strong> Obtener el nombre de los alumnos de 'DAM' que no tengan nia 3 o 4.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">codciclo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;DAM&#39;</span><span class="p">)</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="k">EXCEPT</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">nia</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</span></code></pre></div>
+<p><strong>INTERSECT</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>expresión_tabla intersect término_tabla
+</span></code></pre></div>
+<p>Realiza la intersección de conjuntos: solo las filas que aparecen en <strong>ambas</strong> consultas.</p>
+<p><strong>EJEMPLO:</strong> Obtener el nombre de los alumnos de 'DAM' que tengan nia 1 o 2.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">codciclo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;DAM&#39;</span><span class="p">)</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="k">INTERSECT</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">nia</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> el resultado complementario del ejemplo anterior → <strong>Antonio Ruiz</strong> y <strong>Javier Torres</strong>, los dos únicos alumnos de DAM con nia.</p>
+<h3 id="concatenaciones-de-tablas">Concatenaciones de tablas</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Son las distintas variantes del <code>JOIN</code> conocidas de bases de datos: <code>INNER JOIN</code> (solo filas que casan en ambas tablas, equivalente a lo visto con <code>from</code> + <code>where</code>), <code>LEFT</code>/<code>RIGHT</code>/<code>FULL OUTER JOIN</code> (conservan también las filas sin pareja, rellenando con <code>NULL</code>) y la concatenación unión (mucho menos usada en la práctica).</p>
+<p>En MySQL, lo habitual es trabajar con <code>INNER JOIN</code> y <code>LEFT JOIN</code>. <code>RIGHT JOIN</code> se usa menos (basta con cambiar el orden de las tablas y usar <code>LEFT JOIN</code>), y <code>FULL OUTER JOIN</code> <strong>no existe</strong> como tal en MySQL: hay que simularlo.</p>
+</div>
+<p>Corresponden a variantes del operador concatenación del Álgebra Relacional.</p>
+<ul>
+<li>Producto cartesiano (<code>cross join</code>)</li>
+<li>Concatenación interna:</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>referencia_tabla [natural] [inner] join referencia_tabla
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>[on expresión_condicional | using (, lista_columna) ]
+</span></code></pre></div>
+<ul>
+<li>Concatenación externa:</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>referencia_tabla [natural]
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>{left [outer]  |
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a> right [outer] |
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a> full [outer]  } JOIN referencia_tabla
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>[on expresión_condicional | using (, lista_columna) ]
+</span></code></pre></div>
+<p>En todos los ejemplos siguientes se usa el mismo diagrama de apoyo: dos tablas relacionadas mediante una clave ajena real (no calculada), con tres zonas posibles en el resultado — filas solo de la tabla izquierda, filas que casan en ambas y filas solo de la tabla derecha. Cada tipo de <code>JOIN</code> se distingue por qué zonas incluye (resaltadas en verde) y cuáles descarta (en gris).</p>
+<h4 id="inner-join">INNER JOIN</h4>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>INNER JOIN</code> es el que ya conocíamos por el <code>from</code> con varias tablas y una condición en el <code>where</code>: solo aparecen las filas que <strong>casan</strong> en ambas tablas según la condición <code>on</code>. Las filas sin pareja, de cualquiera de los dos lados, se descartan.</p>
+</div>
+<pre class="mermaid"><code>flowchart LR
+    A["Solo ALUMNO&lt;br/&gt;(sin ninguna nota)"]
+    AB["ALUMNO ⋈ NOTA&lt;br/&gt;(nia coincide)"]
+    B["Solo NOTA&lt;br/&gt;(no puede darse:&lt;br/&gt;toda nota es de un alumno)"]
+    A --- AB --- B
+    style A fill:#eeeeee,stroke:#999999,color:#999999
+    style AB fill:#8fd18f,stroke:#2e7d32,color:#000000
+    style B fill:#eeeeee,stroke:#999999,color:#999999</code></pre>
+<p><strong>EJEMPLO:</strong> Obtener el nombre del alumno, el módulo y la nota, solo para los alumnos que tienen alguna nota registrada.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nota</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nia</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> solo aparecen los 5 alumnos con alguna nota registrada (Antonio Ruiz, Javier Torres, Luis Campos, Roberto Díaz y Diego Vidal), cada uno con sus 4 notas → <strong>20 filas</strong>. Es exactamente el mismo resultado que se obtendría con <code>FROM Alumno A, Nota N WHERE A.nia = N.nia</code> — el <code>INNER JOIN</code> es solo una forma alternativa (y más explícita) de escribir la misma reunión.</p>
+<h4 id="left-join">LEFT JOIN</h4>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>LEFT JOIN</code> conserva <strong>todas</strong> las filas de la tabla de la izquierda, tengan o no pareja en la tabla de la derecha. Cuando no hay pareja, las columnas de la tabla derecha aparecen a <code>NULL</code>.</p>
+</div>
+<pre class="mermaid"><code>flowchart LR
+    A["Solo ALUMNO&lt;br/&gt;(sin ninguna nota)"]
+    AB["ALUMNO ⋈ NOTA&lt;br/&gt;(nia coincide)"]
+    B["Solo NOTA&lt;br/&gt;(no puede darse:&lt;br/&gt;toda nota es de un alumno)"]
+    A --- AB --- B
+    style A fill:#8fd18f,stroke:#2e7d32,color:#000000
+    style AB fill:#8fd18f,stroke:#2e7d32,color:#000000
+    style B fill:#eeeeee,stroke:#999999,color:#999999</code></pre>
+<p><strong>EJEMPLO:</strong> Obtener el nombre de todos los alumnos y, si tienen alguna nota registrada, el módulo y la nota (y <code>NULL</code> si no tienen ninguna):</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nota</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nia</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> a diferencia de un <code>INNER JOIN</code>, aquí sí aparecen los 5 alumnos sin ninguna nota (Carlos Ferrer, Manuel Ortega, Sergio Molina, Pablo Núñez y Jorge Salas), con <code>codmodulo</code> y <code>nota</code> a <code>NULL</code>. Junto con las 20 filas de los 5 alumnos con notas, el resultado tiene 20 + 5 = <strong>25 filas</strong> en total.</p>
+<h4 id="right-join">RIGHT JOIN</h4>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>RIGHT JOIN</code> es el espejo del <code>LEFT JOIN</code>: conserva <strong>todas</strong> las filas de la tabla de la derecha, tengan o no pareja en la izquierda. En MySQL apenas se usa, porque cualquier <code>RIGHT JOIN</code> se puede reescribir como un <code>LEFT JOIN</code> sin más que intercambiar el orden de las tablas.</p>
+</div>
+<pre class="mermaid"><code>flowchart LR
+    A["Solo NOTA&lt;br/&gt;(no puede darse:&lt;br/&gt;toda nota es de un módulo)"]
+    AB["NOTA ⋈ MODULO&lt;br/&gt;(codmodulo coincide)"]
+    B["Solo MODULO&lt;br/&gt;(sin notas)"]
+    A --- AB --- B
+    style A fill:#eeeeee,stroke:#999999,color:#999999
+    style AB fill:#8fd18f,stroke:#2e7d32,color:#000000
+    style B fill:#8fd18f,stroke:#2e7d32,color:#000000</code></pre>
+<p><strong>EJEMPLO:</strong> Obtener el código y nombre de todos los módulos y, si tienen alguna nota registrada, el nia del alumno y la nota (y <code>NULL</code> si el módulo no tiene ninguna):</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nia</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nota</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="k">RIGHT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Modulo</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> aparecen los 6 módulos; los módulos 1 y 5, que no tienen ninguna nota registrada, aparecen con <code>N.nia</code> y <code>N.nota</code> a <code>NULL</code>. Los otros 4 módulos (2, 3, 4 y 6) aparecen 5 veces cada uno, una por cada alumno con nota → 2 + 20 = <strong>22 filas</strong> en total.</p>
+<div class="admonition note">
+<p class="admonition-title">Equivalencia con LEFT JOIN</p>
+<p>Esta misma consulta se podría escribir, de forma equivalente, intercambiando las tablas y usando <code>LEFT JOIN</code>: <code>SELECT M.codmodulo, M.nombre, N.nia, N.nota FROM Modulo M LEFT JOIN Nota N ON N.codmodulo = M.codmodulo;</code>. Es exactamente por esto por lo que <code>RIGHT JOIN</code> se usa tan poco en la práctica.</p>
+</div>
+<h4 id="full-outer-join">FULL (OUTER) JOIN</h4>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>FULL OUTER JOIN</code> conserva <strong>todas</strong> las filas de ambas tablas, tengan o no pareja en la otra: es la unión de lo que daría un <code>LEFT JOIN</code> y un <code>RIGHT JOIN</code>. <strong>MySQL no implementa <code>FULL OUTER JOIN</code></strong> (a diferencia de PostgreSQL o SQL Server), así que hay que simularlo combinando un <code>LEFT JOIN</code> y un <code>RIGHT JOIN</code> con <code>UNION</code> (que además elimina automáticamente la fila duplicada que representa la intersección).</p>
+</div>
+<pre class="mermaid"><code>flowchart LR
+    A["Solo ALUMNO&lt;br/&gt;(sin ninguna nota)"]
+    AB["ALUMNO ⋈ NOTA&lt;br/&gt;(nia coincide)"]
+    B["Solo NOTA&lt;br/&gt;(no puede darse:&lt;br/&gt;toda nota es de un alumno)"]
+    A --- AB --- B
+    style A fill:#8fd18f,stroke:#2e7d32,color:#000000
+    style AB fill:#8fd18f,stroke:#2e7d32,color:#000000
+    style B fill:#8fd18f,stroke:#2e7d32,color:#000000</code></pre>
+<p><strong>EJEMPLO (simulación de FULL OUTER JOIN en MySQL):</strong> Obtener el nombre del alumno, el módulo y la nota, tanto si el alumno no tiene ninguna nota como si (hipotéticamente) hubiera alguna nota sin alumno asociado:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nota</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nia</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="k">UNION</span>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nota</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="k">RIGHT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nia</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> con nuestros datos coincide exactamente con el resultado del <code>LEFT JOIN</code> (25 filas), porque <code>Nota.nia</code> es una clave ajena obligatoria hacia <code>Alumno</code>: toda nota pertenece siempre a un alumno que existe, así que el <code>RIGHT JOIN</code> nunca aporta filas "huérfanas" de más. Aun así, la consulta es la forma correcta y general de simular un <code>FULL OUTER JOIN</code> en MySQL, válida también si el esquema permitiera notas sin alumno asociado.</p>
+<hr />
+<h2 id="predicados-que-aceptan-subconsultas">Predicados que aceptan subconsultas</h2>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Una <strong>subconsulta</strong> es un <code>select</code> anidado dentro de otro <code>select</code> (normalmente en el <code>where</code> o el <code>having</code>). Permite responder preguntas del tipo "compara con un valor que primero hay que calcular" (por ejemplo, "mayor que la media").</p>
+<p>No todos los predicados admiten subconsultas: los que sí lo hacen son los de comparación, <code>in</code>, <code>any</code>/<code>all</code> y <code>exists</code>. Distinguir cuál usar en cada caso es una de las claves del tema.</p>
+</div>
+<p>Las subconsultas pueden aparecer en las condiciones de búsqueda, tanto de la cláusula <code>where</code> como <code>having</code>, como argumentos de algunos predicados.</p>
+<p>Los predicados que pueden llevar como argumentos subconsultas son los siguientes:</p>
+<ul>
+<li>predicados de comparación (<code>=</code>, <code>&lt;&gt;</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>).</li>
+<li><code>in</code>: comprueba que un valor <em>pertenece</em> a una colección dada mediante una subconsulta.</li>
+<li>predicados de comparación cuantificados (<code>any</code> y <code>all</code>): permiten comparar un valor con un conjunto de valores.</li>
+<li><code>exists</code>: equivalente al cuantificador existencial, comprueba si una subconsulta devuelve alguna fila.</li>
+</ul>
+<h3 id="predicados-de-comparacion">Predicados de comparación (=, &lt;&gt;, &gt;, &lt;, &gt;=, &lt;=)</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Cuando se usa una subconsulta con un predicado de comparación simple (<code>=</code>, <code>&gt;</code>, etc.), esa subconsulta <strong>debe devolver exactamente una fila</strong> (un escalar, en el caso más habitual de una sola columna).</p>
+<p>Si devuelve varias filas, se produce un error de ejecución; para comparar con varias filas hay que usar <code>in</code>, <code>any</code> o <code>all</code>.</p>
+</div>
+<p>Cada uno de los dos lados de un predicado de comparación debe ser una única tupla formada por el mismo número de columnas. Es decir:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>(A1, A2, …, An) predicado_comparación (B1, B2, …, Bn)
+</span></code></pre></div>
+<p>Las subconsultas pueden ser argumentos siempre y cuando devuelvan <strong>una única fila</strong> y el <strong>número de columnas coincida en número y tipo</strong> con el otro lado del predicado de comparación. Llamaremos <em>constructor_fila</em> a una lista de atributos entre paréntesis o una subconsulta.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>constructor_fila predicado_comparación constructor_fila
+</span></code></pre></div>
+<ul>
+<li>En el caso de que la subconsulta esté vacía, se convierte a una fila con valores nulos en todas las columnas.</li>
+<li>Para poder comparar dos <em>constructor_fila</em> de más de una columna, existe una forma definida de realizar esta comparación para cada uno de (=, &lt;&gt;, &gt;, &lt;, &gt;=, &lt;=).</li>
+<li>En general, sin embargo, se verán subconsultas de una única columna, como el ejemplo anterior.</li>
+</ul>
+<p><strong>EJEMPLO:</strong> Obtener los nombres de los módulos cuyas horas son mayores que la media de horas de todos los módulos.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Modulo</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">horas</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">horas</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Modulo</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> la media de horas de los 6 módulos es (100+266+166+100+166+100)/6 = 149,67. Módulos con más horas que la media: <strong>Programación</strong> (266), <strong>Bases de Datos</strong> (166) y <strong>Sistemas Informáticos</strong> (166).</p>
+<p><strong>INCORRECTO</strong> (error de ejecución):</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Modulo</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">horas</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">horas</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Modulo</span>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">              </span><span class="k">WHERE</span><span class="w"> </span><span class="n">profesor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Ana Salas&#39;</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Con nuestros datos esta consulta sí funcionaría por casualidad, porque Ana Salas solo imparte un módulo (la subconsulta devuelve una única fila). Pero es un error conceptual: en cuanto Ana Salas impartiera dos o más módulos, la subconsulta devolvería varias filas y MySQL lanzaría un error de ejecución. Por eso hay que usar siempre una función agregada (<code>AVG</code>, <code>MAX</code>...) cuando se compara con "todo un grupo" de filas.</p>
+<h3 id="subconsultas-relacionadas">Subconsultas relacionadas</h3>
+<p><strong>EJEMPLO:</strong> Obtener pares nombre de alumno, código de módulo, de tal forma que dicho alumno tenga la mejor nota de dicho módulo. Además el módulo debe superar las 150 horas.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span>
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">Modulo</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N</span>
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">horas</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">150</span>
+</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="k">AND</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nota</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">N2</span><span class="p">.</span><span class="n">nota</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">N2</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Cómo funciona la subconsulta correlacionada</p>
+<p>La condición <code>N.nota = (SELECT MAX(N2.nota) FROM Nota N2 WHERE N2.codmodulo = N.codmodulo)</code> es una <strong>subconsulta correlacionada</strong>: a diferencia de una subconsulta normal (que se ejecuta una sola vez, de forma independiente), esta se vuelve a evaluar <strong>una vez por cada fila</strong> que va comprobando la consulta externa, porque en su interior hace referencia a esa fila externa (<code>N.codmodulo</code>). De ahí el nombre: queda "correlacionada" con la fila que se está examinando en cada momento.</p>
+<p>Paso a paso, para la fila de <code>N</code> correspondiente a Roberto Díaz en el módulo 3 (nota 9,0):</p>
+<ol>
+<li>La subconsulta interna calcula <code>SELECT MAX(N2.nota) FROM Nota N2 WHERE N2.codmodulo = 3</code>, es decir, la nota máxima <strong>entre todas las notas del módulo 3</strong>: 9,0.</li>
+<li>La condición externa compara: <code>N.nota = 9,0</code> → ¿la nota de esta fila (9,0) coincide con el máximo que se acaba de calcular (9,0)? Sí, así que la fila pasa el filtro.</li>
+</ol>
+<p>Para cualquier otra fila de un alumno con nota inferior a la máxima de su módulo (por ejemplo, Antonio Ruiz con 6,5 en el módulo 3), el mismo cálculo da <code>MAX = 9,0</code>, la comparación <code>6,5 = 9,0</code> es falsa, y la fila queda descartada.</p>
+<p>Es imprescindible usar un alias distinto para la tabla de la subconsulta (<code>N2</code>, en vez de reutilizar <code>N</code>): así SQL sabe distinguir "la fila que se está comprobando ahora" (<code>N</code>, de la consulta externa) de "todas las filas del mismo módulo" (<code>N2</code>, de la subconsulta), que es precisamente sobre lo que hay que calcular el máximo.</p>
+<p>El resultado son solo las filas que tienen "la mejor nota" de su módulo (la fila, o las filas si hay empate), sin necesidad de que exista una columna o una vista que la guarde de antemano. Es el mismo patrón que se repite en varios ejemplos de este tema cada vez que se necesita "la mejor nota de un módulo".</p>
+</div>
+<p><strong>Resultado:</strong> (<code>Diego Vidal</code>, 2), (<code>Roberto Díaz</code>, 3). <em>(Los módulos 1, 4 y 6, con 100 horas cada uno, quedan excluidos por no superar las 150 horas. El módulo 5, con 166 horas, también queda fuera, pero por otro motivo: al no tener ninguna nota registrada, nadie puede tener "la mejor nota" de él.)</em></p>
+<h3 id="predicado-in">Predicado in</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>IN</code> comprueba si un valor pertenece a un conjunto de valores devuelto por una subconsulta (a diferencia de los predicados de comparación simples, aquí la subconsulta <strong>sí puede</strong> devolver varias filas).</p>
+<p>Es la forma habitual de resolver preguntas del tipo "obtener X relacionados con los Y que cumplen una condición", y equivale a comparar el valor con cada elemento del conjunto usando <code>or</code>.</p>
+</div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>constructor_fila [not] in (expresión_tabla)
+</span></code></pre></div>
+<p>A la derecha de <code>IN</code> puede aparecer más de una fila y por eso se denomina <em>expresión_tabla</em>.</p>
+<p><strong>EJEMPLO:</strong> Obtener el código de los módulos cuya mejor nota corresponde a alumnos con edad igual o inferior a los 25 años.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">codmodulo</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N</span>
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nota</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">N2</span><span class="p">.</span><span class="n">nota</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">N2</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">)</span>
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="k">AND</span><span class="w"> </span><span class="n">nia</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">nia</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span>
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="w">             </span><span class="k">WHERE</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> alumnos con 25 años o menos: Diego Vidal (17) y Roberto Díaz (22). Diego tiene la mejor nota de los módulos 2, 4 y 6; Roberto tiene la mejor nota del módulo 3. Resultado: <strong>2, 3, 4, 6</strong> (todos los módulos con notas registradas).</p>
+<h3 id="subconsultas-encadenadas">Subconsultas encadenadas</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Las subconsultas se pueden anidar tantos niveles como haga falta, "encadenando" condiciones <code>IN</code> sucesivas.</p>
+<p>Cada nivel resuelve un paso intermedio de la pregunta en lenguaje natural, de dentro hacia fuera: primero se identifican los ciclos, luego los alumnos de esos ciclos, y luego los módulos de esos alumnos.</p>
+</div>
+<p><strong>EJEMPLO:</strong> Obtener el código de los módulos cuya mejor nota corresponde a alumnos que pertenezcan a ciclos cuyo tutor tenga un nombre que empiece por 'A'.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">codmodulo</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N</span>
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nota</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">N2</span><span class="p">.</span><span class="n">nota</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">N2</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">)</span>
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="k">AND</span><span class="w"> </span><span class="n">nia</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">nia</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span>
+</span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">codciclo</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">codciclo</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Ciclo</span>
+</span><span id="__span-45-5"><a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">tutor</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;A%&#39;</span><span class="p">));</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> el único tutor cuyo nombre empieza por "A" es Álvaro Pino, tutor del ciclo SMR (Diego Vidal y Jorge Salas). Módulos en los que tienen la mejor nota: <strong>2, 4, 6</strong>.</p>
+<h3 id="predicados-de-comparacion-cuantificados-any-y-all">Predicados de comparación cuantificados (any y all)</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>ALL</code> y <code>ANY</code>/<code>SOME</code> permiten comparar un valor con <strong>todos</strong> o con <strong>alguno</strong> de los valores de una subconsulta, respectivamente. Son la forma "elegante" de resolver preguntas de superlativos ("el máximo", "el mínimo") sin usar directamente <code>MAX</code>/<code>MIN</code>: por ejemplo, <code>&gt;= ALL (...)</code> equivale a "es mayor o igual que el máximo".</p>
+<p>Cuidado con los casos de tabla vacía: <code>ALL</code> se evalúa a cierto y <code>ANY</code>/<code>SOME</code> a falso.</p>
+</div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>constructor_fila predicado_comparación {all | any | some} (expresión_tabla)
+</span></code></pre></div>
+<ul>
+<li>El predicado de comparación cuantificado con <code>ALL</code> se evalúa a cierto si lo es para <strong>todas</strong> las filas de la expresión de tabla (si la tabla está vacía también se evalúa a cierto).</li>
+<li>El predicado de comparación cuantificado con <code>ANY</code> o <code>SOME</code> se evalúa a cierto si lo es para alguna fila de la expresión de tabla (si la tabla está vacía se evalúa a falso).</li>
+</ul>
+<blockquote>
+<p>(*) el predicado <code>in</code> es idéntico al predicado de comparación cuantificado <code>=any</code>.</p>
+</blockquote>
+<p><strong>EJEMPLO</strong> Obtener el nombre del alumno y el módulo, para aquellas notas que sean la nota más alta de todas las registradas en la base de datos.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="n">A</span>
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="k">AND</span>
+</span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="n">N</span><span class="p">.</span><span class="n">nota</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">N1</span><span class="p">.</span><span class="n">nota</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N1</span><span class="w"> </span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> la nota máxima registrada es 9,5, y la obtiene Diego Vidal en dos módulos distintos (Programación y Lenguajes de Marcas) → (<strong>Diego Vidal</strong>, 2), (<strong>Diego Vidal</strong>, 6).</p>
+<p><strong>EJEMPLO</strong> Obtener el nombre del alumno y el módulo, para aquellas notas que superen alguna de las notas del módulo 3 (Bases de Datos).</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="n">A</span>
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="k">AND</span>
+</span><span id="__span-48-3"><a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="n">N</span><span class="p">.</span><span class="n">nota</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">ANY</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">N1</span><span class="p">.</span><span class="n">nota</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">N1</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> las notas del módulo 3 son 6,5 / 7,0 / 5,0 / 9,0 / 8,0, así que basta con superar la más baja de ellas (5,0) para cumplir la condición <code>&gt; ANY</code>. Solo quedan excluidas las dos notas de valor 5,0 que hay en toda la tabla <code>Nota</code> (ambas de Luis Campos, en los módulos 3 y 6); el resto de las 20 notas registradas cumple la condición.</p>
+<h3 id="predicado-exists">Predicado exists</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>EXISTS</code> solo comprueba si la subconsulta devuelve <strong>alguna fila</strong> (no importa cuál ni cuántas columnas tenga, de ahí el <code>SELECT *</code> habitual dentro). Se usa mucho con <strong>referencias externas</strong> (la subconsulta hace referencia a una tabla de la consulta que la envuelve), lo que la convierte en una especie de "bucle" fila a fila.</p>
+<p><code>IN</code> y <code>EXISTS</code> suelen ser intercambiables, pero <code>EXISTS</code> es imprescindible para expresar la <strong>cuantificación universal</strong> ("todos"), como se ve a continuación.</p>
+</div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>exists (expresión_tabla)
+</span></code></pre></div>
+<p>El predicado <code>exists</code> se evalúa a cierto si la expresión select devuelve al menos una fila.</p>
+<p><strong>EJEMPLO:</strong> Obtener el nombre de aquellos alumnos que hayan obtenido una distinción de importe menor de 100 euros.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">Obtener_Distincion</span><span class="w"> </span><span class="n">O</span>
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">O</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="k">AND</span>
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">Distincion</span><span class="w"> </span><span class="n">D</span>
+</span><span id="__span-50-5"><a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="w">        </span><span class="k">WHERE</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">importe</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">codigo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">O</span><span class="p">.</span><span class="n">codigo</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> distinciones con importe menor de 100 €: Mención Especial (90 €) y Beca de Excelencia (60 €). Alumnos que las han obtenido: <strong>Diego Vidal</strong>, <strong>Roberto Díaz</strong> y <strong>Jorge Salas</strong>.</p>
+<blockquote>
+<p>(*) En el ejemplo se ve además una referencia externa desde la subconsulta a la tabla A externa a él, lo que suele ser muy habitual (aunque no exclusivo) a las subconsultas con <code>EXISTS</code>.</p>
+<p>(*) En general, <code>IN</code> y <code>EXISTS</code> son intercambiables y se pueden eliminar haciendo consultas a múltiples tablas e igualando por claves ajenas.</p>
+</blockquote>
+<p><strong>EJEMPLO:</strong> Obtener el nombre de los alumnos que no han obtenido la mejor nota de ningún módulo.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span>
+</span><span id="__span-51-2"><a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N</span>
+</span><span id="__span-51-3"><a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="w">                  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alumno</span><span class="p">.</span><span class="n">nia</span>
+</span><span id="__span-51-4"><a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="w">                  </span><span class="k">AND</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nota</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">N2</span><span class="p">.</span><span class="n">nota</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">N2</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">));</span>
+</span><span id="__span-51-5"><a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a>
+</span><span id="__span-51-6"><a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span>
+</span><span id="__span-51-7"><a id="__codelineno-51-7" name="__codelineno-51-7" href="#__codelineno-51-7"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">nia</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N</span>
+</span><span id="__span-51-8"><a id="__codelineno-51-8" name="__codelineno-51-8" href="#__codelineno-51-8"></a><span class="w">                  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nota</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">N2</span><span class="p">.</span><span class="n">nota</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">N2</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">));</span>
+</span></code></pre></div>
+<p><strong>Resultado</strong> (idéntico con ambas formulaciones): los alumnos con la mejor nota de algún módulo son los nia {7, 9}, así que quedan fuera: <strong>Antonio Ruiz, Javier Torres, Carlos Ferrer, Manuel Ortega, Luis Campos, Sergio Molina, Pablo Núñez y Jorge Salas</strong>.</p>
+<p>Equivalencias:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>WHERE EXISTS (SELECT * FROM …)
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>equivale a: WHERE 0 &lt; (SELECT COUNT(*) FROM …)
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>
+</span><span id="__span-52-4"><a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a>WHERE NOT EXISTS (SELECT * FROM …)
+</span><span id="__span-52-5"><a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a>equivale a: WHERE 0 = (SELECT COUNT(*) FROM …)
+</span></code></pre></div>
+<hr />
+<h3 id="subconsultas-en-la-clausula-from-tablas-derivadas">Subconsultas en la cláusula FROM (tablas derivadas)</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Todas las subconsultas vistas hasta ahora aparecen en el <code>WHERE</code> (o en el <code>SELECT</code>), comparando valores. Pero una subconsulta también puede colocarse en la cláusula <code>FROM</code>, en el lugar de una tabla: el resultado de esa consulta se trata como si fuera una tabla más, sobre la que se puede volver a filtrar, unir o agregar. Se la llama <strong>tabla derivada</strong>, y es obligatorio darle un alias.</p>
+<p>Hace falta este recurso cuando la condición no se puede expresar comparando una columna directamente (como en la subconsulta correlacionada de "la mejor nota"), sino que depende del resultado de una <strong>agregación ya agrupada</strong> (por ejemplo, "el máximo de una suma agrupada por módulo"): <code>MAX(SUM(...))</code> no se puede escribir así, en una sola consulta, porque no se pueden anidar funciones agregadas directamente. Primero hay que calcular la suma agrupada (en la tabla derivada) y luego, sobre ese resultado, calcular el máximo.</p>
+</div>
+<p><strong>EJEMPLO:</strong> Obtener el código del ciclo con más alumnos matriculados.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">codciclo</span><span class="p">,</span><span class="w"> </span><span class="n">num_alumnos</span>
+</span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="k">FROM</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">codciclo</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_alumnos</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">codciclo</span><span class="p">)</span><span class="w"> </span><span class="n">T</span>
+</span><span id="__span-53-3"><a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">num_alumnos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">num_alumnos</span><span class="p">)</span>
+</span><span id="__span-53-4"><a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a><span class="w">                      </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_alumnos</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">codciclo</span><span class="p">)</span><span class="w"> </span><span class="n">T2</span><span class="p">);</span>
+</span></code></pre></div>
+<p>La subconsulta <code>(SELECT codciclo, COUNT(*) AS num_alumnos FROM Alumno GROUP BY codciclo) T</code> cuenta, para cada ciclo, cuántos alumnos tiene, y se comporta como una tabla normal de dos columnas (<code>codciclo</code>, <code>num_alumnos</code>) llamada <code>T</code>. Sobre ella se aplica el <code>WHERE</code>, comparando con el máximo de esos mismos recuentos (calculado en una segunda tabla derivada, <code>T2</code>, idéntica en su definición a <code>T</code> pero usada solo para obtener el máximo).</p>
+<p><strong>Resultado:</strong> DAM tiene 4 alumnos (Antonio Ruiz, Javier Torres, Carlos Ferrer, Manuel Ortega); DAW, ASIR y SMR tienen 2 cada uno. Resultado: (<strong>DAM</strong>, 4).</p>
+<div class="admonition note">
+<p class="admonition-title">Tabla derivada frente a subconsulta correlacionada</p>
+<p>Ambas técnicas resuelven preguntas de tipo "el máximo/mínimo de...", pero no son intercambiables: la subconsulta correlacionada (como la de "la mejor nota de un módulo") compara <strong>fila a fila</strong> dentro de la misma tabla, y se reevalúa por cada fila externa; la tabla derivada se usa cuando primero hay que <strong>agrupar y agregar</strong> (<code>GROUP BY</code> + función agregada), y después comparar con el resultado ya agregado. Como orientación: si la condición compara con <code>MAX</code>/<code>MIN</code> de una columna sin agrupar, sirve la subconsulta correlacionada; si compara con <code>MAX</code>/<code>MIN</code> de una suma, un conteo o una media ya agrupados por alguna columna, hace falta una tabla derivada.</p>
+</div>
+<hr />
+<h2 id="mas-ejemplos-del-esquema-academia">Más ejemplos del esquema 'ACADEMIA'</h2>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Esta batería de ejercicios repasa, sobre un mismo esquema conocido, las técnicas ya vistas (subconsultas con <code>EXISTS</code>/<code>NOT EXISTS</code>, funciones agregadas, <code>GROUP BY</code>/<code>HAVING</code> y cuantificación universal con doble negación).</p>
+<p>Es un buen bloque para practicar de cara al examen: antes de mirar la solución, conviene traducir el enunciado en español a una frase lógica ("existe/no existe... tal que...") y luego pasarla a SQL. Todos los resultados están calculados sobre los datos de ejemplo del principio del tema.</p>
+</div>
+<p><strong>1)</strong> Obtener el código de los módulos y el profesor de aquellos módulos que no tengan ninguna nota registrada.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">codmodulo</span><span class="p">,</span><span class="w"> </span><span class="n">profesor</span>
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">modulo</span>
+</span><span id="__span-54-3"><a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">nota</span>
+</span><span id="__span-54-4"><a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a><span class="w">                   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">nota</span><span class="p">.</span><span class="n">codmodulo</span><span class="o">=</span><span class="n">modulo</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> las notas existentes están en los módulos 2, 3, 4 y 6. Los módulos sin ninguna nota registrada son el 1 y el 5 → (<strong>1</strong>, Iker Molins), (<strong>5</strong>, Javier Aranda).</p>
+<p><strong>2)</strong> Obtener el profesor y el nombre del módulo con la nota media más alta.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">profesor</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">nombre</span>
+</span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">modulo</span><span class="w"> </span><span class="n">m</span>
+</span><span id="__span-55-3"><a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">nota</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">nota</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">)</span>
+</span><span id="__span-55-4"><a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a><span class="w">      </span><span class="o">&gt;=</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">n2</span><span class="p">.</span><span class="n">nota</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">nota</span><span class="w"> </span><span class="n">n2</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">n2</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> las notas medias por módulo son Programación 6,9; Bases de Datos 7,1; Entornos de Desarrollo 6,8; Lenguajes de Marcas 6,8. La más alta es Bases de Datos → (<strong>Ana Salas</strong>, <strong>Bases de Datos</strong>).</p>
+<p><strong>3)</strong> ¿Quién es el alumno más joven?</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span>
+</span><span id="__span-56-2"><a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="k">c</span>
+</span><span id="__span-56-3"><a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">edad</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> <strong>Diego Vidal</strong> (17 años), el más joven de todo el centro por ser alumno de un ciclo de grado medio (SMR). <em>(La edad <code>NULL</code> de Jorge Salas se ignora automáticamente al calcular el mínimo.)</em></p>
+<p><strong>4)</strong> Obtener el código de los módulos en los que <strong>todos</strong> los alumnos presentados tienen una nota igual o superior a 5,5.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-57-1"><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">nota</span><span class="w"> </span><span class="n">N</span>
+</span><span id="__span-57-2"><a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">nota</span><span class="w"> </span><span class="n">N2</span>
+</span><span id="__span-57-3"><a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="w">                   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">N2</span><span class="p">.</span><span class="n">codmodulo</span><span class="o">=</span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span>
+</span><span id="__span-57-4"><a id="__codelineno-57-4" name="__codelineno-57-4" href="#__codelineno-57-4"></a><span class="w">                   </span><span class="k">AND</span><span class="w"> </span><span class="n">N2</span><span class="p">.</span><span class="n">nota</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">.</span><span class="mi">5</span><span class="w"> </span><span class="p">);</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Cuantificación universal con doble negación</p>
+<p>SQL no tiene un cuantificador "para todos" (∀) directo, así que hay que simularlo con doble negación, apoyándose en la equivalencia lógica: <strong>"para todo X se cumple P" equivale a "no existe ningún X que no cumpla P"</strong>. Aquí: "todos los alumnos de ese módulo tienen nota ≥ 5,5" se reformula como "no existe ningún alumno de ese módulo con nota &lt; 5,5".</p>
+</div>
+<p><strong>Resultado:</strong> en el módulo 3 (Luis Campos, 5,0) y en el módulo 6 (Luis Campos, 5,0) hay alguna nota por debajo de 5,5, así que quedan excluidos. En los módulos 2 y 4 la nota más baja es 5,5 (Roberto Díaz y Luis Campos, respectivamente), que sí cumple la condición → <strong>2, 4</strong>.</p>
+<p><strong>5)</strong> Obtener el color de aquellas distinciones que solo han sido obtenidas por alumnos de un mismo ciclo.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-58-1"><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">distincion</span><span class="w"> </span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">obtener_distincion</span><span class="w"> </span><span class="n">o</span><span class="p">,</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="n">a</span>
+</span><span id="__span-58-2"><a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">nia</span><span class="o">=</span><span class="n">o</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">codigo</span><span class="o">=</span><span class="n">o</span><span class="p">.</span><span class="n">codigo</span>
+</span><span id="__span-58-3"><a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a><span class="k">AND</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="p">(</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">obtener_distincion</span><span class="w"> </span><span class="n">o2</span><span class="p">,</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="n">a2</span>
+</span><span id="__span-58-4"><a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a><span class="w">                </span><span class="k">WHERE</span><span class="w"> </span><span class="n">a2</span><span class="p">.</span><span class="n">nia</span><span class="o">=</span><span class="n">o2</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="k">AND</span>
+</span><span id="__span-58-5"><a id="__codelineno-58-5" name="__codelineno-58-5" href="#__codelineno-58-5"></a><span class="w">                </span><span class="n">a2</span><span class="p">.</span><span class="n">codciclo</span><span class="o">&lt;&gt;</span><span class="n">a</span><span class="p">.</span><span class="n">codciclo</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">o2</span><span class="p">.</span><span class="n">codigo</span><span class="o">=</span><span class="n">o</span><span class="p">.</span><span class="n">codigo</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> la Matrícula de Honor la obtienen alumnos de DAM y de SMR (varios ciclos, se descarta); la Mención Especial, alumnos de SMR y de ASIR (se descarta); el Premio al Esfuerzo solo lo obtienen alumnos de DAW; y la Beca de Excelencia solo alumnos de SMR. Resultado: <strong>Verde</strong> (Premio al Esfuerzo) y <strong>Azul</strong> (Beca de Excelencia).</p>
+<p><strong>6)</strong> Obtener el nombre de los alumnos que pertenezcan a un ciclo que tenga más de tres alumnos, indicando el número de módulos en los que tienen la mejor nota.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">nota</span><span class="w"> </span><span class="n">n</span>
+</span><span id="__span-59-2"><a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">nia</span><span class="o">=</span><span class="n">n</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="k">AND</span>
+</span><span id="__span-59-3"><a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="w">      </span><span class="n">n</span><span class="p">.</span><span class="n">nota</span><span class="o">=</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">n2</span><span class="p">.</span><span class="n">nota</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">nota</span><span class="w"> </span><span class="n">n2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">n2</span><span class="p">.</span><span class="n">codmodulo</span><span class="o">=</span><span class="n">n</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">)</span><span class="w"> </span><span class="k">AND</span>
+</span><span id="__span-59-4"><a id="__codelineno-59-4" name="__codelineno-59-4" href="#__codelineno-59-4"></a><span class="w">      </span><span class="mi">3</span><span class="o">&lt;</span><span class="p">(</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="n">a2</span>
+</span><span id="__span-59-5"><a id="__codelineno-59-5" name="__codelineno-59-5" href="#__codelineno-59-5"></a><span class="w">          </span><span class="k">WHERE</span><span class="w"> </span><span class="n">a2</span><span class="p">.</span><span class="n">codciclo</span><span class="o">=</span><span class="n">a</span><span class="p">.</span><span class="n">codciclo</span><span class="w"> </span><span class="p">)</span>
+</span><span id="__span-59-6"><a id="__codelineno-59-6" name="__codelineno-59-6" href="#__codelineno-59-6"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">nia</span><span class="p">;</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Ojo con el INNER JOIN implícito</p>
+<p>El <code>FROM alumno a, nota n</code> equivale a un <code>INNER JOIN</code>, que no admite alumnos sin ninguna nota. Si se quisiera que los alumnos sin ninguna nota (o sin la mejor nota de ningún módulo) aparecieran con un 0, habría que reescribir la consulta con un <code>LEFT JOIN</code>.</p>
+</div>
+<p><strong>Resultado:</strong> el único ciclo con más de 3 alumnos es DAM (Antonio Ruiz, Javier Torres, Carlos Ferrer y Manuel Ortega). Ninguno de ellos tiene la mejor nota de ningún módulo (los módulos con notas registradas tienen como mejor nota la de Diego Vidal o la de Roberto Díaz, de SMR y ASIR), así que <strong>el resultado de esta consulta está vacío</strong>. Es el mismo caso que el de la nota anterior: con un <code>LEFT JOIN</code> sí aparecerían los 4 alumnos de DAM, cada uno con un recuento de 0.</p>
+<p><strong>7)</strong> Obtener el código de los ciclos que tengan la media de edad máxima de todos los ciclos.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">codciclo</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="k">C</span><span class="p">.</span><span class="n">edad</span><span class="p">)</span>
+</span><span id="__span-60-2"><a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="k">C</span>
+</span><span id="__span-60-3"><a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">codciclo</span>
+</span><span id="__span-60-4"><a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a><span class="k">HAVING</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="k">C</span><span class="p">.</span><span class="n">edad</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="k">ALL</span>
+</span><span id="__span-60-5"><a id="__codelineno-60-5" name="__codelineno-60-5" href="#__codelineno-60-5"></a><span class="w">                        </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">D</span><span class="p">.</span><span class="n">edad</span><span class="p">)</span>
+</span><span id="__span-60-6"><a id="__codelineno-60-6" name="__codelineno-60-6" href="#__codelineno-60-6"></a><span class="w">                         </span><span class="k">FROM</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="n">D</span>
+</span><span id="__span-60-7"><a id="__codelineno-60-7" name="__codelineno-60-7" href="#__codelineno-60-7"></a><span class="w">                         </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">codciclo</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> las medias por ciclo son DAM 27,5; DAW 26,5; ASIR 25; SMR 17 (recordemos que a SMR solo le cuenta Diego Vidal, porque la edad de Jorge Salas es <code>NULL</code>). La máxima es DAM → (<strong>DAM</strong>, <strong>27,5</strong>).</p>
+<p><strong>8)</strong> Nombre de los alumnos que no han obtenido todas las distinciones que ha obtenido el alumno de nia 1.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="k">c</span>
+</span><span id="__span-61-2"><a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">EXISTS</span><span class="p">(</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">obtener_distincion</span><span class="w"> </span><span class="n">l</span>
+</span><span id="__span-61-3"><a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="w">              </span><span class="k">WHERE</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="n">nia</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="k">AND</span>
+</span><span id="__span-61-4"><a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">obtener_distincion</span><span class="w"> </span><span class="n">l2</span>
+</span><span id="__span-61-5"><a id="__codelineno-61-5" name="__codelineno-61-5" href="#__codelineno-61-5"></a><span class="w">                   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">l2</span><span class="p">.</span><span class="n">nia</span><span class="o">=</span><span class="k">c</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="k">AND</span>
+</span><span id="__span-61-6"><a id="__codelineno-61-6" name="__codelineno-61-6" href="#__codelineno-61-6"></a><span class="w">                         </span><span class="n">l2</span><span class="p">.</span><span class="n">codigo</span><span class="o">=</span><span class="n">l</span><span class="p">.</span><span class="n">codigo</span><span class="p">)</span><span class="w"> </span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> el alumno de nia 1 (Antonio Ruiz) solo ha obtenido la Matrícula de Honor (D1), en el módulo 1. Esa distinción también la han obtenido Diego Vidal y Javier Torres, así que ellos quedan excluidos (sí la han obtenido); el resto de alumnos —<strong>Carlos Ferrer, Manuel Ortega, Luis Campos, Sergio Molina, Roberto Díaz, Pablo Núñez y Jorge Salas</strong>— nunca han obtenido la Matrícula de Honor, así que cumplen la condición.</p>
+<p><strong>9)</strong> Obtener el nombre del alumno y el número de módulos en los que tiene la mejor nota, siendo su nota media en esos módulos superior a 9.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-62-1"><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">)</span>
+</span><span id="__span-62-2"><a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N</span>
+</span><span id="__span-62-3"><a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nia</span>
+</span><span id="__span-62-4"><a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a><span class="k">AND</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nota</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">N2</span><span class="p">.</span><span class="n">nota</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">N2</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">)</span>
+</span><span id="__span-62-5"><a id="__codelineno-62-5" name="__codelineno-62-5" href="#__codelineno-62-5"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nia</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">nombre</span><span class="w">     </span><span class="cm">/* Agrupar siempre por CP */</span>
+</span><span id="__span-62-6"><a id="__codelineno-62-6" name="__codelineno-62-6" href="#__codelineno-62-6"></a><span class="k">HAVING</span><span class="w"> </span><span class="k">AVG</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="p">.</span><span class="n">nota</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> Diego Vidal tiene la mejor nota en 3 módulos (Programación 9,5; Entornos de Desarrollo 9,0; Lenguajes de Marcas 9,5), con nota media (9,5+9,0+9,5)/3 = 9,33, que sí supera el 9. Roberto Díaz tiene la mejor nota en 1 módulo (Bases de Datos, 9,0), que no supera estrictamente el 9. <strong>Resultado:</strong> (<strong>Diego Vidal</strong>, 3).</p>
+<hr />
+<h2 id="base-de-datos-de-referencia-academia">Base de datos de referencia: ACADEMIA</h2>
+<h3 id="descripcion-informal">Descripción informal</h3>
+<ul>
+<li>Existen CICLOS y ALUMNOS matriculados en dichos CICLOS. Un alumno solo puede estar matriculado en un ciclo.</li>
+<li>Cada ALUMNO puede tener una NOTA (de 0 a 10) en cada MODULO en el que se examina. Ya no hay una tabla EXAMEN independiente: la nota se registra directamente por módulo.</li>
+<li>Los ALUMNOS pueden obtener una o más DISTINCIONES (aunque lo habitual es que solo obtengan una) en cada MODULO.</li>
+<li>"La mejor nota de un módulo" <strong>no</strong> es una columna fija de la base de datos: siempre que un ejemplo la necesite, se calcula con una subconsulta <code>nota = (SELECT MAX(nota) ...)</code> sobre la tabla NOTA.</li>
+</ul>
+<h3 id="esquema-relacional">Esquema relacional</h3>
+<div class="admonition note">
+<p class="admonition-title">Claves primarias numéricas y claves candidatas</p>
+<p>Todas las claves primarias del esquema son numéricas (al estilo de <code>nia</code>). CICLO y DISTINCION tenían antes una clave primaria de texto (<code>codciclo</code>, <code>codigo</code>); ahora su clave primaria es un identificador numérico (<code>idciclo</code>, <code>iddistincion</code>), y el texto se mantiene como <strong>clave candidata</strong> (<code>CU</code>, única pero no primaria) porque es más legible y es el identificador que se sigue usando en el resto de tablas y consultas de ejemplo.</p>
+</div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-63-1"><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>CICLO(idciclo: entero, codciclo: d_ci, tutor: d_nom)
+</span><span id="__span-63-2"><a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>   CP: {idciclo}
+</span><span id="__span-63-3"><a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a>   CU: {codciclo}
+</span><span id="__span-63-4"><a id="__codelineno-63-4" name="__codelineno-63-4" href="#__codelineno-63-4"></a>
+</span><span id="__span-63-5"><a id="__codelineno-63-5" name="__codelineno-63-5" href="#__codelineno-63-5"></a>ALUMNO(nia: d_nia, nombre: d_nom, edad: d_edad, codciclo: d_ci)
+</span><span id="__span-63-6"><a id="__codelineno-63-6" name="__codelineno-63-6" href="#__codelineno-63-6"></a>   CP: {nia}
+</span><span id="__span-63-7"><a id="__codelineno-63-7" name="__codelineno-63-7" href="#__codelineno-63-7"></a>   CAj: {codciclo} → CICLO
+</span><span id="__span-63-8"><a id="__codelineno-63-8" name="__codelineno-63-8" href="#__codelineno-63-8"></a>   VNN: {codciclo}
+</span><span id="__span-63-9"><a id="__codelineno-63-9" name="__codelineno-63-9" href="#__codelineno-63-9"></a>
+</span><span id="__span-63-10"><a id="__codelineno-63-10" name="__codelineno-63-10" href="#__codelineno-63-10"></a>MODULO(codmodulo: d_n°, nombre: d_nom, horas: d_horas, profesor: d_nom)
+</span><span id="__span-63-11"><a id="__codelineno-63-11" name="__codelineno-63-11" href="#__codelineno-63-11"></a>   CP: {codmodulo}
+</span><span id="__span-63-12"><a id="__codelineno-63-12" name="__codelineno-63-12" href="#__codelineno-63-12"></a>
+</span><span id="__span-63-13"><a id="__codelineno-63-13" name="__codelineno-63-13" href="#__codelineno-63-13"></a>NOTA(nia: d_nia, codmodulo: d_n°, nota: d_not)
+</span><span id="__span-63-14"><a id="__codelineno-63-14" name="__codelineno-63-14" href="#__codelineno-63-14"></a>   CP: {nia, codmodulo}
+</span><span id="__span-63-15"><a id="__codelineno-63-15" name="__codelineno-63-15" href="#__codelineno-63-15"></a>   CAj: {nia} → ALUMNO
+</span><span id="__span-63-16"><a id="__codelineno-63-16" name="__codelineno-63-16" href="#__codelineno-63-16"></a>   CAj: {codmodulo} → MODULO
+</span><span id="__span-63-17"><a id="__codelineno-63-17" name="__codelineno-63-17" href="#__codelineno-63-17"></a>
+</span><span id="__span-63-18"><a id="__codelineno-63-18" name="__codelineno-63-18" href="#__codelineno-63-18"></a>DISTINCION(iddistincion: entero, codigo: d_cod, tipo: d_tipo, importe: d_imp, color: d_col)
+</span><span id="__span-63-19"><a id="__codelineno-63-19" name="__codelineno-63-19" href="#__codelineno-63-19"></a>   CP: {iddistincion}
+</span><span id="__span-63-20"><a id="__codelineno-63-20" name="__codelineno-63-20" href="#__codelineno-63-20"></a>   CU: {codigo}
+</span><span id="__span-63-21"><a id="__codelineno-63-21" name="__codelineno-63-21" href="#__codelineno-63-21"></a>
+</span><span id="__span-63-22"><a id="__codelineno-63-22" name="__codelineno-63-22" href="#__codelineno-63-22"></a>OBTENER_DISTINCION(nia: entero, codmodulo: d_n°, codigo: d_tipo)
+</span><span id="__span-63-23"><a id="__codelineno-63-23" name="__codelineno-63-23" href="#__codelineno-63-23"></a>   CP: {codmodulo, codigo}
+</span><span id="__span-63-24"><a id="__codelineno-63-24" name="__codelineno-63-24" href="#__codelineno-63-24"></a>   CAj: {codmodulo} → MODULO
+</span><span id="__span-63-25"><a id="__codelineno-63-25" name="__codelineno-63-25" href="#__codelineno-63-25"></a>   CAj: {nia} → ALUMNO
+</span><span id="__span-63-26"><a id="__codelineno-63-26" name="__codelineno-63-26" href="#__codelineno-63-26"></a>   CAj: {codigo} → DISTINCION
+</span><span id="__span-63-27"><a id="__codelineno-63-27" name="__codelineno-63-27" href="#__codelineno-63-27"></a>   VNN: {nia}
+</span></code></pre></div>
+<p><em>(CP = Clave Primaria, CAj = Clave Ajena, CU = Clave Única/candidata, VNN = Valor No Nulo)</em></p>
+<div class="admonition note">
+<p class="admonition-title">El patrón de la 'mejor nota'</p>
+<p>Varios ejemplos de este tema necesitan "la mejor nota de un módulo". No es una vista ni una tabla aparte: es siempre la misma subconsulta de comparación, repetida donde haga falta:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-64-1"><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="n">Nota</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">nota</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">N2</span><span class="p">.</span><span class="n">nota</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="n">N2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">N2</span><span class="p">.</span><span class="n">codmodulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">.</span><span class="n">codmodulo</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Un módulo sin ninguna nota registrada (como el 1 o el 5) no puede cumplir nunca esta condición: nadie puede tener "la mejor nota" de un módulo en el que no hay nada que examinar.</p>
+</div>
+<h3 id="datos-de-ejemplo">Datos de ejemplo</h3>
+<p><strong>CICLO</strong></p>
+<table>
+<thead>
+<tr>
+<th>idciclo</th>
+<th>codciclo</th>
+<th>tutor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>DAM</td>
+<td>José Miguel Echávarri</td>
+</tr>
+<tr>
+<td>2</td>
+<td>DAW</td>
+<td>Manuel Saiz</td>
+</tr>
+<tr>
+<td>3</td>
+<td>ASIR</td>
+<td>Vicente Belda</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SMR</td>
+<td>Álvaro Pino</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ALUMNO</strong></p>
+<table>
+<thead>
+<tr>
+<th>nia</th>
+<th>nombre</th>
+<th>edad</th>
+<th>codciclo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Antonio Ruiz</td>
+<td>28</td>
+<td>DAM</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Javier Torres</td>
+<td>27</td>
+<td>DAM</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Carlos Ferrer</td>
+<td>26</td>
+<td>DAM</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Manuel Ortega</td>
+<td>29</td>
+<td>DAM</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Luis Campos</td>
+<td>24</td>
+<td>DAW</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Sergio Molina</td>
+<td>29</td>
+<td>DAW</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Roberto Díaz</td>
+<td>22</td>
+<td>ASIR</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Pablo Núñez</td>
+<td>28</td>
+<td>ASIR</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Diego Vidal</td>
+<td>17</td>
+<td>SMR</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Jorge Salas</td>
+<td><em>(NULL)</em></td>
+<td>SMR</td>
+</tr>
+</tbody>
+</table>
+<p><em>(Al alumno de nia 10 se le desconoce la edad; se usará más adelante para el predicado <code>IS NULL</code>. Las edades siguen rangos realistas según el tipo de ciclo: DAM, DAW y ASIR son ciclos de grado superior (alumnado adulto, entre 18 y 30 años), mientras que SMR es un ciclo de grado medio (alumnado de 16 a 18 años, recién llegado de la ESO).)</em></p>
+<p><strong>MODULO</strong></p>
+<table>
+<thead>
+<tr>
+<th>codmodulo</th>
+<th>nombre</th>
+<th>horas</th>
+<th>profesor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Itinerario Personal para la Empleabilidad I</td>
+<td>100</td>
+<td>Iker Molins</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Programación</td>
+<td>266</td>
+<td>Pedro Ferrer</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Bases de Datos</td>
+<td>166</td>
+<td>Ana Salas</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Entornos de Desarrollo</td>
+<td>100</td>
+<td>Iris Bermejo</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Sistemas Informáticos</td>
+<td>166</td>
+<td>Javier Aranda</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Lenguajes de Marcas y Sistemas de Gestión de la Información</td>
+<td>100</td>
+<td>Ana Barranco</td>
+</tr>
+</tbody>
+</table>
+<p><em>(Horas anuales oficiales del currículo de 1º DAM. Los módulos 1 y 5 no tienen ninguna nota registrada en nuestros datos de ejemplo.)</em></p>
+<p><strong>NOTA</strong></p>
+<table>
+<thead>
+<tr>
+<th>nia</th>
+<th>codmodulo</th>
+<th>nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>6,0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>7,0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>6,5</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2</td>
+<td>5,5</td>
+</tr>
+<tr>
+<td>9</td>
+<td>2</td>
+<td><strong>9,5</strong></td>
+</tr>
+<tr>
+<td>1</td>
+<td>3</td>
+<td>6,5</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3</td>
+<td>7,0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3</td>
+<td>5,0</td>
+</tr>
+<tr>
+<td>7</td>
+<td>3</td>
+<td><strong>9,0</strong></td>
+</tr>
+<tr>
+<td>9</td>
+<td>3</td>
+<td>8,0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>4</td>
+<td>6,0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>6,5</td>
+</tr>
+<tr>
+<td>5</td>
+<td>4</td>
+<td>5,5</td>
+</tr>
+<tr>
+<td>7</td>
+<td>4</td>
+<td>7,0</td>
+</tr>
+<tr>
+<td>9</td>
+<td>4</td>
+<td><strong>9,0</strong></td>
+</tr>
+<tr>
+<td>1</td>
+<td>6</td>
+<td>7,0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>6</td>
+<td>6,0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>6</td>
+<td>5,0</td>
+</tr>
+<tr>
+<td>7</td>
+<td>6</td>
+<td>6,5</td>
+</tr>
+<tr>
+<td>9</td>
+<td>6</td>
+<td><strong>9,5</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>(Solo 5 alumnos —Antonio Ruiz, Javier Torres, Luis Campos, Roberto Díaz y Diego Vidal— tienen notas registradas; el resto no se ha examinado. Las notas en negrita son las más altas de cada módulo, es decir, las que cumplen <code>nota = MAX(nota)</code> agrupando por <code>codmodulo</code>.)</em></p>
+<p><strong>DISTINCION</strong></p>
+<table>
+<thead>
+<tr>
+<th>iddistincion</th>
+<th>codigo</th>
+<th>tipo</th>
+<th>importe</th>
+<th>color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>D1</td>
+<td>Matrícula de Honor</td>
+<td>150</td>
+<td>Dorado</td>
+</tr>
+<tr>
+<td>2</td>
+<td>D2</td>
+<td>Mención Especial</td>
+<td>90</td>
+<td>Plateado</td>
+</tr>
+<tr>
+<td>3</td>
+<td>D3</td>
+<td>Premio al Esfuerzo</td>
+<td>120</td>
+<td>Verde</td>
+</tr>
+<tr>
+<td>4</td>
+<td>D4</td>
+<td>Beca de Excelencia</td>
+<td>60</td>
+<td>Azul</td>
+</tr>
+</tbody>
+</table>
+<p><strong>OBTENER_DISTINCION</strong></p>
+<table>
+<thead>
+<tr>
+<th>nia</th>
+<th>codmodulo</th>
+<th>codigo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>D1</td>
+</tr>
+<tr>
+<td>9</td>
+<td>2</td>
+<td>D1</td>
+</tr>
+<tr>
+<td>9</td>
+<td>3</td>
+<td>D1</td>
+</tr>
+<tr>
+<td>9</td>
+<td>4</td>
+<td>D1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>D1</td>
+</tr>
+<tr>
+<td>9</td>
+<td>6</td>
+<td>D1</td>
+</tr>
+<tr>
+<td>9</td>
+<td>2</td>
+<td>D2</td>
+</tr>
+<tr>
+<td>7</td>
+<td>3</td>
+<td>D2</td>
+</tr>
+<tr>
+<td>9</td>
+<td>4</td>
+<td>D2</td>
+</tr>
+<tr>
+<td>9</td>
+<td>6</td>
+<td>D2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+<td>D3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>D3</td>
+</tr>
+<tr>
+<td>6</td>
+<td>3</td>
+<td>D3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>4</td>
+<td>D3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>5</td>
+<td>D3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>6</td>
+<td>D3</td>
+</tr>
+<tr>
+<td>10</td>
+<td>1</td>
+<td>D4</td>
+</tr>
+<tr>
+<td>9</td>
+<td>2</td>
+<td>D4</td>
+</tr>
+<tr>
+<td>9</td>
+<td>3</td>
+<td>D4</td>
+</tr>
+<tr>
+<td>9</td>
+<td>4</td>
+<td>D4</td>
+</tr>
+<tr>
+<td>9</td>
+<td>6</td>
+<td>D4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="diagrama-entidad-relacion">Diagrama entidad-relación</h3>
+<div class="admonition tip">
+<p class="admonition-title">Cómo leer el diagrama</p>
+<p>Cada rectángulo es una tabla, con sus columnas marcadas como <code>PK</code> (clave primaria), <code>FK</code> (clave ajena) o <code>UK</code> (clave única/candidata) — la misma idea que la notación <code>CP</code>/<code>CAj</code>/<code>CU</code> usada en el esquema relacional anterior. Las líneas indican las relaciones entre tablas; el símbolo <code>||</code> señala el lado "uno" de la relación y <code>o{</code> el lado "cero o muchos".</p>
+<p><code>NOTA</code> y <code>OBTENER_DISTINCION</code> son tablas de relación N:M (entre ALUMNO y MODULO, y entre ALUMNO, MODULO y DISTINCION respectivamente): no representan un concepto nuevo del mundo real, sino la forma de registrar en SQL una asociación entre varias tablas, con sus propios atributos (<code>nota</code>, en el primer caso).</p>
+</div>
+<pre class="mermaid"><code>erDiagram
+    CICLO ||--o{ ALUMNO : matricula
+    ALUMNO ||--o{ NOTA : obtiene
+    ALUMNO ||--o{ OBTENER_DISTINCION : recibe
+    MODULO ||--o{ OBTENER_DISTINCION : en
+    DISTINCION ||--o{ OBTENER_DISTINCION : es
+    MODULO ||--o{ NOTA : "tiene notas de"
+
+    CICLO {
+        int idciclo PK
+        string codciclo UK
+        string tutor
+    }
+    ALUMNO {
+        int nia PK
+        string nombre
+        int edad
+        string codciclo FK
+    }
+    NOTA {
+        int nia PK
+        int codmodulo PK
+        decimal nota
+    }
+    DISTINCION {
+        int iddistincion PK
+        string codigo UK
+        string tipo
+        decimal importe
+        string color
+    }
+    OBTENER_DISTINCION {
+        int codmodulo PK
+        string codigo PK
+        int nia
+    }
+        MODULO {
+        int codmodulo PK
+        string nombre
+        int horas
+        string profesor
+    }</code></pre>
+<p>En <code>NOTA</code>, tanto <code>nia</code> como <code>codmodulo</code> son a la vez clave primaria (compuesta) y clave ajena (hacia <code>ALUMNO</code> y <code>MODULO</code> respectivamente); en <code>OBTENER_DISTINCION</code>, la clave primaria compuesta es <code>{codmodulo, codigo}</code>, y <code>nia</code> es una clave ajena adicional que no forma parte de ella (es el mismo esquema descrito en la sección anterior, aquí representado gráficamente).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Anterior: Inicio">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Inicio
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../practico/el-lenguaje-sql-manipulacion-parte-ii/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: El lenguaje SQL: Manipulación II">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                El lenguaje SQL: Manipulación II
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

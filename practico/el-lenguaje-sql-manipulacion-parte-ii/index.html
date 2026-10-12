@@ -1,0 +1,1451 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../documentos/consultas-sql/">
+      
+      
+        <link rel="next" href="../el-lenguaje-sql-definicion/">
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>El lenguaje SQL: Manipulación II - Acadèmia Orígens. Especialidad Informática</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#el-lenguaje-sql-manipulacion-ii" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Acadèmia Orígens. Especialidad Informática" class="md-header__button md-logo" aria-label="Acadèmia Orígens. Especialidad Informática" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Acadèmia Orígens. Especialidad Informática
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              El lenguaje SQL: Manipulación II
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../documentos/consultas-sql/" class="md-tabs__link">
+          
+  
+  
+  Práctico
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ejercicios/consultas-sql/" class="md-tabs__link">
+          
+  
+  
+  Ejercicios
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Acadèmia Orígens. Especialidad Informática" class="md-nav__button md-logo" aria-label="Acadèmia Orígens. Especialidad Informática" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Acadèmia Orígens. Especialidad Informática
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Práctico
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Práctico
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentos/consultas-sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Manipulación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Manipulación II
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Manipulación II
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insert-update-y-delete-dentro-del-dml" class="md-nav__link">
+    <span class="md-ellipsis">
+      INSERT, UPDATE y DELETE dentro del DML
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insert-into" class="md-nav__link">
+    <span class="md-ellipsis">
+      INSERT INTO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="INSERT INTO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#insertar-una-fila-indicando-todas-las-columnas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insertar una fila indicando todas las columnas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insertar-indicando-solo-algunas-columnas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insertar indicando solo algunas columnas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insertar-varias-filas-en-una-sola-instruccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insertar varias filas en una sola instrucción
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert-select" class="md-nav__link">
+    <span class="md-ellipsis">
+      INSERT ... SELECT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#errores-por-violacion-de-restricciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Errores por violación de restricciones
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update" class="md-nav__link">
+    <span class="md-ellipsis">
+      UPDATE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UPDATE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modificacion-simple-con-where" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modificación simple con WHERE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modificacion-con-una-expresion-sobre-la-propia-columna" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modificación con una expresión sobre la propia columna
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#condicion-con-subconsulta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Condición con subconsulta
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DELETE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#borrado-con-where" class="md-nav__link">
+    <span class="md-ellipsis">
+      Borrado con WHERE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloqueado-por-integridad-referencial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloqueado por integridad referencial
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#condicion-con-subconsulta_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Condición con subconsulta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-sin-where-frente-a-truncate-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE sin WHERE frente a TRUNCATE TABLE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-insert-update-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen: INSERT / UPDATE / DELETE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base-de-datos-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base de datos de referencia
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../el-lenguaje-sql-definicion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Definición
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Ejercicios
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejercicios/consultas-sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consultas SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejercicios/ejercicios-dml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios DML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejercicios/ejercicios-ddl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios DDL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insert-update-y-delete-dentro-del-dml" class="md-nav__link">
+    <span class="md-ellipsis">
+      INSERT, UPDATE y DELETE dentro del DML
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insert-into" class="md-nav__link">
+    <span class="md-ellipsis">
+      INSERT INTO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="INSERT INTO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#insertar-una-fila-indicando-todas-las-columnas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insertar una fila indicando todas las columnas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insertar-indicando-solo-algunas-columnas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insertar indicando solo algunas columnas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insertar-varias-filas-en-una-sola-instruccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insertar varias filas en una sola instrucción
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert-select" class="md-nav__link">
+    <span class="md-ellipsis">
+      INSERT ... SELECT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#errores-por-violacion-de-restricciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Errores por violación de restricciones
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update" class="md-nav__link">
+    <span class="md-ellipsis">
+      UPDATE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UPDATE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modificacion-simple-con-where" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modificación simple con WHERE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modificacion-con-una-expresion-sobre-la-propia-columna" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modificación con una expresión sobre la propia columna
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#condicion-con-subconsulta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Condición con subconsulta
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DELETE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#borrado-con-where" class="md-nav__link">
+    <span class="md-ellipsis">
+      Borrado con WHERE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloqueado-por-integridad-referencial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloqueado por integridad referencial
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#condicion-con-subconsulta_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Condición con subconsulta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-sin-where-frente-a-truncate-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE sin WHERE frente a TRUNCATE TABLE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-insert-update-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen: INSERT / UPDATE / DELETE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base-de-datos-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base de datos de referencia
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="el-lenguaje-sql-manipulacion-ii">El lenguaje SQL: Manipulación II</h1>
+<h2 id="objetivos">Objetivos</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Objetivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Completar el Lenguaje de Manipulación de Datos (DML) visto en el tema anterior, centrado en <code>SELECT</code>, con las instrucciones que <strong>modifican</strong> datos: <code>INSERT</code>, <code>UPDATE</code> y <code>DELETE</code>.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Ver ejemplos prácticos de inserción, actualización y borrado de filas, incluyendo los errores más habituales por violación de restricciones.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Reutilizar la base de datos ACADEMIA como esquema de referencia, para dar continuidad a los temas anteriores.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Sobre los datos de este documento</p>
+<p>Los ejemplos de este tema parten de la misma base de datos ACADEMIA usada en los temas anteriores (ver <code>crear_bd_academia.sql</code>). Las instrucciones de este documento están recogidas en el script <code>dml2_academia.sql</code>, pensado para ejecutarse <strong>después</strong> de <code>crear_bd_academia.sql</code>.</p>
+<p>A diferencia del tema de consultas (<code>SELECT</code>), aquí cada ejemplo <strong>modifica</strong> los datos, así que el resultado de un ejemplo puede depender de los anteriores (se indica en cada caso). Si después se quiere volver a usar <code>consultas_teoria.sql</code> o <code>ddl_academia.sql</code> con los datos originales, hay que volver a ejecutar <code>crear_bd_academia.sql</code>.</p>
+</div>
+<hr />
+<h2 id="insert-update-y-delete-dentro-del-dml">INSERT, UPDATE y DELETE dentro del DML</h2>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>El Lenguaje de Manipulación de Datos (DML) no se limita a consultar: también permite modificar el contenido de las tablas sin tocar su estructura (eso es tarea del DDL, visto en el tema anterior).</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Instrucción</th>
+<th>Qué hace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INSERT INTO</code></td>
+<td>Añade una o varias filas nuevas a una tabla</td>
+</tr>
+<tr>
+<td><code>UPDATE</code></td>
+<td>Modifica el valor de una o varias columnas en las filas que cumplen una condición</td>
+</tr>
+<tr>
+<td><code>DELETE FROM</code></td>
+<td>Elimina las filas que cumplen una condición</td>
+</tr>
+</tbody>
+</table>
+<p>Las tres respetan las restricciones definidas con DDL (<code>PRIMARY KEY</code>, <code>UNIQUE</code>, <code>FOREIGN KEY</code>, <code>CHECK</code>, <code>NOT NULL</code>): si una instrucción las viola, se rechaza con un error y no se aplica ningún cambio.</p>
+<hr />
+<h2 id="insert-into">INSERT INTO</h2>
+<h3 id="insertar-una-fila-indicando-todas-las-columnas">Insertar una fila indicando todas las columnas</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>La forma más explícita de <code>INSERT</code> indica el nombre de cada columna y su valor correspondiente, en el mismo orden. No es obligatorio seguir el orden de la tabla, pero si se nombran las columnas, cada valor debe corresponder a la columna indicada en esa misma posición.</p>
+</div>
+<p><strong>EJEMPLO:</strong> Añadir un nuevo módulo.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Modulo</span><span class="w"> </span><span class="p">(</span><span class="n">codmodulo</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">horas</span><span class="p">,</span><span class="w"> </span><span class="n">profesor</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Programación de Servicios y Procesos&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">133</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Marta Ibáñez&#39;</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> una fila nueva en <code>Modulo</code>:</p>
+<table>
+<thead>
+<tr>
+<th>codmodulo</th>
+<th>nombre</th>
+<th>horas</th>
+<th>profesor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td>Programación de Servicios y Procesos</td>
+<td>133</td>
+<td>Marta Ibáñez</td>
+</tr>
+</tbody>
+</table>
+<h3 id="insertar-indicando-solo-algunas-columnas">Insertar indicando solo algunas columnas</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>No hace falta dar un valor a todas las columnas: las que se omiten toman su valor por defecto (<code>DEFAULT</code>, si se definió alguno) o <code>NULL</code> (si la columna lo admite). Si una columna omitida es <code>NOT NULL</code> y no tiene <code>DEFAULT</code>, el <code>INSERT</code> falla.</p>
+</div>
+<p><strong>EJEMPLO:</strong> Añadir un alumno sin indicar su edad.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nia</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">codciclo</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Elena Bort&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;DAM&#39;</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> <code>edad</code> no se ha indicado y la columna admite <code>NULL</code> (no tiene <code>NOT NULL</code>), así que toma ese valor:</p>
+<table>
+<thead>
+<tr>
+<th>nia</th>
+<th>nombre</th>
+<th>edad</th>
+<th>codciclo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11</td>
+<td>Elena Bort</td>
+<td><code>NULL</code></td>
+<td>DAM</td>
+</tr>
+</tbody>
+</table>
+<h3 id="insertar-varias-filas-en-una-sola-instruccion">Insertar varias filas en una sola instrucción</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>INSERT</code> admite varias listas de valores separadas por comas, en una sola instrucción. Es más eficiente que repetir un <code>INSERT</code> por cada fila, porque el motor solo tiene que validar y aplicar el cambio una vez.</p>
+</div>
+<p><strong>EJEMPLO:</strong> Añadir dos alumnos a la vez.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nia</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="p">,</span><span class="w"> </span><span class="n">codciclo</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Marcos Ibáñez&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;DAW&#39;</span><span class="p">),</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sara Peña&#39;</span><span class="p">,</span><span class="w">     </span><span class="mi">21</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ASIR&#39;</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> dos filas nuevas en <code>Alumno</code> (Marcos Ibáñez, DAW, 24 años; Sara Peña, ASIR, 21 años).</p>
+<h3 id="insert-select">INSERT ... SELECT</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>En vez de una lista de valores literales, <code>INSERT</code> puede tomar como origen el resultado de una consulta <code>SELECT</code>. Las columnas de la consulta deben coincidir en número y en tipo (compatible) con las columnas de destino, aunque no hace falta que se llamen igual.</p>
+</div>
+<p><strong>EJEMPLO:</strong> Copiar a una tabla aparte los datos básicos de los alumnos de DAM.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Alumno_DAM</span><span class="w"> </span><span class="p">(</span><span class="n">nia</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">60</span><span class="p">),</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="nb">INT</span><span class="p">);</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Alumno_DAM</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">nia</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">codciclo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;DAM&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> <code>Alumno_DAM</code> recibe 5 filas: los 4 alumnos originales de DAM (Antonio Ruiz, Javier Torres, Carlos Ferrer, Manuel Ortega) más Elena Bort, incorporada en el ejemplo anterior.</p>
+<h3 id="errores-por-violacion-de-restricciones">Errores por violación de restricciones</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>INSERT</code> respeta todas las restricciones de la tabla. Los dos errores más habituales en examen son la clave primaria duplicada y la clave ajena que no existe en la tabla referenciada.</p>
+</div>
+<p><strong>EJEMPLO:</strong> Intentar insertar un alumno con un <code>nia</code> ya existente.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nia</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="p">,</span><span class="w"> </span><span class="n">codciclo</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Duplicado&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;DAM&#39;</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> error, porque <code>nia = 1</code> ya existe (es la clave primaria de Antonio Ruiz):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ERROR 1062 (23000): Duplicate entry &#39;1&#39; for key &#39;PRIMARY&#39;
+</span></code></pre></div>
+<p><strong>EJEMPLO:</strong> Intentar insertar un alumno con un ciclo que no existe.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nia</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="p">,</span><span class="w"> </span><span class="n">codciclo</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Nuevo&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;XXX&#39;</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> error, porque <code>'XXX'</code> no existe como <code>codciclo</code> en la tabla <code>Ciclo</code>, y <code>Alumno.codciclo</code> es una clave ajena hacia ella:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ERROR 1452 (23000): Cannot add or update a child row: a foreign key
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>constraint fails (`academia`.`Alumno`, CONSTRAINT `fk_alumno_ciclo`
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>FOREIGN KEY (`codciclo`) REFERENCES `Ciclo` (`codciclo`))
+</span></code></pre></div>
+<hr />
+<h2 id="update">UPDATE</h2>
+<h3 id="modificacion-simple-con-where">Modificación simple con WHERE</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>UPDATE tabla SET columna = valor WHERE condición</code> cambia el valor de una o varias columnas en las filas que cumplen la condición. Igual que en <code>DELETE</code>, si se omite el <code>WHERE</code>, se actualizan <strong>todas</strong> las filas de la tabla.</p>
+</div>
+<p><strong>EJEMPLO:</strong> Corregir la edad de Jorge Salas, que no se había registrado.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong></p>
+<table>
+<thead>
+<tr>
+<th>nia</th>
+<th>nombre</th>
+<th>edad</th>
+<th>codciclo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>Jorge Salas</td>
+<td>25</td>
+<td>SMR</td>
+</tr>
+</tbody>
+</table>
+<h3 id="modificacion-con-una-expresion-sobre-la-propia-columna">Modificación con una expresión sobre la propia columna</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>El valor nuevo puede calcularse a partir del valor actual de la fila, igual que en <code>SELECT</code>. Es la forma habitual de incrementar, reducir o recalcular un valor sin tener que consultarlo antes por separado.</p>
+</div>
+<p><strong>EJEMPLO:</strong> Revalorizar un 5 % el importe de la Beca de Excelencia.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">Distincion</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">importe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">importe</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">05</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">tipo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Beca de Excelencia&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> el importe pasa de 60,00 € a <strong>63,00 €</strong>.</p>
+<h3 id="condicion-con-subconsulta">Condición con subconsulta</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>La condición del <code>WHERE</code> de un <code>UPDATE</code> admite subconsultas, igual que en <code>SELECT</code> o <code>DELETE</code>. Es útil cuando la condición depende de datos de otra tabla.</p>
+</div>
+<p><strong>EJEMPLO:</strong> Sumar un año a la edad de todos los alumnos del ciclo cuyo tutor es Álvaro Pino.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">codciclo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">codciclo</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Ciclo</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">tutor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Álvaro Pino&#39;</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> Álvaro Pino es tutor de SMR, así que afecta a sus dos alumnos:</p>
+<table>
+<thead>
+<tr>
+<th>nia</th>
+<th>nombre</th>
+<th>edad (antes)</th>
+<th>edad (después)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9</td>
+<td>Diego Vidal</td>
+<td>17</td>
+<td>18</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Jorge Salas</td>
+<td>25 <em>(ya corregida en el ejemplo anterior)</em></td>
+<td>26</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">UPDATE sin WHERE</p>
+<p><code>UPDATE Modulo SET horas = horas + 10;</code> (sin <code>WHERE</code>) sumaría 10 horas a <strong>todos</strong> los módulos, no a uno en concreto. Es el mismo tipo de error, y el mismo riesgo, que un <code>DELETE</code> sin <code>WHERE</code>: conviene comprobar siempre la condición con un <code>SELECT</code> antes de lanzar el <code>UPDATE</code>.</p>
+</div>
+<hr />
+<h2 id="delete">DELETE</h2>
+<h3 id="borrado-con-where">Borrado con WHERE</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>DELETE FROM tabla WHERE condición</code> elimina las filas que cumplen la condición. A diferencia de <code>TRUNCATE TABLE</code> (DDL, visto en el tema anterior), sí admite <code>WHERE</code> —puede borrar solo algunas filas— y sí se puede deshacer con <code>ROLLBACK</code> dentro de una transacción.</p>
+</div>
+<p><strong>EJEMPLO:</strong> Eliminar la nota de Luis Campos en el módulo de Bases de Datos.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">codmodulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> la fila <code>(5, 3, 5.00)</code> desaparece de <code>Nota</code>; a Luis Campos le quedan notas en los módulos 2, 4 y 6.</p>
+<p><strong>EJEMPLO:</strong> Eliminar a un alumno sin filas dependientes en otras tablas.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">13</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> Sara Peña (añadida en un ejemplo anterior, sin notas ni distinciones) se elimina sin problema.</p>
+<h3 id="bloqueado-por-integridad-referencial">Bloqueado por integridad referencial</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Si una fila está referenciada por una clave ajena de otra tabla (y esa clave ajena no tiene <code>ON DELETE CASCADE</code> ni <code>ON DELETE SET NULL</code>), <code>DELETE</code> la rechaza: primero hay que borrar (o reasignar) las filas dependientes.</p>
+</div>
+<p><strong>EJEMPLO:</strong> Intentar eliminar a Antonio Ruiz, que tiene notas registradas.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">nia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> error, porque <code>Nota.nia</code> es una clave ajena hacia <code>Alumno.nia</code> (sin <code>CASCADE</code>) y Antonio Ruiz tiene filas en <code>Nota</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>constraint fails (`academia`.`Nota`, CONSTRAINT `fk_nota_alumno`
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>FOREIGN KEY (`nia`) REFERENCES `Alumno` (`nia`))
+</span></code></pre></div>
+<h3 id="condicion-con-subconsulta_1">Condición con subconsulta</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p>Igual que en <code>UPDATE</code>, la condición de un <code>DELETE</code> puede apoyarse en una subconsulta sobre otra tabla.</p>
+</div>
+<p><strong>EJEMPLO:</strong> Eliminar todas las distinciones obtenidas cuyo importe sea inferior a 70 €.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Obtener_Distincion</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">codigo</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">codigo</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Distincion</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">importe</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">70</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> la Beca de Excelencia (D4) tiene un importe de 63,00 € (tras la revalorización del ejemplo anterior), por debajo de 70 €. Se eliminan sus 5 filas en <code>Obtener_Distincion</code> (las de Diego Vidal y Jorge Salas).</p>
+<h3 id="delete-sin-where-frente-a-truncate-table">DELETE sin WHERE frente a TRUNCATE TABLE</h3>
+<div class="admonition tip">
+<p class="admonition-title">Idea clave</p>
+<p><code>DELETE FROM tabla</code> (sin <code>WHERE</code>) y <code>TRUNCATE TABLE tabla</code> dejan el mismo resultado visible —la tabla vacía—, pero no son la misma instrucción: una es DML y la otra DDL, con diferencias importantes (ver la tabla comparativa del tema anterior).</p>
+</div>
+<p><strong>EJEMPLO:</strong> sobre una tabla copia, para no perder los datos reales de <code>Nota</code>.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Nota_Copia</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="n">Nota</span><span class="p">;</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Nota_Copia</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span><span class="p">;</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota_Copia</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> <code>Nota_Copia</code> tenía 19 filas (20 originales menos la eliminada en el primer ejemplo de <code>DELETE</code>); tras el <code>DELETE</code> sin <code>WHERE</code>, 0 filas. El efecto visible es idéntico al de un <code>TRUNCATE TABLE Nota_Copia</code>, pero aquí sí podría deshacerse con <code>ROLLBACK</code> si se hubiera ejecutado dentro de una transacción, y no reinicia ningún contador <code>AUTO_INCREMENT</code> (esta tabla no tiene ninguno).</p>
+<hr />
+<h2 id="resumen-insert-update-delete">Resumen: INSERT / UPDATE / DELETE</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>INSERT INTO</code></th>
+<th><code>UPDATE</code></th>
+<th><code>DELETE FROM</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Categoría</td>
+<td>DML</td>
+<td>DML</td>
+<td>DML</td>
+</tr>
+<tr>
+<td>Efecto</td>
+<td>Añade filas nuevas</td>
+<td>Modifica columnas de filas existentes</td>
+<td>Elimina filas existentes</td>
+</tr>
+<tr>
+<td>Admite <code>WHERE</code></td>
+<td>No aplica (no hay filas que filtrar)</td>
+<td>Sí (opcional, pero casi siempre necesario)</td>
+<td>Sí (opcional, pero casi siempre necesario)</td>
+</tr>
+<tr>
+<td>Riesgo típico</td>
+<td>Violar <code>PRIMARY KEY</code>, <code>UNIQUE</code>, <code>FOREIGN KEY</code> o <code>CHECK</code></td>
+<td>Olvidar el <code>WHERE</code> y modificar todas las filas</td>
+<td>Olvidar el <code>WHERE</code> y borrar todas las filas, o chocar con una clave ajena <code>RESTRICT</code></td>
+</tr>
+<tr>
+<td>Se puede deshacer con <code>ROLLBACK</code></td>
+<td>Sí (dentro de una transacción)</td>
+<td>Sí (dentro de una transacción)</td>
+<td>Sí (dentro de una transacción)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="base-de-datos-de-referencia">Base de datos de referencia</h2>
+<p>Este tema reutiliza el esquema y los datos de la base de datos <strong>ACADEMIA</strong>, descrita en detalle en "El lenguaje SQL: Manipulación" (sección "Base de datos de referencia: ACADEMIA"). El script <code>crear_bd_academia.sql</code> crea y puebla la base de datos; el script <code>dml2_academia.sql</code> de este tema contiene, en el mismo orden que este documento, todas las instrucciones <code>INSERT</code>, <code>UPDATE</code> y <code>DELETE</code> de ejemplo, listas para ejecutarse a continuación.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../../documentos/consultas-sql/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: El lenguaje SQL: Manipulación">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                El lenguaje SQL: Manipulación
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../el-lenguaje-sql-definicion/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: El lenguaje SQL: Definición">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                El lenguaje SQL: Definición
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>
