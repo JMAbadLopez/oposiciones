@@ -886,12 +886,12 @@
 </table>
 <p>Los campos "Sí"/"No" no admiten otros valores. <em>Short</em>, <em>Long</em> y <em>ExtraLarge</em> indican la sugerencia de consumo de cada cápsula. <em>Sent</em> indica si se ha entregado el pedido.</p>
 <p>Tareas (basadas en sintaxis SQL estándar):</p>
-<p>a. Introducir brevemente los conceptos aplicados, contextualizando en el temario oficial y en el ámbito de la formación profesional.</p>
-<p>b. Proponer una estructura de tablas a partir de la hoja de cálculo, hasta llegar a un conjunto de relaciones en tercera forma normal.</p>
-<p>c. Generar las consultas de creación de tablas <strong>sin índices ni claves ni restricciones</strong>.</p>
-<p>d. Generar las consultas de creación de claves, así como los índices especificados, indicando el SGBD utilizado.</p>
-<p>e. Generar la consulta que obtiene un listado ordenado por apellido del cliente, con la cantidad de pedidos que ha realizado y el total facturado por ellos.</p>
-<p>f. Proponer una optimización de las columnas <em>Short</em>, <em>Long</em> y <em>ExtraLarge</em> representándolas en una sola columna mediante operadores <em>bitwise</em>, y generar la consulta que obtiene la cantidad de cápsulas vendidas válidas tanto para <em>Long</em> como para <em>ExtraLarge</em>.</p>
+<p>a. Introducir brevemente los conceptos aplicados, contextualizando en el temario oficial y en el ámbito de la formación profesional.
+b. Proponer una estructura de tablas a partir de la hoja de cálculo, hasta llegar a un conjunto de relaciones en tercera forma normal.
+c. Generar las consultas de creación de tablas <strong>sin índices ni claves ni restricciones</strong>.
+d. Generar las consultas de creación de claves, así como los índices especificados, indicando el SGBD utilizado.
+e. Generar la consulta que obtiene un listado ordenado por apellido del cliente, con la cantidad de pedidos que ha realizado y el total facturado por ellos.
+f. Proponer una optimización de las columnas <em>Short</em>, <em>Long</em> y <em>ExtraLarge</em> representándolas en una sola columna mediante operadores <em>bitwise</em>, y generar la consulta que obtiene la cantidad de cápsulas vendidas válidas tanto para <em>Long</em> como para <em>ExtraLarge</em>.</p>
 <details class="success">
 <summary>Solución: normalización (apartado b)</summary>
 <p>La hoja de cálculo mezcla varias entidades distintas en las mismas columnas, con dependencias funcionales diferentes:</p>
@@ -1144,10 +1144,12 @@
 <p>Ambos exámenes incluyen, además de los ejercicios prácticos anteriores, un bloque inicial de 25 (2021) o 150 (2025) preguntas tipo test. Estas son las que tratan temas de definición de bases de datos.</p>
 <h3 id="examen-2021-modelo-a-pregunta-25">Examen 2021 (Modelo A, pregunta 25)</h3>
 <p>¿Cuál es la diferencia entre clave primaria y clave única?</p>
-<p>a) La clave única permite múltiples valores nulos y la clave primaria no.</p>
-<p>b) La clave primaria permite un valor nulo mientras que la clave única no permite valor nulo.</p>
-<p>c) La clave primaria no permite valor nulo mientras que la clave única permite un valor nulo.</p>
-<p>d) Ninguna de las anteriores.</p>
+<ul>
+<li><strong>a)</strong> La clave única permite múltiples valores nulos y la clave primaria no.</li>
+<li><strong>b)</strong> La clave primaria permite un valor nulo mientras que la clave única no permite valor nulo.</li>
+<li><strong>c)</strong> La clave primaria no permite valor nulo mientras que la clave única permite un valor nulo.</li>
+<li><strong>d)</strong> Ninguna de las anteriores.</li>
+</ul>
 <details class="success">
 <summary>Solución: a)</summary>
 <p>Una clave primaria (<code>PRIMARY KEY</code>) no admite valores <code>NULL</code> en ninguna de sus columnas y solo puede haber una por tabla. Una clave única (<code>UNIQUE</code>) sí admite <code>NULL</code> (y, en MySQL/MariaDB, puede admitir varios <code>NULL</code>, ya que dos <code>NULL</code> nunca se consideran iguales entre sí a efectos de la restricción de unicidad); una tabla puede tener varias claves únicas. Es un contenido típico del tema de DDL: toda clave primaria es, de hecho, un caso particular de clave única con la restricción adicional de <code>NOT NULL</code>.</p>
