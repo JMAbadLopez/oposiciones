@@ -13,7 +13,7 @@
       
       
       
-      <link rel="icon" href="../../assets/logo.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
     
     
@@ -631,15 +631,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#examen-2021-modelo-a-pregunta-14" class="md-nav__link">
-    <span class="md-ellipsis">
-      Examen 2021 (Modelo A, pregunta 14)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#examen-2021-modelo-a-pregunta-25" class="md-nav__link">
     <span class="md-ellipsis">
       Examen 2021 (Modelo A, pregunta 25)
@@ -746,15 +737,6 @@
   
     <nav class="md-nav" aria-label="Preguntas tipo test relacionadas con DDL">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#examen-2021-modelo-a-pregunta-14" class="md-nav__link">
-    <span class="md-ellipsis">
-      Examen 2021 (Modelo A, pregunta 14)
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#examen-2021-modelo-a-pregunta-25" class="md-nav__link">
@@ -1160,16 +1142,6 @@
 <hr />
 <h2 id="preguntas-tipo-test-relacionadas-con-ddl">Preguntas tipo test relacionadas con DDL</h2>
 <p>Ambos exámenes incluyen, además de los ejercicios prácticos anteriores, un bloque inicial de 25 (2021) o 150 (2025) preguntas tipo test. Estas son las que tratan temas de definición de bases de datos.</p>
-<h3 id="examen-2021-modelo-a-pregunta-14">Examen 2021 (Modelo A, pregunta 14)</h3>
-<p>¿Cuál de los siguientes comandos se utiliza para eliminar toda la base de datos MySQL?</p>
-<p>a) <code>mysql_drop_database</code></p>
-<p>b) <code>mysql_drop_entiredb</code></p>
-<p>c) <code>mysql_delete_database</code></p>
-<p>d) <code>mysql_delete_tables</code></p>
-<details class="success">
-<summary>Solución: d)... en realidad, ninguna</summary>
-<p>Es una pregunta trampa: <strong>ninguna</strong> de las cuatro opciones es un comando real de MySQL. La sentencia correcta para eliminar una base de datos completa es <code>DROP DATABASE nombre_bd;</code> (DDL estándar), no una función con el prefijo <code>mysql_...</code> (ese prefijo recuerda a las antiguas funciones de PHP <code>mysql_*</code>, ya eliminadas del lenguaje, no a comandos SQL). Al tratarse de un examen real con una única respuesta correcta entre cuatro, probablemente la "menos incorrecta" buscada por el tribunal sea la d) por asociar "delete_tables" con un vaciado completo, pero conviene remarcar a los alumnos que la sintaxis correcta de SQL es <code>DROP DATABASE</code>.</p>
-</details>
 <h3 id="examen-2021-modelo-a-pregunta-25">Examen 2021 (Modelo A, pregunta 25)</h3>
 <p>¿Cuál es la diferencia entre clave primaria y clave única?</p>
 <p>a) La clave única permite múltiples valores nulos y la clave primaria no.</p>
