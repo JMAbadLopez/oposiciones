@@ -10,7 +10,7 @@
 Un autónomo se dedica, a través de una franquicia, a distribuir cápsulas de café. El cliente presenta una hoja de cálculo desnormalizada, de la que se muestra una porción representativa:
 
 | Client | DNI Client | Name | Phone | Address | Flavor | Unit Price | Amount | Short | Long | ExtraLarge | Intensity | Order | Order date | Sent |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | 11111111-H | Antonio García | 961542145 | C Colón 16, Valencia | ExtraForte | 0,5 | 10 | NO | SÍ | SÍ | 12 | 1 | 01/08/2018 | SÍ |
 | 1 | 11111111-H | Antonio García | 961542145 | C Colón 16, Valencia | Velluto | 0,45 | 5 | SÍ | SÍ | NO | 8 | 1 | 01/08/2018 | SÍ |
 | 1 | 11111111-H | Antonio García | 961542145 | Av del Puerto 25, Valencia | Velluto | 0,48 | 5 | SÍ | NO | NO | 8 | 2 | 01/12/2016 | SÍ |
@@ -21,12 +21,12 @@ Los campos "Sí"/"No" no admiten otros valores. *Short*, *Long* y *ExtraLarge* i
 
 Tareas (basadas en sintaxis SQL estándar):
 
-a. Introducir brevemente los conceptos aplicados, contextualizando en el temario oficial y en el ámbito de la formación profesional.
-b. Proponer una estructura de tablas a partir de la hoja de cálculo, hasta llegar a un conjunto de relaciones en tercera forma normal.
-c. Generar las consultas de creación de tablas **sin índices ni claves ni restricciones**.
-d. Generar las consultas de creación de claves, así como los índices especificados, indicando el SGBD utilizado.
-e. Generar la consulta que obtiene un listado ordenado por apellido del cliente, con la cantidad de pedidos que ha realizado y el total facturado por ellos.
-f. Proponer una optimización de las columnas *Short*, *Long* y *ExtraLarge* representándolas en una sola columna mediante operadores *bitwise*, y generar la consulta que obtiene la cantidad de cápsulas vendidas válidas tanto para *Long* como para *ExtraLarge*.
+- **a.** Introducir brevemente los conceptos aplicados, contextualizando en el temario oficial y en el ámbito de la formación profesional.
+- **b.** Proponer una estructura de tablas a partir de la hoja de cálculo, hasta llegar a un conjunto de relaciones en tercera forma normal.
+- **c.** Generar las consultas de creación de tablas **sin índices ni claves ni restricciones**.
+- **d.** Generar las consultas de creación de claves, así como los índices especificados, indicando el SGBD utilizado.
+- **e.** Generar la consulta que obtiene un listado ordenado por apellido del cliente, con la cantidad de pedidos que ha realizado y el total facturado por ellos.
+- **f.** Proponer una optimización de las columnas *Short*, *Long* y *ExtraLarge* representándolas en una sola columna mediante operadores *bitwise*, y generar la consulta que obtiene la cantidad de cápsulas vendidas válidas tanto para *Long* como para *ExtraLarge*.
 
 ??? success "Solución: normalización (apartado b)"
     La hoja de cálculo mezcla varias entidades distintas en las mismas columnas, con dependencias funcionales diferentes:
