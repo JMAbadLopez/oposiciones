@@ -12,6 +12,8 @@
         <link rel="prev" href="../ejercicios-dml/">
       
       
+        <link rel="next" href="../ejercicios-plsql/">
+      
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
@@ -423,6 +425,52 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practico/el-lenguaje-sql-procedimientos-funciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Procedimientos y funciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practico/el-lenguaje-sql-disparadores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Disparadores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -606,15 +654,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#apartado-8-tabla-y-disparador-de-auditoria" class="md-nav__link">
-    <span class="md-ellipsis">
-      Apartado 8: tabla y disparador de auditoría
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -648,6 +687,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ejercicios-plsql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios Procedimientos/Funciones/Disparadores
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -709,15 +771,6 @@
   <a href="#estructura-de-la-base-de-datos-adaptada-a-mysqlmariadb" class="md-nav__link">
     <span class="md-ellipsis">
       Estructura de la base de datos (adaptada a MySQL/MariaDB)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#apartado-8-tabla-y-disparador-de-auditoria" class="md-nav__link">
-    <span class="md-ellipsis">
-      Apartado 8: tabla y disparador de auditoría
     </span>
   </a>
   
@@ -886,14 +939,12 @@
 </table>
 <p>Los campos "Sí"/"No" no admiten otros valores. <em>Short</em>, <em>Long</em> y <em>ExtraLarge</em> indican la sugerencia de consumo de cada cápsula. <em>Sent</em> indica si se ha entregado el pedido.</p>
 <p>Tareas (basadas en sintaxis SQL estándar):</p>
-<ul>
-<li><strong>a.</strong> Introducir brevemente los conceptos aplicados, contextualizando en el temario oficial y en el ámbito de la formación profesional.</li>
-<li><strong>b.</strong> Proponer una estructura de tablas a partir de la hoja de cálculo, hasta llegar a un conjunto de relaciones en tercera forma normal.</li>
-<li><strong>c.</strong> Generar las consultas de creación de tablas <strong>sin índices ni claves ni restricciones</strong>.</li>
-<li><strong>d.</strong> Generar las consultas de creación de claves, así como los índices especificados, indicando el SGBD utilizado.</li>
-<li><strong>e.</strong> Generar la consulta que obtiene un listado ordenado por apellido del cliente, con la cantidad de pedidos que ha realizado y el total facturado por ellos.</li>
-<li><strong>f.</strong> Proponer una optimización de las columnas <em>Short</em>, <em>Long</em> y <em>ExtraLarge</em> representándolas en una sola columna mediante operadores <em>bitwise</em>, y generar la consulta que obtiene la cantidad de cápsulas vendidas válidas tanto para <em>Long</em> como para <em>ExtraLarge</em>.</li>
-</ul>
+<p>a. Introducir brevemente los conceptos aplicados, contextualizando en el temario oficial y en el ámbito de la formación profesional.
+b. Proponer una estructura de tablas a partir de la hoja de cálculo, hasta llegar a un conjunto de relaciones en tercera forma normal.
+c. Generar las consultas de creación de tablas <strong>sin índices ni claves ni restricciones</strong>.
+d. Generar las consultas de creación de claves, así como los índices especificados, indicando el SGBD utilizado.
+e. Generar la consulta que obtiene un listado ordenado por apellido del cliente, con la cantidad de pedidos que ha realizado y el total facturado por ellos.
+f. Proponer una optimización de las columnas <em>Short</em>, <em>Long</em> y <em>ExtraLarge</em> representándolas en una sola columna mediante operadores <em>bitwise</em>, y generar la consulta que obtiene la cantidad de cápsulas vendidas válidas tanto para <em>Long</em> como para <em>ExtraLarge</em>.</p>
 <details class="success">
 <summary>Solución: normalización (apartado b)</summary>
 <p>La hoja de cálculo mezcla varias entidades distintas en las mismas columnas, con dependencias funcionales diferentes:</p>
@@ -1019,7 +1070,7 @@
 <h2 id="examen-2025-ejercicio-2-problema-bd">Examen 2025 (Ejercicio 2: Problema BD)</h2>
 <p>Eres docente en un centro educativo y preparas una práctica sobre una base de datos relacional de biblioteca: lectores, categorías de libros (con subcategorías), autores (con posible autor inspirador), libros y préstamos. La base de datos debe controlar la disponibilidad de libros (<code>cantidad_disponible</code>), permitir consultas sobre libros/autores/categorías/préstamos, garantizar que no se presten libros sin copias disponibles y generar informes (libros más prestados, usuarios con préstamos vencidos).</p>
 <p>El enunciado ofrece el DDL en Oracle, indicando que se puede adaptar a MySQL con los cambios <code>NUMBER → INT</code>, <code>VARCHAR2 → VARCHAR</code> y <code>CURRENT_TIMESTAMP</code>/<code>SYSDATE → DATETIME</code> o <code>TIMESTAMP</code>/<code>DATE DEFAULT (CURRENT_DATE)</code>.</p>
-<p>Dos de las ocho tareas del ejercicio son estrictamente de definición de datos (DDL): crear la propia estructura de tablas, y crear la tabla y el disparador de auditoría del apartado 8. (Las consultas y el procedimiento con cursor, que son DML, se recogen en el documento de ejercicios de manipulación).</p>
+<p>De las ocho tareas del ejercicio, solo la primera (crear la estructura de tablas) es estrictamente de definición de datos (DDL). Las consultas se recogen en el documento de ejercicios de manipulación (DML); el procedimiento con cursor y el disparador de auditoría de los apartados 7 y 8 se recogen en el documento de ejercicios de procedimientos, funciones y disparadores.</p>
 <h3 id="estructura-de-la-base-de-datos-adaptada-a-mysqlmariadb">Estructura de la base de datos (adaptada a MySQL/MariaDB)</h3>
 <details class="success">
 <summary>Solución: DDL adaptado a MySQL (lectores, categorías, autores, libros, préstamos)</summary>
@@ -1075,72 +1126,10 @@
 <p>El DDL de <code>libros</code> declaraba <code>id_categoria NUMBER NOT NULL</code> pero su clave ajena usa <code>ON DELETE SET NULL</code>: si la columna no admite NULL, borrar una categoría con libros asociados provocaría un error de integridad en lugar de poner la columna a NULL. Para que la regla <code>ON DELETE SET NULL</code> funcione, <code>id_categoria</code> debe admitir NULL (<code>id_categoria INT NULL</code>), como se ha corregido arriba. Es un buen ejemplo para comentar en clase: una clave ajena <code>ON DELETE SET NULL</code> exige que la columna sea <em>nullable</em>.</p>
 </div>
 </details>
-<h3 id="apartado-8-tabla-y-disparador-de-auditoria">Apartado 8: tabla y disparador de auditoría</h3>
-<p>Enunciado: crear un disparador (<em>trigger</em>) que audite los libros borrados o actualizados, registrando en una tabla de auditoría la fecha de la operación, el usuario del SGBD y el tipo de operación. El disparador debe ejecutarse solo ante <code>DELETE</code> o <code>UPDATE</code>.</p>
-<details class="success">
-<summary>Solución</summary>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">auditoria_libros</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">id_auditoria</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">id_libro</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">operacion</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">usuario_sgbd</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="n">fecha_operacion</span><span class="w"> </span><span class="n">DATETIME</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">);</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="o">//</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="n">trg_libros_delete</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="k">AFTER</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">libros</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="k">FOR</span><span class="w"> </span><span class="k">EACH</span><span class="w"> </span><span class="k">ROW</span>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="k">BEGIN</span>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">auditoria_libros</span><span class="w"> </span><span class="p">(</span><span class="n">id_libro</span><span class="p">,</span><span class="w"> </span><span class="n">operacion</span><span class="p">,</span><span class="w"> </span><span class="n">usuario_sgbd</span><span class="p">)</span>
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">    </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="k">OLD</span><span class="p">.</span><span class="n">id_libro</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;DELETE&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">CURRENT_USER</span><span class="p">());</span>
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="k">END</span><span class="w"> </span><span class="o">//</span>
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="n">trg_libros_update</span>
-</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="k">AFTER</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">libros</span>
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="k">FOR</span><span class="w"> </span><span class="k">EACH</span><span class="w"> </span><span class="k">ROW</span>
-</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="k">BEGIN</span>
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">auditoria_libros</span><span class="w"> </span><span class="p">(</span><span class="n">id_libro</span><span class="p">,</span><span class="w"> </span><span class="n">operacion</span><span class="p">,</span><span class="w"> </span><span class="n">usuario_sgbd</span><span class="p">)</span>
-</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">    </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="k">OLD</span><span class="p">.</span><span class="n">id_libro</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;UPDATE&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">CURRENT_USER</span><span class="p">());</span>
-</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="k">END</span><span class="w"> </span><span class="o">//</span>
-</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="p">;</span>
-</span></code></pre></div>
-<p>En MySQL/MariaDB no existe un único disparador que capture a la vez <code>DELETE</code> y <code>UPDATE</code>: cada disparador se asocia a un evento y un momento concretos (<code>BEFORE</code>/<code>AFTER</code> + <code>INSERT</code>/<code>UPDATE</code>/<code>DELETE</code>), así que hacen falta dos disparadores independientes, uno por evento. Se usa <code>OLD.id_libro</code> porque en un <code>DELETE</code> solo existe la fila anterior a la operación (<code>OLD</code>); en un <code>UPDATE</code> también está disponible <code>NEW</code> con los valores nuevos, pero para esta auditoría basta con identificar qué libro se vio afectado.</p>
-<p>Comprobación (actualizando y borrando un libro de prueba):</p>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">libros</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">cantidad_disponible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_libro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">libros</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_libro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">auditoria_libros</span><span class="p">;</span>
-</span></code></pre></div>
-<p>Resultado real:</p>
-<table>
-<thead>
-<tr>
-<th>id_auditoria</th>
-<th>id_libro</th>
-<th>operacion</th>
-<th>usuario_sgbd</th>
-<th>fecha_operacion</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>3</td>
-<td>UPDATE</td>
-<td>root@localhost</td>
-<td>(fecha/hora actual)</td>
-</tr>
-<tr>
-<td>2</td>
-<td>4</td>
-<td>DELETE</td>
-<td>root@localhost</td>
-<td>(fecha/hora actual)</td>
-</tr>
-</tbody>
-</table>
-</details>
+<div class="admonition note">
+<p class="admonition-title">Procedimiento y disparador de este ejercicio</p>
+<p>Los apartados 7 (procedimiento con cursor) y 8 (disparador de auditoría) de este mismo ejercicio se recogen en el documento de ejercicios de <strong>procedimientos, funciones y disparadores</strong>, junto con las preguntas tipo test relacionadas.</p>
+</div>
 <hr />
 <h2 id="preguntas-tipo-test-relacionadas-con-ddl">Preguntas tipo test relacionadas con DDL</h2>
 <p>Ambos exámenes incluyen, además de los ejercicios prácticos anteriores, un bloque inicial de 25 (2021) o 150 (2025) preguntas tipo test. Estas son las que tratan temas de definición de bases de datos.</p>
@@ -1206,6 +1195,22 @@
             </div>
           </a>
         
+        
+          
+          <a href="../ejercicios-plsql/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Ejercicios Procedimientos/Funciones/Disparadores">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Ejercicios Procedimientos/Funciones/Disparadores
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
         
       </nav>
     
