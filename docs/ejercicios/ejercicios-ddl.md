@@ -10,7 +10,7 @@
 Un autónomo se dedica, a través de una franquicia, a distribuir cápsulas de café. El cliente presenta una hoja de cálculo desnormalizada, de la que se muestra una porción representativa:
 
 | Client | DNI Client | Name | Phone | Address | Flavor | Unit Price | Amount | Short | Long | ExtraLarge | Intensity | Order | Order date | Sent |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | 11111111-H | Antonio García | 961542145 | C Colón 16, Valencia | ExtraForte | 0,5 | 10 | NO | SÍ | SÍ | 12 | 1 | 01/08/2018 | SÍ |
 | 1 | 11111111-H | Antonio García | 961542145 | C Colón 16, Valencia | Velluto | 0,45 | 5 | SÍ | SÍ | NO | 8 | 1 | 01/08/2018 | SÍ |
 | 1 | 11111111-H | Antonio García | 961542145 | Av del Puerto 25, Valencia | Velluto | 0,48 | 5 | SÍ | NO | NO | 8 | 2 | 01/12/2016 | SÍ |
@@ -21,12 +21,12 @@ Los campos "Sí"/"No" no admiten otros valores. *Short*, *Long* y *ExtraLarge* i
 
 Tareas (basadas en sintaxis SQL estándar):
 
-- **a.** Introducir brevemente los conceptos aplicados, contextualizando en el temario oficial y en el ámbito de la formación profesional.
-- **b.** Proponer una estructura de tablas a partir de la hoja de cálculo, hasta llegar a un conjunto de relaciones en tercera forma normal.
-- **c.** Generar las consultas de creación de tablas **sin índices ni claves ni restricciones**.
-- **d.** Generar las consultas de creación de claves, así como los índices especificados, indicando el SGBD utilizado.
-- **e.** Generar la consulta que obtiene un listado ordenado por apellido del cliente, con la cantidad de pedidos que ha realizado y el total facturado por ellos.
-- **f.** Proponer una optimización de las columnas *Short*, *Long* y *ExtraLarge* representándolas en una sola columna mediante operadores *bitwise*, y generar la consulta que obtiene la cantidad de cápsulas vendidas válidas tanto para *Long* como para *ExtraLarge*.
+a. Introducir brevemente los conceptos aplicados, contextualizando en el temario oficial y en el ámbito de la formación profesional.
+b. Proponer una estructura de tablas a partir de la hoja de cálculo, hasta llegar a un conjunto de relaciones en tercera forma normal.
+c. Generar las consultas de creación de tablas **sin índices ni claves ni restricciones**.
+d. Generar las consultas de creación de claves, así como los índices especificados, indicando el SGBD utilizado.
+e. Generar la consulta que obtiene un listado ordenado por apellido del cliente, con la cantidad de pedidos que ha realizado y el total facturado por ellos.
+f. Proponer una optimización de las columnas *Short*, *Long* y *ExtraLarge* representándolas en una sola columna mediante operadores *bitwise*, y generar la consulta que obtiene la cantidad de cápsulas vendidas válidas tanto para *Long* como para *ExtraLarge*.
 
 ??? success "Solución: normalización (apartado b)"
     La hoja de cálculo mezcla varias entidades distintas en las mismas columnas, con dependencias funcionales diferentes:
@@ -140,7 +140,7 @@ Eres docente en un centro educativo y preparas una práctica sobre una base de d
 
 El enunciado ofrece el DDL en Oracle, indicando que se puede adaptar a MySQL con los cambios `NUMBER → INT`, `VARCHAR2 → VARCHAR` y `CURRENT_TIMESTAMP`/`SYSDATE → DATETIME` o `TIMESTAMP`/`DATE DEFAULT (CURRENT_DATE)`.
 
-Dos de las ocho tareas del ejercicio son estrictamente de definición de datos (DDL): crear la propia estructura de tablas, y crear la tabla y el disparador de auditoría del apartado 8. (Las consultas y el procedimiento con cursor, que son DML, se recogen en el documento de ejercicios de manipulación).
+De las ocho tareas del ejercicio, solo la primera (crear la estructura de tablas) es estrictamente de definición de datos (DDL). Las consultas se recogen en el documento de ejercicios de manipulación (DML); el procedimiento con cursor y el disparador de auditoría de los apartados 7 y 8 se recogen en el documento de ejercicios de procedimientos, funciones y disparadores.
 
 ### Estructura de la base de datos (adaptada a MySQL/MariaDB)
 
@@ -197,56 +197,8 @@ Dos de las ocho tareas del ejercicio son estrictamente de definición de datos (
     !!! warning "Un detalle a corregir del enunciado original"
         El DDL de `libros` declaraba `id_categoria NUMBER NOT NULL` pero su clave ajena usa `ON DELETE SET NULL`: si la columna no admite NULL, borrar una categoría con libros asociados provocaría un error de integridad en lugar de poner la columna a NULL. Para que la regla `ON DELETE SET NULL` funcione, `id_categoria` debe admitir NULL (`id_categoria INT NULL`), como se ha corregido arriba. Es un buen ejemplo para comentar en clase: una clave ajena `ON DELETE SET NULL` exige que la columna sea *nullable*.
 
-### Apartado 8: tabla y disparador de auditoría
-
-Enunciado: crear un disparador (*trigger*) que audite los libros borrados o actualizados, registrando en una tabla de auditoría la fecha de la operación, el usuario del SGBD y el tipo de operación. El disparador debe ejecutarse solo ante `DELETE` o `UPDATE`.
-
-??? success "Solución"
-    ```sql
-    CREATE TABLE auditoria_libros (
-        id_auditoria INT AUTO_INCREMENT PRIMARY KEY,
-        id_libro INT,
-        operacion VARCHAR(10),
-        usuario_sgbd VARCHAR(100),
-        fecha_operacion DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
-
-    DELIMITER //
-    CREATE TRIGGER trg_libros_delete
-    AFTER DELETE ON libros
-    FOR EACH ROW
-    BEGIN
-        INSERT INTO auditoria_libros (id_libro, operacion, usuario_sgbd)
-        VALUES (OLD.id_libro, 'DELETE', CURRENT_USER());
-    END //
-
-    CREATE TRIGGER trg_libros_update
-    AFTER UPDATE ON libros
-    FOR EACH ROW
-    BEGIN
-        INSERT INTO auditoria_libros (id_libro, operacion, usuario_sgbd)
-        VALUES (OLD.id_libro, 'UPDATE', CURRENT_USER());
-    END //
-    DELIMITER ;
-    ```
-
-    En MySQL/MariaDB no existe un único disparador que capture a la vez `DELETE` y `UPDATE`: cada disparador se asocia a un evento y un momento concretos (`BEFORE`/`AFTER` + `INSERT`/`UPDATE`/`DELETE`), así que hacen falta dos disparadores independientes, uno por evento. Se usa `OLD.id_libro` porque en un `DELETE` solo existe la fila anterior a la operación (`OLD`); en un `UPDATE` también está disponible `NEW` con los valores nuevos, pero para esta auditoría basta con identificar qué libro se vio afectado.
-
-    Comprobación (actualizando y borrando un libro de prueba):
-
-    ```sql
-    UPDATE libros SET cantidad_disponible = 2 WHERE id_libro = 3;
-    DELETE FROM libros WHERE id_libro = 4;
-
-    SELECT * FROM auditoria_libros;
-    ```
-
-    Resultado real:
-
-    | id_auditoria | id_libro | operacion | usuario_sgbd | fecha_operacion |
-    |---|---|---|---|---|
-    | 1 | 3 | UPDATE | root@localhost | (fecha/hora actual) |
-    | 2 | 4 | DELETE | root@localhost | (fecha/hora actual) |
+!!! note "Procedimiento y disparador de este ejercicio"
+    Los apartados 7 (procedimiento con cursor) y 8 (disparador de auditoría) de este mismo ejercicio se recogen en el documento de ejercicios de **procedimientos, funciones y disparadores**, junto con las preguntas tipo test relacionadas.
 
 ---
 

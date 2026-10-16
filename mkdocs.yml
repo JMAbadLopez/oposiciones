@@ -51,7 +51,10 @@ nav:
     - "El lenguaje SQL: Manipulación": documentos/consultas-sql.md
     - "El lenguaje SQL: Manipulación II": practico/el-lenguaje-sql-manipulacion-parte-ii.md
     - "El lenguaje SQL: Definición": practico/el-lenguaje-sql-definicion.md
+    - "El lenguaje SQL: Procedimientos y funciones": practico/el-lenguaje-sql-procedimientos-funciones.md
+    - "El lenguaje SQL: Disparadores": practico/el-lenguaje-sql-disparadores.md
   - Ejercicios:
     - Consultas SQL: ejercicios/consultas-sql.md
     - Ejercicios DML: ejercicios/ejercicios-dml.md
     - Ejercicios DDL: ejercicios/ejercicios-ddl.md
+    - Ejercicios Procedimientos/Funciones/Disparadores: ejercicios/ejercicios-plsql.md

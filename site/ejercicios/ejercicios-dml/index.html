@@ -425,6 +425,52 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practico/el-lenguaje-sql-procedimientos-funciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Procedimientos y funciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practico/el-lenguaje-sql-disparadores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    El lenguaje SQL: Disparadores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -636,15 +682,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#6-procedimiento-con-cursor-prestamos-activos-ordenados-por-fecha" class="md-nav__link">
-    <span class="md-ellipsis">
-      6) Procedimiento con cursor: préstamos activos ordenados por fecha
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -670,9 +707,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#examen-2025-preguntas-96-100" class="md-nav__link">
+  <a href="#examen-2025-preguntas-96-97" class="md-nav__link">
     <span class="md-ellipsis">
-      Examen 2025 (preguntas 96-100)
+      Examen 2025 (preguntas 96-97)
     </span>
   </a>
   
@@ -705,6 +742,29 @@
   
   <span class="md-ellipsis">
     Ejercicios DDL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ejercicios-plsql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios Procedimientos/Funciones/Disparadores
     
   </span>
   
@@ -827,15 +887,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#6-procedimiento-con-cursor-prestamos-activos-ordenados-por-fecha" class="md-nav__link">
-    <span class="md-ellipsis">
-      6) Procedimiento con cursor: préstamos activos ordenados por fecha
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -861,9 +912,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#examen-2025-preguntas-96-100" class="md-nav__link">
+  <a href="#examen-2025-preguntas-96-97" class="md-nav__link">
     <span class="md-ellipsis">
-      Examen 2025 (preguntas 96-100)
+      Examen 2025 (preguntas 96-97)
     </span>
   </a>
   
@@ -893,7 +944,7 @@
 <h1 id="ejercicios-de-examen-dml-manipulacion-de-datos">Ejercicios de examen: DML (manipulación de datos)</h1>
 <div class="admonition note">
 <p class="admonition-title">Sobre estos ejercicios</p>
-<p>Los ejercicios de esta página proceden de exámenes reales de las pruebas de acceso al cuerpo de profesores de Enseñanza Secundaria, especialidad Informática, convocadas por la Generalitat Valenciana (años 2021 y 2025). Son la continuación de los ejercicios de DDL de los mismos exámenes: aquí se recogen las consultas (<code>SELECT</code>) y el procedimiento con cursor, trabajando ya sobre las tablas creadas en el documento de DDL. Las soluciones son propias, verificadas ejecutándolas sobre MySQL/MariaDB con datos de prueba, y están ocultas en un desplegable para poder usarlas como ejercicio antes de consultar la solución.</p>
+<p>Los ejercicios de esta página proceden de exámenes reales de las pruebas de acceso al cuerpo de profesores de Enseñanza Secundaria, especialidad Informática, convocadas por la Generalitat Valenciana (años 2021 y 2025). Son la continuación de los ejercicios de DDL de los mismos exámenes: aquí se recogen las consultas (<code>SELECT</code>), trabajando ya sobre las tablas creadas en el documento de DDL. El procedimiento con cursor del mismo ejercicio de 2025 se recoge en el documento de ejercicios de procedimientos, funciones y disparadores. Las soluciones son propias, verificadas ejecutándolas sobre MySQL/MariaDB con datos de prueba, y están ocultas en un desplegable para poder usarlas como ejercicio antes de consultar la solución.</p>
 </div>
 <hr />
 <h2 id="examen-2021-modelo-b-ejercicio-2-distribuidora-de-capsulas-de-cafe">Examen 2021 (Modelo B, Ejercicio 2): distribuidora de cápsulas de café</h2>
@@ -1018,55 +1069,10 @@
 </span></code></pre></div>
 <p>El <code>JOIN</code> con <code>prestamos</code> descarta automáticamente los libros que nunca aparecen en esa tabla (los que no se han prestado nunca); <code>DISTINCT</code> evita repetir el título de un libro que se haya prestado varias veces.</p>
 </details>
-<h3 id="6-procedimiento-con-cursor-prestamos-activos-ordenados-por-fecha">6) Procedimiento con cursor: préstamos activos ordenados por fecha</h3>
-<p>Enunciado: crear un procedimiento que, mediante un cursor, genere un listado de préstamos activos ordenados por fecha de préstamo, incluyendo el ID del préstamo, el nombre del lector, el título del libro y la fecha del préstamo; el procedimiento debe abrir el cursor, recorrerlo y mostrar los datos obtenidos.</p>
-<details class="success">
-<summary>Solución</summary>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="o">//</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">listar_prestamos_activos</span><span class="p">()</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">BEGIN</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_id_prestamo</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_titulo</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_fecha</span><span class="w"> </span><span class="nb">DATE</span><span class="p">;</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_fin</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">FALSE</span><span class="p">;</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">cur_prestamos</span><span class="w"> </span><span class="k">CURSOR</span><span class="w"> </span><span class="k">FOR</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="n">P</span><span class="p">.</span><span class="n">id_prestamo</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">L</span><span class="p">.</span><span class="n">titulo</span><span class="p">,</span><span class="w"> </span><span class="n">P</span><span class="p">.</span><span class="n">fecha_prestamo</span>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">prestamos</span><span class="w"> </span><span class="n">P</span>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">lectores</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="n">id_lector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="p">.</span><span class="n">id_lector</span>
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">libros</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">L</span><span class="p">.</span><span class="n">id_libro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="p">.</span><span class="n">id_libro</span>
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">        </span><span class="k">WHERE</span><span class="w"> </span><span class="n">P</span><span class="p">.</span><span class="n">fecha_devolucion</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
-</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">        </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">P</span><span class="p">.</span><span class="n">fecha_prestamo</span><span class="p">;</span>
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
-</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="k">CONTINUE</span><span class="w"> </span><span class="k">HANDLER</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">FOUND</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">v_fin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">TRUE</span><span class="p">;</span>
-</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
-</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">    </span><span class="k">OPEN</span><span class="w"> </span><span class="n">cur_prestamos</span><span class="p">;</span>
-</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>
-</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">    </span><span class="n">bucle</span><span class="p">:</span><span class="w"> </span><span class="n">LOOP</span>
-</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w">        </span><span class="k">FETCH</span><span class="w"> </span><span class="n">cur_prestamos</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_id_prestamo</span><span class="p">,</span><span class="w"> </span><span class="n">v_nombre</span><span class="p">,</span><span class="w"> </span><span class="n">v_titulo</span><span class="p">,</span><span class="w"> </span><span class="n">v_fecha</span><span class="p">;</span>
-</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="n">v_fin</span><span class="w"> </span><span class="k">THEN</span>
-</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="w">            </span><span class="n">LEAVE</span><span class="w"> </span><span class="n">bucle</span><span class="p">;</span>
-</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="w">        </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span>
-</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="n">v_id_prestamo</span><span class="p">,</span><span class="w"> </span><span class="n">v_nombre</span><span class="p">,</span><span class="w"> </span><span class="n">v_titulo</span><span class="p">,</span><span class="w"> </span><span class="n">v_fecha</span><span class="p">;</span>
-</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="n">LOOP</span><span class="p">;</span>
-</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>
-</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="w">    </span><span class="k">CLOSE</span><span class="w"> </span><span class="n">cur_prestamos</span><span class="p">;</span>
-</span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="k">END</span><span class="w"> </span><span class="o">//</span>
-</span><span id="__span-6-32"><a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="p">;</span>
-</span><span id="__span-6-33"><a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>
-</span><span id="__span-6-34"><a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="k">CALL</span><span class="w"> </span><span class="n">listar_prestamos_activos</span><span class="p">();</span>
-</span></code></pre></div>
-<p>Estructura de un cursor explícito en MySQL/MariaDB:</p>
-<ol>
-<li><code>DECLARE ... CURSOR FOR &lt;SELECT&gt;</code> asocia el cursor a la consulta que se quiere recorrer (aquí, ya ordenada con <code>ORDER BY</code>).</li>
-<li><code>DECLARE CONTINUE HANDLER FOR NOT FOUND ...</code> define qué hacer cuando un <code>FETCH</code> ya no encuentra más filas: en vez de lanzar un error, pone a <code>TRUE</code> una variable de control (<code>v_fin</code>).</li>
-<li><code>OPEN</code> abre el cursor; cada <code>FETCH ... INTO ...</code> avanza una fila y copia sus columnas en variables locales.</li>
-<li>El bucle (<code>LOOP</code> / <code>LEAVE</code>) repite el <code>FETCH</code> hasta que <code>v_fin</code> se activa, momento en el que se sale del bucle con <code>LEAVE bucle</code>.</li>
-<li><code>CLOSE</code> libera el cursor al terminar.</li>
-</ol>
-<p><code>DELIMITER //</code> es necesario porque el cuerpo del procedimiento contiene punto y coma (<code>;</code>) propios, y hay que evitar que el cliente de MySQL interprete cada uno como el final de la instrucción <code>CREATE PROCEDURE</code>.</p>
-</details>
+<div class="admonition note">
+<p class="admonition-title">Procedimiento con cursor de este ejercicio</p>
+<p>El apartado 7 de este mismo ejercicio (un procedimiento con cursor sobre <code>prestamos</code>) se recoge en el documento de ejercicios de <strong>procedimientos, funciones y disparadores</strong>, junto con el disparador del apartado 8 y las preguntas tipo test relacionadas.</p>
+</div>
 <hr />
 <h2 id="preguntas-tipo-test-relacionadas-con-dml">Preguntas tipo test relacionadas con DML</h2>
 <p>Ambos exámenes incluyen, además de los ejercicios prácticos anteriores, un bloque inicial de 25 (2021) o 150 (2025) preguntas tipo test. Estas son las que tratan sintaxis o conceptos de manipulación de datos.</p>
@@ -1082,12 +1088,12 @@
 <summary>Solución: a)</summary>
 <p>Es la sintaxis estándar de <code>UPDATE</code> vista en el tema de manipulación: <code>UPDATE tabla SET columna = valor, ... WHERE condicion</code>. Las otras tres opciones combinan la cláusula <code>SET ... WHERE</code> (propia de <code>UPDATE</code>) con el nombre de otra instrucción (<code>SELECT</code>, <code>SHOW</code>, <code>INSERT</code>), que no admite esa sintaxis.</p>
 </details>
-<h3 id="examen-2025-preguntas-96-100">Examen 2025 (preguntas 96-100)</h3>
-<p>Estas cinco preguntas comparten el mismo esquema de base de datos:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>AUTORES(id_autor, login, password, correo, url)
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>NOTICIAS(id_noticia, id_autor, titulo, fecha_pub, contenido, id_link)
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>COMENTARIOS(id_comentario, id_noticia, id_autor, fecha_comen, contenido)
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>ENLACES(id_link, link_url, url_status)
+<h3 id="examen-2025-preguntas-96-97">Examen 2025 (preguntas 96-97)</h3>
+<p>Estas dos preguntas comparten el mismo esquema de base de datos (las preguntas 98-100 del mismo bloque, sobre cursores, procedimientos y gestión de errores, se recogen en el documento de ejercicios de procedimientos, funciones y disparadores):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>AUTORES(id_autor, login, password, correo, url)
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>NOTICIAS(id_noticia, id_autor, titulo, fecha_pub, contenido, id_link)
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>COMENTARIOS(id_comentario, id_noticia, id_autor, fecha_comen, contenido)
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>ENLACES(id_link, link_url, url_status)
 </span></code></pre></div>
 <p><strong>96.</strong> ¿Cuál es la consulta SQL correcta para listar los títulos de noticias y el contenido de los comentarios hechos por el autor con ID 5, ordenados por fecha descendente?</p>
 <ul>
@@ -1110,39 +1116,6 @@
 <details class="success">
 <summary>Solución: c)</summary>
 <p>La a) actualiza la columna equivocada (<code>link_url</code> en vez de <code>url_status</code>) y compara <code>url_status</code> con un patrón que no tiene sentido para esa columna. La b) usa <code>ALTER</code>, que es DDL (modifica la estructura de una tabla), no DML: para cambiar valores de filas hace falta <code>UPDATE</code>. La d) compara con el valor exacto <code>'https://'</code> (<code>=</code>) en lugar de con un patrón, por lo que no capturaría ninguna URL real que empiece por ese prefijo. La c) es la única que usa <code>UPDATE</code> con <code>SET</code> sobre la columna correcta (<code>url_status</code>) y filtra con <code>LIKE 'https://%'</code>, el patrón correcto para "empieza por https://".</p>
-</details>
-<p><strong>98.</strong> ¿Cuál es el fragmento de código SQL correcto para declarar un cursor que recorra todos los comentarios de la noticia con identificador 7?</p>
-<ul>
-<li><strong>a)</strong> <code>DECLARE cur_comentarios CURSOR FOR SELECT id_comentario, contenido FROM COMENTARIOS WHERE id_autor = 7;</code></li>
-<li><strong>b)</strong> <code>DECLARE cur_comentarios CURSOR FOR SELECT id_comentario, contenido FROM NOTICIAS WHERE noticia = 7;</code></li>
-<li><strong>c)</strong> <code>DECLARE cur_comentarios CURSOR FOR SELECT id_comentario, contenido FROM COMENTARIOS ORDER BY noticia;</code></li>
-<li><strong>d)</strong> <code>DECLARE cur_comentarios CURSOR FOR SELECT id_comentario, contenido FROM COMENTARIOS WHERE id_noticia = 7;</code></li>
-</ul>
-<details class="success">
-<summary>Solución: d)</summary>
-<p>La a) filtra por <code>id_autor</code> en vez de por la noticia. La b) consulta la tabla <code>NOTICIAS</code> (que no tiene columna <code>contenido</code> de comentario) y usa una columna <code>noticia</code> que no existe. La c) no filtra por la noticia 7 en absoluto, y además usa una columna <code>noticia</code> inexistente. La d) selecciona de <code>COMENTARIOS</code> filtrando correctamente por <code>id_noticia = 7</code>, la columna real que relaciona un comentario con su noticia.</p>
-</details>
-<p><strong>99.</strong> ¿Cuál es el procedimiento SQL (MySQL) correcto para contar los comentarios por noticia y mostrar el título de la noticia junto con el total de comentarios?</p>
-<ul>
-<li><strong>a)</strong> <code>CREATE PROCEDURE contar_comentarios_por_noticia() BEGIN SELECT N.titulo, COUNT(C.id_comentario) AS total FROM NOTICIAS N LEFT JOIN COMENTARIOS C ON N.id_noticia = C.id_noticia GROUP BY N.id_noticia, N.titulo; END;</code></li>
-<li><strong>b)</strong> <code>CREATE PROCEDURE contar_comentarios_por_noticia() BEGIN SELECT N.id_titulo, COUNT(C.id_comentario) AS total FROM NOTICIAS N LEFT JOIN COMENTARIOS C ON N.id_noticia = C.id_noticia GROUP BY N.id_noticia, N.titulo; END;</code></li>
-<li><strong>c)</strong> <code>CREATE PROCEDURE contar_comentarios_por_noticia() BEGIN SELECT N.titulo, SUM(C.id_comentario) AS total FROM NOTICIAS N JOIN COMENTARIOS C ON N.id_noticia = C.id_noticia; END;</code></li>
-<li><strong>d)</strong> <code>CREATE PROCEDURE contar_comentarios_por_noticia() BEGIN SELECT N.id_titulo, COUNT(C.id_comentario) AS total FROM NOTICIAS N JOIN COMENTARIOS C ON N.id_noticia = C.id_autor GROUP BY N.id; END;</code></li>
-</ul>
-<details class="success">
-<summary>Solución: a)</summary>
-<p>La b) y la d) seleccionan <code>N.id_titulo</code>, una columna que no existe (la columna se llama <code>titulo</code>). La c) usa <code>SUM(C.id_comentario)</code> en vez de <code>COUNT(C.id_comentario)</code> (sumar identificadores no tiene sentido como "total de comentarios") y, además, usa <code>JOIN</code> en vez de <code>LEFT JOIN</code>, con lo que las noticias sin comentarios desaparecerían del resultado. La d) además une mal las tablas (<code>C.id_autor</code> en vez de <code>C.id_noticia</code>). La a) es correcta: <code>LEFT JOIN</code> conserva las noticias sin comentarios (mostrando <code>0</code> gracias a <code>COUNT</code>, que no cuenta los <code>NULL</code> que deja el <code>LEFT JOIN</code>), y agrupa por noticia para obtener un total por cada una.</p>
-</details>
-<p><strong>100.</strong> ¿Cuál es el fragmento de código SQL (MySQL) correcto para gestionar el fin de un cursor en un procedimiento que recorre la tabla <code>ENLACES</code>?</p>
-<ul>
-<li><strong>a)</strong> <code>DECLARE HANDLER FOR NOT FOUND SET done = FALSE;</code></li>
-<li><strong>b)</strong> <code>DECLARE CONTINUE HANDLER FOR SQLERROR SET done = TRUE;</code></li>
-<li><strong>c)</strong> <code>DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;</code></li>
-<li><strong>d)</strong> <code>DECLARE EXIT HANDLER FOR SQLSTATE '02000' SET done = FALSE;</code></li>
-</ul>
-<details class="success">
-<summary>Solución: c)</summary>
-<p>La a) está incompleta: a un <code>DECLARE HANDLER</code> le falta indicar el tipo de manejador (<code>CONTINUE</code> o <code>EXIT</code>), es sintácticamente inválida en MySQL. La b) usa la condición <code>SQLERROR</code>, que no existe en MySQL (la condición correcta para errores genéricos sería <code>SQLEXCEPTION</code>), y además pone <code>done = TRUE</code>, lo que detendría el procedimiento ante cualquier error, no solo al agotar el cursor. La d) usa <code>EXIT HANDLER</code>, que abandonaría el procedimiento entero en vez de solo salir del bucle de lectura, y pone <code>done = FALSE</code> (al revés de lo necesario). La c) es el patrón estándar visto en el ejercicio del procedimiento con cursor: <code>CONTINUE HANDLER FOR NOT FOUND</code> captura el momento en que un <code>FETCH</code> ya no encuentra más filas (el código SQLSTATE <code>02000</code>, "no data") y permite seguir ejecutando el procedimiento (en vez de abortarlo) para poder salir del bucle de forma controlada.</p>
 </details>
 
 
