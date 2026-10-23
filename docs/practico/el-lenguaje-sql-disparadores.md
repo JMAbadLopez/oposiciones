@@ -3,7 +3,7 @@
 ## Objetivos
 
 | # | Objetivo |
-|---|---|
+| --- | --- |
 | 1 | Entender qué es un disparador (*trigger*) y cuándo tiene sentido usarlo. |
 | 2 | Distinguir los disparadores por **evento** (`INSERT`/`UPDATE`/`DELETE`), por **momento** (`BEFORE`/`AFTER`) y por **ámbito** (`FOR EACH ROW`). |
 | 3 | Usar `OLD` y `NEW` para acceder a los valores de la fila antes y después de la operación. |
@@ -12,9 +12,6 @@
 
 !!! note "Sobre los datos de este documento"
     Los ejemplos parten de la base de datos ACADEMIA (`crear_bd_academia.sql`). Las instrucciones de este documento están recogidas en el script `plsql_academia.sql`, junto con los procedimientos y funciones del tema anterior.
-
-!!! note "De dónde viene este tema"
-    Este documento adapta a MySQL/MariaDB el contenido del manual de disparadores (Oracle) que ya tenías preparado. La estructura y la lógica de los ejemplos (auditoría, validación) son las mismas; cambia la sintaxis.
 
 ---
 
@@ -36,7 +33,7 @@ Casos de uso típicos:
 Un disparador se clasifica por tres ejes independientes:
 
 | Eje | Valores posibles | Significado |
-|---|---|---|
+| --- | --- | --- |
 | Evento | `INSERT`, `UPDATE`, `DELETE` | Qué operación lo activa |
 | Momento | `BEFORE`, `AFTER` | Si se ejecuta antes o después de que la operación se aplique |
 | Ámbito | `FOR EACH ROW` | Se ejecuta una vez por cada fila afectada (es el único ámbito que admite MySQL/MariaDB) |
@@ -62,7 +59,7 @@ Al igual que los procedimientos, si el cuerpo tiene más de una instrucción hac
 Dentro del cuerpo de un disparador se puede acceder a los valores de la fila con dos pseudo-registros:
 
 | | Disponible en | Significado |
-|---|---|---|
+| --- | --- | --- |
 | `OLD.columna` | `UPDATE`, `DELETE` | Valor de la columna **antes** de la operación |
 | `NEW.columna` | `INSERT`, `UPDATE` | Valor de la columna **después** de la operación |
 
@@ -205,7 +202,7 @@ DROP TRIGGER IF EXISTS trg_nota_before_insert_valida;
 ## Resumen
 
 | Momento | Cuándo usarlo | `OLD` disponible | `NEW` disponible |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `BEFORE INSERT` | Validar o modificar datos antes de guardarlos | No | Sí |
 | `AFTER INSERT` | Auditoría, acciones una vez confirmada el alta | No | Sí |
 | `BEFORE UPDATE` | Validar el cambio, o auditar antes de aplicarlo | Sí | Sí |

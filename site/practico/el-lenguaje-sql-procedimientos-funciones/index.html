@@ -691,48 +691,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gestion-de-errores-handler-y-signal" class="md-nav__link">
-    <span class="md-ellipsis">
-      Gestión de errores: HANDLER y SIGNAL
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Gestión de errores: HANDLER y SIGNAL">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tipos-de-handler" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tipos de HANDLER
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#signal-lanzar-un-error-controlado" class="md-nav__link">
-    <span class="md-ellipsis">
-      SIGNAL: lanzar un error controlado
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ejemplo-combinando-handler-transaccion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ejemplo combinando HANDLER + transacción
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#consultar-y-eliminar-rutinas" class="md-nav__link">
     <span class="md-ellipsis">
       Consultar y eliminar rutinas
@@ -1160,48 +1118,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gestion-de-errores-handler-y-signal" class="md-nav__link">
-    <span class="md-ellipsis">
-      Gestión de errores: HANDLER y SIGNAL
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Gestión de errores: HANDLER y SIGNAL">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tipos-de-handler" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tipos de HANDLER
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#signal-lanzar-un-error-controlado" class="md-nav__link">
-    <span class="md-ellipsis">
-      SIGNAL: lanzar un error controlado
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ejemplo-combinando-handler-transaccion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ejemplo combinando HANDLER + transacción
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#consultar-y-eliminar-rutinas" class="md-nav__link">
     <span class="md-ellipsis">
       Consultar y eliminar rutinas
@@ -1267,10 +1183,6 @@
 </tr>
 <tr>
 <td>6</td>
-<td>Gestionar errores de forma controlada con <code>HANDLER</code> y <code>SIGNAL</code>.</td>
-</tr>
-<tr>
-<td>7</td>
 <td>Reutilizar la base de datos ACADEMIA como esquema de referencia.</td>
 </tr>
 </tbody>
@@ -1278,10 +1190,6 @@
 <div class="admonition note">
 <p class="admonition-title">Sobre los datos de este documento</p>
 <p>Los ejemplos parten de la base de datos ACADEMIA (<code>crear_bd_academia.sql</code>), ya usada en los temas anteriores. Todas las rutinas de este documento están recogidas en el script <code>plsql_academia.sql</code>, pensado para ejecutarse <strong>después</strong> de <code>crear_bd_academia.sql</code>.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">De dónde viene este tema</p>
-<p>Este documento adapta a MySQL/MariaDB el contenido de los manuales de PL/SQL (Oracle) que ya tenías preparados. Al final de cada bloque se señalan las diferencias de sintaxis más importantes respecto a Oracle, por si en algún momento tienes que trabajar con ese motor.</p>
 </div>
 <hr />
 <h2 id="por-que-sql-puro-no-basta">Por qué SQL "puro" no basta</h2>
@@ -1555,42 +1463,60 @@
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Un detalle que te puedes encontrar</p>
-<p>Si en algún servidor la creación de la función da un error relacionado con <code>log_bin_trust_function_creators</code>, es porque tiene activado el registro binario (<em>binary log</em>) y exige que la función se declare como <code>DETERMINISTIC</code> o <code>READS SQL DATA</code>/<code>MODIFIES SQL DATA</code>. No es algo que haga falta añadir por defecto; solo se menciona para reconocer el error si aparece.</p>
+<p>Si en algún servidor la creación de la función da este error:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL, or
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>READS SQL DATA in its declaration and binary logging is enabled
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>(you *might* want to use the less safe log_bin_trust_function_creators variable)
+</span></code></pre></div>
+<p>es porque ese servidor tiene activado el registro binario (<em>binary log</em>) y, por seguridad, exige que toda función declare si es determinista y si lee o modifica datos. Dos formas de resolverlo:</p>
+<p><strong>Opción 1 (recomendada): añadir la cláusula que falta a la función</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">nota_media_alumno</span><span class="p">(</span><span class="n">p_nia</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">RETURNS</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">DETERMINISTIC</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">READS</span><span class="w"> </span><span class="k">SQL</span><span class="w"> </span><span class="k">DATA</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="k">BEGIN</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span><span class="p">...</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="k">END</span>
+</span></code></pre></div>
+<p><strong>Opción 2: relajar la restricción en el servidor</strong> (solo si no se puede tocar la función, por ejemplo en un servidor ya en producción)</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">log_bin_trust_function_creators</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span></code></pre></div>
+<p>La opción 1 es preferible porque documenta el comportamiento real de la función; la opción 2 afecta a todo el servidor y a cualquier función que se cree en él, no solo a la nuestra.</p>
 </div>
 <h3 id="funcion-sin-parametros-de-entrada">Función sin parámetros de entrada</h3>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="o">//</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">total_alumnos</span><span class="p">()</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">RETURNS</span><span class="w"> </span><span class="nb">INT</span>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="k">BEGIN</span>
-</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_total</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
-</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_total</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="p">;</span>
-</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">v_total</span><span class="p">;</span>
-</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="k">END</span><span class="w"> </span><span class="o">//</span>
-</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="p">;</span>
-</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>
-</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">total_alumnos</span><span class="p">();</span>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="o">//</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">total_alumnos</span><span class="p">()</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">RETURNS</span><span class="w"> </span><span class="nb">INT</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="k">BEGIN</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_total</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_total</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="p">;</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">v_total</span><span class="p">;</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="k">END</span><span class="w"> </span><span class="o">//</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="p">;</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">total_alumnos</span><span class="p">();</span>
 </span></code></pre></div>
 <h3 id="funciones-anidadas">Funciones anidadas</h3>
 <p>Una función puede llamar a otra, igual que en SQL normal:</p>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="o">//</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">nota_aprobada</span><span class="p">(</span><span class="n">p_nota</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">RETURNS</span><span class="w"> </span><span class="nb">BOOLEAN</span>
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">BEGIN</span>
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">p_nota</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
-</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="k">END</span><span class="w"> </span><span class="o">//</span>
-</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>
-</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">contar_aprobados_modulo</span><span class="p">(</span><span class="n">p_codmodulo</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span>
-</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="k">RETURNS</span><span class="w"> </span><span class="nb">INT</span>
-</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="k">BEGIN</span>
-</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_total</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
-</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_total</span>
-</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span>
-</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">codmodulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_codmodulo</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">nota_aprobada</span><span class="p">(</span><span class="n">nota</span><span class="p">);</span>
-</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">v_total</span><span class="p">;</span>
-</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="k">END</span><span class="w"> </span><span class="o">//</span>
-</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="p">;</span>
-</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>
-</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">contar_aprobados_modulo</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="o">//</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">nota_aprobada</span><span class="p">(</span><span class="n">p_nota</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">RETURNS</span><span class="w"> </span><span class="nb">BOOLEAN</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="k">BEGIN</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">p_nota</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="k">END</span><span class="w"> </span><span class="o">//</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">contar_aprobados_modulo</span><span class="p">(</span><span class="n">p_codmodulo</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="k">RETURNS</span><span class="w"> </span><span class="nb">INT</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="k">BEGIN</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_total</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_total</span>
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">Nota</span>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">codmodulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_codmodulo</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">nota_aprobada</span><span class="p">(</span><span class="n">nota</span><span class="p">);</span>
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">v_total</span><span class="p">;</span>
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="k">END</span><span class="w"> </span><span class="o">//</span>
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="p">;</span>
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>
+</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">contar_aprobados_modulo</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Diferencias con PL/SQL (Oracle)</p>
@@ -1639,131 +1565,70 @@
 </tbody>
 </table>
 <p>El problema es saber <strong>cuándo parar</strong>: cuando un <code>FETCH</code> ya no encuentra más filas, lanza la condición <code>NOT FOUND</code>. Para no abortar el procedimiento con un error, se declara un <code>HANDLER</code> que la capture:</p>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_fin</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">FALSE</span><span class="p">;</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">DECLARE</span><span class="w"> </span><span class="k">CONTINUE</span><span class="w"> </span><span class="k">HANDLER</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">FOUND</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">v_fin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">TRUE</span><span class="p">;</span>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_fin</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">FALSE</span><span class="p">;</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="k">DECLARE</span><span class="w"> </span><span class="k">CONTINUE</span><span class="w"> </span><span class="k">HANDLER</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">FOUND</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">v_fin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">TRUE</span><span class="p">;</span>
 </span></code></pre></div>
 <p><code>CONTINUE HANDLER</code> significa "cuando pase esto, no abortes: sigue ejecutando desde la siguiente instrucción" (en este caso, se usa para poner <code>v_fin</code> a verdadero y poder salir del bucle con <code>LEAVE</code> de forma controlada). Este es exactamente el patrón ya usado en el procedimiento <code>listar_prestamos_activos</code> del ejercicio de la biblioteca (Examen 2025) — este documento lo generaliza.</p>
 <h3 id="ejemplo-completo">Ejemplo completo</h3>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="o">//</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">listar_alumnos_ciclo</span><span class="p">(</span><span class="k">IN</span><span class="w"> </span><span class="n">p_codciclo</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">BEGIN</span>
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_nia</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">60</span><span class="p">);</span>
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_fin</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">FALSE</span><span class="p">;</span>
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>
-</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">cur_alumnos</span><span class="w"> </span><span class="k">CURSOR</span><span class="w"> </span><span class="k">FOR</span>
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="n">nia</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">codciclo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_codciclo</span><span class="p">;</span>
-</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="k">CONTINUE</span><span class="w"> </span><span class="k">HANDLER</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">FOUND</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">v_fin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">TRUE</span><span class="p">;</span>
-</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>
-</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="w">    </span><span class="k">OPEN</span><span class="w"> </span><span class="n">cur_alumnos</span><span class="p">;</span>
-</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">    </span><span class="n">bucle</span><span class="p">:</span><span class="w"> </span><span class="n">LOOP</span>
-</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="w">        </span><span class="k">FETCH</span><span class="w"> </span><span class="n">cur_alumnos</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_nia</span><span class="p">,</span><span class="w"> </span><span class="n">v_nombre</span><span class="p">;</span>
-</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="n">v_fin</span><span class="w"> </span><span class="k">THEN</span>
-</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="w">            </span><span class="n">LEAVE</span><span class="w"> </span><span class="n">bucle</span><span class="p">;</span>
-</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="w">        </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span>
-</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="n">v_nia</span><span class="p">,</span><span class="w"> </span><span class="n">v_nombre</span><span class="p">;</span><span class="w">  </span><span class="c1">-- aquí iría la lógica fila a fila</span>
-</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="n">LOOP</span><span class="p">;</span>
-</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="w">    </span><span class="k">CLOSE</span><span class="w"> </span><span class="n">cur_alumnos</span><span class="p">;</span>
-</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="k">END</span><span class="w"> </span><span class="o">//</span>
-</span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="p">;</span>
-</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>
-</span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a><span class="k">CALL</span><span class="w"> </span><span class="n">listar_alumnos_ciclo</span><span class="p">(</span><span class="s1">&#39;DAM&#39;</span><span class="p">);</span>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="o">//</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">listar_alumnos_ciclo</span><span class="p">(</span><span class="k">IN</span><span class="w"> </span><span class="n">p_codciclo</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="k">BEGIN</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_nia</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">60</span><span class="p">);</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_fin</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">FALSE</span><span class="p">;</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">cur_alumnos</span><span class="w"> </span><span class="k">CURSOR</span><span class="w"> </span><span class="k">FOR</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="n">nia</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">codciclo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_codciclo</span><span class="p">;</span>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="k">CONTINUE</span><span class="w"> </span><span class="k">HANDLER</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">FOUND</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">v_fin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">TRUE</span><span class="p">;</span>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="w">    </span><span class="k">OPEN</span><span class="w"> </span><span class="n">cur_alumnos</span><span class="p">;</span>
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="w">    </span><span class="n">bucle</span><span class="p">:</span><span class="w"> </span><span class="n">LOOP</span>
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="w">        </span><span class="k">FETCH</span><span class="w"> </span><span class="n">cur_alumnos</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_nia</span><span class="p">,</span><span class="w"> </span><span class="n">v_nombre</span><span class="p">;</span>
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="n">v_fin</span><span class="w"> </span><span class="k">THEN</span>
+</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="w">            </span><span class="n">LEAVE</span><span class="w"> </span><span class="n">bucle</span><span class="p">;</span>
+</span><span id="__span-22-17"><a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="w">        </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span>
+</span><span id="__span-22-18"><a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="n">v_nia</span><span class="p">,</span><span class="w"> </span><span class="n">v_nombre</span><span class="p">;</span><span class="w">  </span><span class="c1">-- aquí iría la lógica fila a fila</span>
+</span><span id="__span-22-19"><a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="n">LOOP</span><span class="p">;</span>
+</span><span id="__span-22-20"><a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a><span class="w">    </span><span class="k">CLOSE</span><span class="w"> </span><span class="n">cur_alumnos</span><span class="p">;</span>
+</span><span id="__span-22-21"><a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a><span class="k">END</span><span class="w"> </span><span class="o">//</span>
+</span><span id="__span-22-22"><a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="p">;</span>
+</span><span id="__span-22-23"><a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a>
+</span><span id="__span-22-24"><a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a><span class="k">CALL</span><span class="w"> </span><span class="n">listar_alumnos_ciclo</span><span class="p">(</span><span class="s1">&#39;DAM&#39;</span><span class="p">);</span>
 </span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Posible error: \"Illegal mix of collations\"</p>
+<p>Al ejecutar <code>CALL listar_alumnos_ciclo('DAM')</code> puede aparecer este error:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>Error: Illegal mix of collations (utf8mb4_spanish_ci,IMPLICIT) and
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>(utf8mb4_0900_ai_ci,IMPLICIT) for operation &#39;=&#39;
+</span></code></pre></div>
+<p><strong>Causa:</strong> la base de datos ACADEMIA se creó con <code>COLLATE utf8mb4_spanish_ci</code>, pero MySQL 8 (a diferencia de MariaDB) usa por defecto la colación <code>utf8mb4_0900_ai_ci</code> para cualquier sesión nueva. El parámetro <code>p_codciclo</code> del procedimiento hereda esa colación de la sesión en el momento de crearse (no la de la tabla), así que al compararlo con la columna <code>codciclo</code> (que sí tiene la colación de ACADEMIA) MySQL se encuentra con dos colaciones distintas y no sabe cuál usar.</p>
+<p><strong>Solución (recomendada): declarar el parámetro con la misma colación que la tabla</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="o">//</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">listar_alumnos_ciclo</span><span class="p">(</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span><span class="k">IN</span><span class="w"> </span><span class="n">p_codciclo</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="nb">CHARACTER</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">utf8mb4</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">utf8mb4_spanish_ci</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="p">)</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="k">BEGIN</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">    </span><span class="p">...</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="k">END</span><span class="w"> </span><span class="o">//</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Alternativa:</strong> forzar la colación directamente en la comparación, sin tocar el parámetro:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nia</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">codciclo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_codciclo</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">utf8mb4_spanish_ci</span><span class="p">;</span>
+</span></code></pre></div>
+<p>La primera opción es mejor si el parámetro se usa en varias consultas dentro del mismo procedimiento, porque arregla el problema una sola vez en la cabecera; la segunda es más rápida de aplicar si solo hay una comparación.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Orden obligatorio dentro del bloque</p>
 <p>En MySQL, todas las <code>DECLARE</code> de cursores y de <code>HANDLER</code> deben ir <strong>después</strong> de las <code>DECLARE</code> de variables normales, pero <strong>antes</strong> de cualquier otra instrucción del bloque. Si se declara el cursor antes de sus variables, o el <code>HANDLER</code> antes del cursor que debe vigilar, el servidor da un error de sintaxis.</p>
 </div>
 <hr />
-<h2 id="gestion-de-errores-handler-y-signal">Gestión de errores: <code>HANDLER</code> y <code>SIGNAL</code></h2>
-<div class="admonition tip">
-<p class="admonition-title">Idea clave</p>
-<p>MySQL no tiene un bloque <code>EXCEPTION WHEN ... THEN ...</code> como PL/SQL. En su lugar, se declara por adelantado, dentro del bloque, qué <code>HANDLER</code> debe reaccionar ante una condición de error, <strong>antes</strong> de que ocurra. Para <strong>lanzar</strong> un error propio (el equivalente a <code>RAISE_APPLICATION_ERROR</code>), se usa <code>SIGNAL</code>.</p>
-</div>
-<h3 id="tipos-de-handler">Tipos de <code>HANDLER</code></h3>
-<table>
-<thead>
-<tr>
-<th>Tipo</th>
-<th>Comportamiento tras ejecutarse</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>CONTINUE HANDLER</code></td>
-<td>Sigue ejecutando el bloque en la instrucción siguiente a la que falló.</td>
-</tr>
-<tr>
-<td><code>EXIT HANDLER</code></td>
-<td>Abandona por completo el bloque <code>BEGIN ... END</code> en el que está declarado.</td>
-</tr>
-</tbody>
-</table>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">DECLARE</span><span class="w"> </span><span class="k">CONTINUE</span><span class="w"> </span><span class="k">HANDLER</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">FOUND</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">v_fin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">TRUE</span><span class="p">;</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">DECLARE</span><span class="w"> </span><span class="n">EXIT</span><span class="w"> </span><span class="k">HANDLER</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">SQLEXCEPTION</span>
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">BEGIN</span>
-</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">    </span><span class="k">ROLLBACK</span><span class="p">;</span>
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;Operación cancelada: ha ocurrido un error&#39;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">mensaje</span><span class="p">;</span>
-</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="k">END</span><span class="p">;</span>
-</span></code></pre></div>
-<p><code>SQLEXCEPTION</code> es una condición genérica que cubre cualquier error (division por cero, violación de clave, etc.) — es lo más parecido a <code>WHEN OTHERS</code> de Oracle.</p>
-<h3 id="signal-lanzar-un-error-controlado"><code>SIGNAL</code>: lanzar un error controlado</h3>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="o">//</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">insertar_nota_validada</span><span class="p">(</span><span class="k">IN</span><span class="w"> </span><span class="n">p_nia</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="n">p_codmodulo</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="n">p_nota</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">BEGIN</span>
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="n">p_nota</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">p_nota</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">THEN</span>
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">        </span><span class="n">SIGNAL</span><span class="w"> </span><span class="k">SQLSTATE</span><span class="w"> </span><span class="s1">&#39;45000&#39;</span>
-</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">            </span><span class="k">SET</span><span class="w"> </span><span class="k">MESSAGE_TEXT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;La nota debe estar entre 0 y 10&#39;</span><span class="p">;</span>
-</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span>
-</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="p">(</span><span class="n">nia</span><span class="p">,</span><span class="w"> </span><span class="n">codmodulo</span><span class="p">,</span><span class="w"> </span><span class="n">nota</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="n">p_nia</span><span class="p">,</span><span class="w"> </span><span class="n">p_codmodulo</span><span class="p">,</span><span class="w"> </span><span class="n">p_nota</span><span class="p">);</span>
-</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="k">END</span><span class="w"> </span><span class="o">//</span>
-</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="p">;</span>
-</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>
-</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="k">CALL</span><span class="w"> </span><span class="n">insertar_nota_validada</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">);</span>
-</span></code></pre></div>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>ERROR 1644 (45000): La nota debe estar entre 0 y 10
-</span></code></pre></div>
-<p><code>'45000'</code> es el <code>SQLSTATE</code> genérico reservado para "excepción definida por el usuario" (es, de hecho, el mismo código que usa internamente MySQL para sus propios errores lanzados con <code>SIGNAL</code>/<code>RESIGNAL</code>). Es el equivalente directo de <code>RAISE_APPLICATION_ERROR(-20001, 'mensaje')</code> en Oracle.</p>
-<h3 id="ejemplo-combinando-handler-transaccion">Ejemplo combinando <code>HANDLER</code> + transacción</h3>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="o">//</span>
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">transferir_nota_segura</span><span class="p">(</span><span class="k">IN</span><span class="w"> </span><span class="n">p_nia</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="n">p_codmodulo</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="n">p_nota</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="k">BEGIN</span>
-</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_error</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">FALSE</span><span class="p">;</span>
-</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>
-</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">    </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">EXIT</span><span class="w"> </span><span class="k">HANDLER</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">SQLEXCEPTION</span>
-</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">    </span><span class="k">BEGIN</span>
-</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="w">        </span><span class="k">SET</span><span class="w"> </span><span class="n">v_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">TRUE</span><span class="p">;</span>
-</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="w">        </span><span class="k">ROLLBACK</span><span class="p">;</span>
-</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;Operación cancelada: ha ocurrido un error&#39;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">mensaje</span><span class="p">;</span>
-</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="w">    </span><span class="k">END</span><span class="p">;</span>
-</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>
-</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="w">    </span><span class="k">START</span><span class="w"> </span><span class="k">TRANSACTION</span><span class="p">;</span>
-</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a><span class="w">        </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Nota</span><span class="w"> </span><span class="p">(</span><span class="n">nia</span><span class="p">,</span><span class="w"> </span><span class="n">codmodulo</span><span class="p">,</span><span class="w"> </span><span class="n">nota</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="n">p_nia</span><span class="p">,</span><span class="w"> </span><span class="n">p_codmodulo</span><span class="p">,</span><span class="w"> </span><span class="n">p_nota</span><span class="p">);</span>
-</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a><span class="w">    </span><span class="k">COMMIT</span><span class="p">;</span>
-</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a>
-</span><span id="__span-23-17"><a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a><span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">v_error</span><span class="w"> </span><span class="k">THEN</span>
-</span><span id="__span-23-18"><a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a><span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;Nota insertada correctamente&#39;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">mensaje</span><span class="p">;</span>
-</span><span id="__span-23-19"><a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a><span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span>
-</span><span id="__span-23-20"><a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a><span class="k">END</span><span class="w"> </span><span class="o">//</span>
-</span><span id="__span-23-21"><a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="p">;</span>
-</span><span id="__span-23-22"><a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a>
-</span><span id="__span-23-23"><a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a><span class="k">CALL</span><span class="w"> </span><span class="n">transferir_nota_segura</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span><span class="w">  </span><span class="c1">-- primera vez: correcto</span>
-</span><span id="__span-23-24"><a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a><span class="k">CALL</span><span class="w"> </span><span class="n">transferir_nota_segura</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span><span class="w">  </span><span class="c1">-- repetida: viola la PK (nia, codmodulo) -&gt; error controlado</span>
-</span></code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Diferencias con PL/SQL (Oracle)</p>
-<ul>
-<li>Oracle: <code>EXCEPTION WHEN excepcion_concreta THEN ... WHEN OTHERS THEN ...</code>, declarado al final del bloque. MySQL: <code>DECLARE [CONTINUE|EXIT] HANDLER FOR condicion BEGIN ... END;</code>, declarado al principio, antes de que ocurra el error.</li>
-<li>Oracle lanza errores propios con <code>RAISE_APPLICATION_ERROR(-20001, 'mensaje')</code>; MySQL con <code>SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'mensaje';</code>.</li>
-</ul>
-</div>
-<hr />
 <h2 id="consultar-y-eliminar-rutinas">Consultar y eliminar rutinas</h2>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">SHOW</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">STATUS</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;academia&#39;</span><span class="p">;</span>
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="k">SHOW</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">STATUS</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;academia&#39;</span><span class="p">;</span>
-</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">insertar_nota</span><span class="p">;</span>
-</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>
-</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="k">DROP</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">insertar_nota</span><span class="p">;</span>
-</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="k">DROP</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">nota_media_alumno</span><span class="p">;</span>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">SHOW</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">STATUS</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;academia&#39;</span><span class="p">;</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="k">SHOW</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">STATUS</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;academia&#39;</span><span class="p">;</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">insertar_nota</span><span class="p">;</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="k">DROP</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">insertar_nota</span><span class="p">;</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="k">DROP</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">nota_media_alumno</span><span class="p">;</span>
 </span></code></pre></div>
 <hr />
 <h2 id="resumen">Resumen</h2>
@@ -1795,16 +1660,6 @@
 <td>Cursor</td>
 <td>Solo explícito</td>
 <td>Explícito e implícito (<code>FOR r IN (SELECT...) LOOP</code>)</td>
-</tr>
-<tr>
-<td>Capturar errores</td>
-<td><code>DECLARE HANDLER FOR condicion</code> (antes del error)</td>
-<td><code>EXCEPTION WHEN ... THEN</code> (al final del bloque)</td>
-</tr>
-<tr>
-<td>Lanzar error propio</td>
-<td><code>SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = '...'</code></td>
-<td><code>RAISE_APPLICATION_ERROR(-20001, '...')</code></td>
 </tr>
 <tr>
 <td>Filas afectadas</td>

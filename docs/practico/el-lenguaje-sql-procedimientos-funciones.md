@@ -9,14 +9,10 @@
 | 3 | Crear y usar **procedimientos almacenados** (`CREATE PROCEDURE`) con parámetros `IN`, `OUT` e `INOUT`. |
 | 4 | Crear y usar **funciones almacenadas** (`CREATE FUNCTION`), y distinguirlas de los procedimientos. |
 | 5 | Recorrer un conjunto de resultados fila a fila con **cursores explícitos**. |
-| 6 | Gestionar errores de forma controlada con `HANDLER` y `SIGNAL`. |
-| 7 | Reutilizar la base de datos ACADEMIA como esquema de referencia. |
+| 6 | Reutilizar la base de datos ACADEMIA como esquema de referencia. |
 
 !!! note "Sobre los datos de este documento"
     Los ejemplos parten de la base de datos ACADEMIA (`crear_bd_academia.sql`), ya usada en los temas anteriores. Todas las rutinas de este documento están recogidas en el script `plsql_academia.sql`, pensado para ejecutarse **después** de `crear_bd_academia.sql`.
-
-!!! note "De dónde viene este tema"
-    Este documento adapta a MySQL/MariaDB el contenido de los manuales de PL/SQL (Oracle) que ya tenías preparados. Al final de cada bloque se señalan las diferencias de sintaxis más importantes respecto a Oracle, por si en algún momento tienes que trabajar con ese motor.
 
 ---
 
@@ -279,7 +275,35 @@ WHERE nia IN (1, 2, 5);
 ```
 
 !!! note "Un detalle que te puedes encontrar"
-    Si en algún servidor la creación de la función da un error relacionado con `log_bin_trust_function_creators`, es porque tiene activado el registro binario (*binary log*) y exige que la función se declare como `DETERMINISTIC` o `READS SQL DATA`/`MODIFIES SQL DATA`. No es algo que haga falta añadir por defecto; solo se menciona para reconocer el error si aparece.
+    Si en algún servidor la creación de la función da este error:
+
+    ```text
+    ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL, or
+    READS SQL DATA in its declaration and binary logging is enabled
+    (you *might* want to use the less safe log_bin_trust_function_creators variable)
+    ```
+
+    es porque ese servidor tiene activado el registro binario (*binary log*) y, por seguridad, exige que toda función declare si es determinista y si lee o modifica datos. Dos formas de resolverlo:
+
+    **Opción 1 (recomendada): añadir la cláusula que falta a la función**
+
+    ```sql
+    CREATE FUNCTION nota_media_alumno(p_nia INT)
+    RETURNS DECIMAL(4,2)
+    DETERMINISTIC
+    READS SQL DATA
+    BEGIN
+        ...
+    END
+    ```
+
+    **Opción 2: relajar la restricción en el servidor** (solo si no se puede tocar la función, por ejemplo en un servidor ya en producción)
+
+    ```sql
+    SET GLOBAL log_bin_trust_function_creators = 1;
+    ```
+
+    La opción 1 es preferible porque documenta el comportamiento real de la función; la opción 2 afecta a todo el servidor y a cualquier función que se cree en él, no solo a la nuestra.
 
 ### Función sin parámetros de entrada
 
@@ -382,89 +406,39 @@ DELIMITER ;
 CALL listar_alumnos_ciclo('DAM');
 ```
 
+!!! warning "Posible error: \"Illegal mix of collations\""
+    Al ejecutar `CALL listar_alumnos_ciclo('DAM')` puede aparecer este error:
+
+    ```text
+    Error: Illegal mix of collations (utf8mb4_spanish_ci,IMPLICIT) and
+    (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+    ```
+
+    **Causa:** la base de datos ACADEMIA se creó con `COLLATE utf8mb4_spanish_ci`, pero MySQL 8 (a diferencia de MariaDB) usa por defecto la colación `utf8mb4_0900_ai_ci` para cualquier sesión nueva. El parámetro `p_codciclo` del procedimiento hereda esa colación de la sesión en el momento de crearse (no la de la tabla), así que al compararlo con la columna `codciclo` (que sí tiene la colación de ACADEMIA) MySQL se encuentra con dos colaciones distintas y no sabe cuál usar.
+
+    **Solución (recomendada): declarar el parámetro con la misma colación que la tabla**
+
+    ```sql
+    DELIMITER //
+    CREATE PROCEDURE listar_alumnos_ciclo(
+        IN p_codciclo VARCHAR(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci
+    )
+    BEGIN
+        ...
+    END //
+    DELIMITER ;
+    ```
+
+    **Alternativa:** forzar la colación directamente en la comparación, sin tocar el parámetro:
+
+    ```sql
+    SELECT nia, nombre FROM Alumno WHERE codciclo = p_codciclo COLLATE utf8mb4_spanish_ci;
+    ```
+
+    La primera opción es mejor si el parámetro se usa en varias consultas dentro del mismo procedimiento, porque arregla el problema una sola vez en la cabecera; la segunda es más rápida de aplicar si solo hay una comparación.
+
 !!! warning "Orden obligatorio dentro del bloque"
     En MySQL, todas las `DECLARE` de cursores y de `HANDLER` deben ir **después** de las `DECLARE` de variables normales, pero **antes** de cualquier otra instrucción del bloque. Si se declara el cursor antes de sus variables, o el `HANDLER` antes del cursor que debe vigilar, el servidor da un error de sintaxis.
-
----
-
-## Gestión de errores: `HANDLER` y `SIGNAL`
-
-!!! tip "Idea clave"
-    MySQL no tiene un bloque `EXCEPTION WHEN ... THEN ...` como PL/SQL. En su lugar, se declara por adelantado, dentro del bloque, qué `HANDLER` debe reaccionar ante una condición de error, **antes** de que ocurra. Para **lanzar** un error propio (el equivalente a `RAISE_APPLICATION_ERROR`), se usa `SIGNAL`.
-
-### Tipos de `HANDLER`
-
-| Tipo | Comportamiento tras ejecutarse |
-|---|---|
-| `CONTINUE HANDLER` | Sigue ejecutando el bloque en la instrucción siguiente a la que falló. |
-| `EXIT HANDLER` | Abandona por completo el bloque `BEGIN ... END` en el que está declarado. |
-
-```sql
-DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_fin = TRUE;
-DECLARE EXIT HANDLER FOR SQLEXCEPTION
-BEGIN
-    ROLLBACK;
-    SELECT 'Operación cancelada: ha ocurrido un error' AS mensaje;
-END;
-```
-
-`SQLEXCEPTION` es una condición genérica que cubre cualquier error (division por cero, violación de clave, etc.) — es lo más parecido a `WHEN OTHERS` de Oracle.
-
-### `SIGNAL`: lanzar un error controlado
-
-```sql
-DELIMITER //
-CREATE PROCEDURE insertar_nota_validada(IN p_nia INT, IN p_codmodulo INT, IN p_nota DECIMAL(4,2))
-BEGIN
-    IF p_nota < 0 OR p_nota > 10 THEN
-        SIGNAL SQLSTATE '45000'
-            SET MESSAGE_TEXT = 'La nota debe estar entre 0 y 10';
-    END IF;
-    INSERT INTO Nota (nia, codmodulo, nota) VALUES (p_nia, p_codmodulo, p_nota);
-END //
-DELIMITER ;
-
-CALL insertar_nota_validada(1, 2, 15);
-```
-
-```text
-ERROR 1644 (45000): La nota debe estar entre 0 y 10
-```
-
-`'45000'` es el `SQLSTATE` genérico reservado para "excepción definida por el usuario" (es, de hecho, el mismo código que usa internamente MySQL para sus propios errores lanzados con `SIGNAL`/`RESIGNAL`). Es el equivalente directo de `RAISE_APPLICATION_ERROR(-20001, 'mensaje')` en Oracle.
-
-### Ejemplo combinando `HANDLER` + transacción
-
-```sql
-DELIMITER //
-CREATE PROCEDURE transferir_nota_segura(IN p_nia INT, IN p_codmodulo INT, IN p_nota DECIMAL(4,2))
-BEGIN
-    DECLARE v_error INT DEFAULT FALSE;
-
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        SET v_error = TRUE;
-        ROLLBACK;
-        SELECT 'Operación cancelada: ha ocurrido un error' AS mensaje;
-    END;
-
-    START TRANSACTION;
-        INSERT INTO Nota (nia, codmodulo, nota) VALUES (p_nia, p_codmodulo, p_nota);
-    COMMIT;
-
-    IF NOT v_error THEN
-        SELECT 'Nota insertada correctamente' AS mensaje;
-    END IF;
-END //
-DELIMITER ;
-
-CALL transferir_nota_segura(6, 2, 7.0);  -- primera vez: correcto
-CALL transferir_nota_segura(6, 2, 9.0);  -- repetida: viola la PK (nia, codmodulo) -> error controlado
-```
-
-!!! note "Diferencias con PL/SQL (Oracle)"
-    - Oracle: `EXCEPTION WHEN excepcion_concreta THEN ... WHEN OTHERS THEN ...`, declarado al final del bloque. MySQL: `DECLARE [CONTINUE|EXIT] HANDLER FOR condicion BEGIN ... END;`, declarado al principio, antes de que ocurra el error.
-    - Oracle lanza errores propios con `RAISE_APPLICATION_ERROR(-20001, 'mensaje')`; MySQL con `SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'mensaje';`.
 
 ---
 
@@ -489,7 +463,5 @@ DROP FUNCTION IF EXISTS nota_media_alumno;
 | Parámetros de función | Solo `IN` | `IN`, `OUT`, `IN OUT` |
 | Bucle con rango numérico | `WHILE` (universal) / `FOR` (solo MariaDB) | `FOR i IN 1..n LOOP` |
 | Cursor | Solo explícito | Explícito e implícito (`FOR r IN (SELECT...) LOOP`) |
-| Capturar errores | `DECLARE HANDLER FOR condicion` (antes del error) | `EXCEPTION WHEN ... THEN` (al final del bloque) |
-| Lanzar error propio | `SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = '...'` | `RAISE_APPLICATION_ERROR(-20001, '...')` |
 | Filas afectadas | `ROW_COUNT()` | `SQL%ROWCOUNT` |
 | Salida de depuración | Sin equivalente directo (`SELECT` o tabla auxiliar) | `DBMS_OUTPUT.PUT_LINE(...)` |
