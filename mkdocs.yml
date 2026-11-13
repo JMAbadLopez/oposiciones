@@ -58,3 +58,5 @@ nav:
     - Ejercicios DML: ejercicios/ejercicios-dml.md
     - Ejercicios DDL: ejercicios/ejercicios-ddl.md
     - Ejercicios Procedimientos/Funciones/Disparadores: ejercicios/ejercicios-plsql.md
+    - Modelo Entidad-Relación: ejercicios/modelo-entidad-relacion.md
+
